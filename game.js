@@ -296,8 +296,10 @@ function showAreaDescription() {
   const area = currentArea();
 
   document.getElementById("story").innerHTML =
-    `<div class="story-location">${area.name.toUpperCase()}</div>
-     <div class="story-text">${area.description.replace(/\n/g, "<br>")}</div>`;
+    `<h3 class="story-location">${area.name}</h3>
+     <div class="story-text">
+       ${area.description.replace(/\n/g, "<br>")}
+     </div>`;
 }
 function render() {
   const room = currentRoom();
