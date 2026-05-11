@@ -169,3 +169,61 @@ button:hover {
   list-style: none;
   opacity: 0.6;
 }
+.hidden {
+  display: none !important;
+}
+
+#helpOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 24px;
+}
+
+#helpModal {
+  position: relative;
+  width: min(720px, 100%);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.94);
+  border: 1px solid #36ff85;
+  box-shadow: 0 0 24px rgba(54, 255, 133, 0.25);
+  padding: 28px;
+  color: #d7ffe1;
+}
+
+#helpModal h2 {
+  margin-top: 0;
+  color: #36ff85;
+  letter-spacing: 1px;
+}
+
+#helpModal h3 {
+  margin-top: 22px;
+  border-bottom: 1px solid rgba(54, 255, 133, 0.35);
+  padding-bottom: 6px;
+}
+
+#helpModal p {
+  line-height: 1.6;
+}
+
+#helpModal code {
+  color: #36ff85;
+  background: rgba(54, 255, 133, 0.08);
+  padding: 2px 5px;
+}
+
+#closeHelp {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  color: #36ff85;
+  border: 1px solid #36ff85;
+  padding: 4px 8px;
+}
