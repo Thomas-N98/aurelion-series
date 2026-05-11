@@ -187,7 +187,7 @@ const rooms = {
       weiter: {
         target: "haupttor",
         hiddenLabel: "Zaunverlauf nach rechts",
-        discoveredLabel: "Haupttor",,
+        discoveredLabel: "Haupttor",
         display: "weiter vorne"
       }
     },
