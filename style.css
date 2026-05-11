@@ -68,7 +68,15 @@ ul {
   margin: 0;
   padding-left: 18px;
 }
+#hotspots ul {
+  margin-top: 6px;
+  margin-left: 20px;
+  padding-left: 16px;
+}
 
+#hotspots li {
+  margin-bottom: 4px;
+}
 #commandForm {
   display: flex;
   align-items: center;
