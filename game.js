@@ -320,18 +320,30 @@ function renderList(id, items) {
 }
 
 function updateEnvironment() {
-  const room = currentRoom();
   const area = currentArea();
   const element = document.getElementById("hotspots");
 
   element.innerHTML = "";
 
-  addEnvironmentLine(element, `▶ ${area.name}`, "current-area");
+  // Aktueller Ort
+  addEnvironmentLine(
+    element,
+    `▶ ${area.name}`,
+    "current-area"
+  );
 
-  addEnvironmentLine(element, "Details here:", "environment-heading");
+  // Details
+  addEnvironmentLine(
+    element,
+    "Details here:",
+    "environment-heading"
+  );
 
   const visibleDetails = area.details.filter(detail => {
-    if (detail === "zugangskarte" && hasItem("Zugangskarte")) {
+    if (
+      detail === "zugangskarte" &&
+      hasItem("Zugangskarte")
+    ) {
       return false;
     }
 
@@ -339,27 +351,41 @@ function updateEnvironment() {
   });
 
   if (visibleDetails.length === 0) {
-    addEnvironmentLine(element, "empty", "empty-detail");
+    addEnvironmentLine(
+      element,
+      "empty",
+      "empty-detail"
+    );
   } else {
     visibleDetails.forEach(detail => {
-      addEnvironmentLine(element, detail, "area-detail");
+      addEnvironmentLine(
+        element,
+        detail,
+        "area-detail"
+      );
     });
   }
 
+  // Nearby Areas
   addEnvironmentLine(
-  element,
-  `${exitData.display}: ${exitData.label}`,
-  className
-);
+    element,
+    "Nearby areas:",
+    "environment-heading"
+  );
 
-  Object.values(area.exits).forEach(exitData => {
-    const exitId = exitData.target;
+  // WICHTIG: neue exits-Struktur
+  Object.values(area.exits).forEach(exit => {
 
-    const className = gameState.visitedAreas.includes(exitId)
-      ? "area-exit visited-area"
-      : "area-exit";
+    const className =
+      gameState.visitedAreas.includes(exit.target)
+        ? "area-exit visited-area"
+        : "area-exit";
 
-    addEnvironmentLine(element, exitData.label, className);
+    addEnvironmentLine(
+      element,
+      `${exit.display}: ${exit.label}`,
+      className
+    );
   });
 }
 
