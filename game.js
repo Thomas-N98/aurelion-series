@@ -301,10 +301,7 @@ function showAreaDescription() {
     .join("");
 
   document.getElementById("story").innerHTML =
-    `<h3 class="story-location">${area.name}</h3>
-     <div class="story-text">
-       ${formattedText}
-     </div>`;
+    `<h3 class="story-location">${area.name}</h3><div class="story-text">${formattedText}</div>`;
 }
 function render() {
   const room = currentRoom();
