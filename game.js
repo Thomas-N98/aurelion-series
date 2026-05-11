@@ -7,7 +7,7 @@ const gameState = {
 
 const rooms = {
   outside: {
-    location: "AURELION INDUSTRIES // Außenbereich",
+    location: "AURELION INDUSTRIES ",
 
     commands: [
       "umsehen",
