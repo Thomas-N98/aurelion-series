@@ -7,7 +7,7 @@ const gameState = {
 
 const rooms = {
   outside: {
-    location: "AURELION INDUSTRIES ",
+    location: "AURELION INDUSTRIES // PERIMETER ZONE",
 
     commands: [
       "umsehen",
