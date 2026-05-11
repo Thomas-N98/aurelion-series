@@ -3,6 +3,7 @@ const gameState = {
   area: "parkplatz",
   visitedAreas: ["parkplatz"],
   inventory: []
+  discoveredVerbs: []
 };
 
 const rooms = {
@@ -282,7 +283,16 @@ const aliases = {
 function hasItem(item) {
   return gameState.inventory.includes(item);
 }
+function discoverVerb(verb) {
+  if (!gameState.discoveredVerbs.includes(verb)) {
+    gameState.discoveredVerbs.push(verb);
+    updateHelpMenu();
+  }
+}
 
+function hasDiscoveredVerb(verb) {
+  return gameState.discoveredVerbs.includes(verb);
+}
 function currentRoom() {
   return rooms[gameState.room];
 }
@@ -435,6 +445,9 @@ function normalizeCommand(command) {
   if (command.startsWith("nehmen ")) {
     command = command.replace("nehmen", "nimm");
   }
+  if (command.startsWith("oeffne ")) {
+  command = command.replace("oeffne", "öffne");
+  }
 
   const fillerWords = [
     "nach",
@@ -492,6 +505,11 @@ function handleCommand(input) {
     const target = command.replace("nimm ", "");
     takeItem(target);
     return;
+  }
+  if (command.startsWith("oeffne ")) {
+  const target = command.replace("oeffne ", "");
+  openObject(target);
+  return;
   }
 
   if (command.startsWith("benutze ")) {
@@ -632,7 +650,34 @@ function takeItem(target) {
 
   showText("Das lässt sich nicht sinnvoll mitnehmen.");
 }
+function openObject(target) {
+  const area = currentArea();
 
+  if (!area.details.includes(target)) {
+    showText("Das kannst du hier nicht öffnen.");
+    return;
+  }
+
+  if (target === "auto") {
+    discoverVerb("oeffne");
+
+    if (gameState.inventory.includes("Taschenlampe")) {
+      showText("Du hast das Auto bereits durchsucht.");
+      return;
+    }
+
+    gameState.inventory.push("Taschenlampe");
+
+    showText(
+      "Du öffnest die Autotür.\n\nIm Innenraum riecht es nach kaltem Kaffee und feuchter Kleidung. Im Seitenfach findest du eine kleine Taschenlampe.\n\nNeue Interaktion entdeckt: ÖFFNE"
+    );
+
+    updateInventory();
+    return;
+  }
+
+  showText("Das lässt sich nicht öffnen.");
+}
 function useItem(commandRest) {
   const parts = commandRest.split(" ");
 
