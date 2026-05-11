@@ -206,29 +206,41 @@ function renderHotspots(room) {
   const element = document.getElementById("hotspots");
   element.innerHTML = "";
 
+  // globale Hotspots anzeigen
   room.hotspots.global.forEach(hotspot => {
-    const mainLi = document.createElement("li");
 
+    const li = document.createElement("li");
+
+    // Fokus markieren
     if (gameState.focus === hotspot) {
-      mainLi.classList.add("active-hotspot");
-      mainLi.textContent = "▶ " + hotspot;
+      li.innerHTML = `<strong>▶ ${hotspot}</strong>`;
     } else {
-      mainLi.textContent = hotspot;
+      li.textContent = hotspot;
     }
 
-    element.appendChild(mainLi);
+    element.appendChild(li);
 
-    if (gameState.focus === hotspot && room.hotspots[hotspot]) {
+    // Unterhotspots anzeigen
+    if (
+      gameState.focus === hotspot &&
+      room.hotspots[hotspot]
+    ) {
+
       room.hotspots[hotspot].forEach(subHotspot => {
         const subLi = document.createElement("li");
-        subLi.classList.add("sub-hotspot");
+
+        subLi.className = "sub-hotspot";
         subLi.textContent = "↳ " + subHotspot;
+
         element.appendChild(subLi);
       });
     }
   });
 }
-
+function updateHotspots() {
+  const room = rooms[gameState.room];
+  renderHotspots(room);
+}
 function updateInventory() {
   renderList(
     "inventory",
