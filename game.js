@@ -116,7 +116,27 @@ function currentRoom() {
 function currentArea() {
   return currentRoom().areas[gameState.area];
 }
+function openHelp() {
+  document.getElementById("helpOverlay").classList.remove("hidden");
+}
 
+function closeHelp() {
+  document.getElementById("helpOverlay").classList.add("hidden");
+}
+
+document.getElementById("closeHelp").addEventListener("click", closeHelp);
+
+document.getElementById("helpOverlay").addEventListener("click", function (event) {
+  if (event.target.id === "helpOverlay") {
+    closeHelp();
+  }
+});
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closeHelp();
+  }
+});
 function render() {
   const room = currentRoom();
   const area = currentArea();
@@ -234,11 +254,9 @@ function handleCommand(input) {
   if (!command) return;
 
   if (command === "hilfe") {
-    showText(
-      "Mögliche Eingaben:\n\numsehen\ngehe zum haupttor\ngehe zum wartungsrohr\ngehe zurück\nuntersuche kartenleser\nuntersuche zugangskarte\nnimm zugangskarte\nbenutze zugangskarte kartenleser"
-    );
-    return;
-  }
+  openHelp();
+  return;
+}
 
   if (command === "umsehen") {
     showText(currentArea().description);
