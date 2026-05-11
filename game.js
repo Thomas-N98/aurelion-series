@@ -279,7 +279,43 @@ const aliases = {
   auto: "auto",
   wegweiser: "wegweiser"
 };
+const secretVerbs = [
+  {
+    id: "oeffne",
+    label: "öffne",
+    description: "Open containers, doors or mechanisms."
+  },
+  {
+    id: "lies",
+    label: "lies",
+    description: "Read signs, notes or labels."
+  },
+  {
+    id: "ziehe",
+    label: "ziehe",
+    description: "Pull handles, levers or loose objects."
+  }
+];
 
+function updateHelpMenu() {
+  const list = document.getElementById("discoveredVerbs");
+
+  if (!list) return;
+
+  list.innerHTML = "";
+
+  secretVerbs.forEach(verb => {
+    const li = document.createElement("li");
+
+    if (hasDiscoveredVerb(verb.id)) {
+      li.innerHTML = `<span class="secret-unlocked">${verb.label}</span> — ${verb.description}`;
+    } else {
+      li.innerHTML = `<span class="secret-locked">???</span>`;
+    }
+
+    list.appendChild(li);
+  });
+}
 function hasItem(item) {
   return gameState.inventory.includes(item);
 }
