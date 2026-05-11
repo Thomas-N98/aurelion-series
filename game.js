@@ -402,7 +402,7 @@ function addEnvironmentLine(parent, text, className) {
 function updateInventory() {
   renderList(
     "inventory",
-    gameState.inventory.length ? gameState.inventory : ["leer"]
+    gameState.inventory
   );
 }
 
