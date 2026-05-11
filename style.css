@@ -151,6 +151,12 @@ button:hover {
 
 .area-exit {
   margin-left: 12px;
+  color: #d7ffe1;
+}
+
+.visited-area {
+  color: #91b89b;
+  opacity: 0.75;
 }
 
 .area-detail {
