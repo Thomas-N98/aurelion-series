@@ -539,7 +539,7 @@ function goToArea(target) {
 
     if (matchingExits.length > 1) {
       showText(
-        "Das ist nicht eindeutig.\n\nEs gibt mehrere passende Wege. Nutze eine Richtung, zum Beispiel:\n\ngehe vorne\ngehe links\ngehe hinten"
+        "Das ist nicht eindeutig. Es gibt mehrere passende Wege. Nutze eine Richtung."
       );
       return;
     }
