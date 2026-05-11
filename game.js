@@ -26,29 +26,29 @@ const rooms = {
       "Du stehst auf einem abgelegenen Wanderparkplatz. Dein Auto steht neben dir, dahinter die lange, schlängelnde Straße, die dich tief in den Wald geführt hat.\n\nMehrere Wege führen von hier aus zwischen den Bäumen hindurch. Vermutlich führt einer davon zum alten Firmengelände, aber noch siehst du nichts außer Wald, Schotter und verblasste Markierungen.\n\nAn einem der Wege steht ein alter Wegweiser.\n\nEs ist still. Fast ein bisschen zu still.",
     exits: {
       hinten: {
-    target: "waldweg_hinten",
-    hiddenLabel: "Waldpfad",
-    discoveredLabel: "steiler Waldpfad",
-    display: "hinter dir"
-  },
+        target: "waldweg_hinten",
+        hiddenLabel: "Waldpfad",
+        discoveredLabel: "steiler Waldpfad",
+        display: "hinter dir"
+      },
       links: {
-    target: "waldweg_links",
-    hiddenLabel: "Waldpfad",
-    discoveredLabel: "blockierter Pfad",
-    display: "links"
-  },
+        target: "waldweg_links",
+        hiddenLabel: "Waldpfad",
+        discoveredLabel: "blockierter Pfad",
+        display: "links"
+      },
       vorne: {
-    target: "waldweg_vorne",
-    hiddenLabel: "Waldpfad",
-    discoveredLabel: "verwachsener Waldweg",
-    display: "vor dir"
-  },
+        target: "waldweg_vorne",
+        hiddenLabel: "Waldpfad",
+        discoveredLabel: "verwachsener Waldweg",
+        display: "vor dir"
+      },
       straße: {
-    target: "straße",
-    hiddenLabel: "Landstraße",
-    discoveredLabel: "Landstraße",
-    display: "zur Straße"
-  }
+        target: "straße",
+        hiddenLabel: "Landstraße",
+        discoveredLabel: "Landstraße",
+        display: "zur Straße"
+      }
     },
     details: ["auto", "wegweiser"]
   },
@@ -376,25 +376,22 @@ function updateEnvironment() {
 
   // WICHTIG: neue exits-Struktur
   Object.values(area.exits).forEach(exit => {
+  const wasVisited = gameState.visitedAreas.includes(exit.target);
 
-    const className =
-      gameState.visitedAreas.includes(exit.target)
-        ? "area-exit visited-area"
-        : "area-exit";
+  const label = wasVisited
+    ? exit.discoveredLabel
+    : exit.hiddenLabel;
 
-    const wasVisited =
-  gameState.visitedAreas.includes(exit.target);
+  const className = wasVisited
+    ? "area-exit visited-area"
+    : "area-exit";
 
-const label = wasVisited
-  ? exit.discoveredLabel
-  : exit.hiddenLabel;
-
-addEnvironmentLine(
-  element,
-  `${exit.display}: ${label}`,
-  className
-);
-  });
+  addEnvironmentLine(
+    element,
+    `${exit.display}: ${label}`,
+    className
+  );
+});
 }
 
 function addEnvironmentLine(parent, text, className) {
@@ -515,8 +512,11 @@ function goToArea(target) {
   // 2. Angezeigtes Label prüfen, z. B. "verwachsener waldweg"
   if (!targetAreaId) {
     const matchingExit = exits.find(([direction, exitData]) => {
-      return normalizeText(exitData.label) === normalizeText(target);
-    });
+  return (
+    normalizeText(exitData.hiddenLabel) === normalizeText(target) ||
+    normalizeText(exitData.discoveredLabel) === normalizeText(target)
+  );
+});
 
     if (matchingExit) {
       targetAreaId = matchingExit[1].target;
