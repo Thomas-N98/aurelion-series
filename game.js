@@ -9,11 +9,14 @@ const rooms = {
     description:
       "Ihr steht vor dem Haupttor von Aurelion Industries.\n\nDas Gebäude wirkt verlassen, aber irgendwo hinter den dunklen Fenstern flackert Licht.\n\nEine Kamera bewegt sich langsam in eure Richtung.",
 
-    commands: ["untersuche", "gehe", "öffne", "benutze", "inventar", "hilfe"],
+    commands: ["umsehen", "untersuche", "gehe zu/nach", "öffne", "benutze","nimm", "hilfe"],
 
     hotspots: ["tor", "kamera", "schild", "lampe", "rohr"],
 
     actions: {
+       "umsehen": () => {
+    return rooms[gameState.room].description;
+  },
       "untersuche tor":
         "Das Tor ist massiv und elektronisch verriegelt. Daneben befindet sich ein Kartenleser.",
 
@@ -29,14 +32,13 @@ const rooms = {
       "untersuche rohr":
         "Hinter dem Rohr liegt eine schmutzige Zugangskarte.",
       
-      "nimm karte": () => {
+      "nimm zugangskarte": () => {
         if (!gameState.inventory.includes("Zugangskarte")) {
           gameState.inventory.push("Zugangskarte");
           return "Ihr nehmt die Zugangskarte. Sie ist zerkratzt, aber vielleicht noch lesbar.";
         }
         return "Ihr habt die Zugangskarte bereits.";
       },
-
       "öffne tor":
         "Das Tor bleibt geschlossen. Ohne gültige Autorisierung passiert hier gar nichts.",
 
@@ -81,7 +83,30 @@ function renderList(id, items) {
     element.appendChild(li);
   });
 }
+function normalizeCommand(command) {
 
+  // Füllwörter entfernen
+  const fillerWords = [
+    "nach",
+    "zum",
+    "zur",
+    "zu",
+    "in",
+    "an",
+    "auf",
+    "den",
+    "dem",
+    "das",
+    "die",
+    "der"
+  ];
+
+  let words = command.split(" ");
+
+  words = words.filter(word => !fillerWords.includes(word));
+
+  return words.join(" ");
+}
 function handleCommand(input) {
   const command = input.trim().toLowerCase();
   const room = rooms[gameState.room];
