@@ -151,14 +151,6 @@ function updateEnvironment() {
 
   addEnvironmentLine(element, `▶ ${area.name}`, "current-area");
 
-  addEnvironmentLine(element, "Nahe Orte:", "environment-heading");
-
-  area.exits.forEach(exitId => {
-    const exit = room.areas[exitId];
-    const visitedMarker = gameState.visitedAreas.includes(exitId) ? "✓ " : "";
-    addEnvironmentLine(element, `${visitedMarker}${exit.name}`, "area-exit");
-  });
-
   addEnvironmentLine(element, "Details hier:", "environment-heading");
 
   const visibleDetails = area.details.filter(detail => {
@@ -176,6 +168,18 @@ function updateEnvironment() {
       addEnvironmentLine(element, detail, "area-detail");
     });
   }
+
+  addEnvironmentLine(element, "Nahe Orte:", "environment-heading");
+
+  area.exits.forEach(exitId => {
+    const exit = room.areas[exitId];
+
+    const className = gameState.visitedAreas.includes(exitId)
+      ? "area-exit visited-area"
+      : "area-exit";
+
+    addEnvironmentLine(element, exit.name, className);
+  });
 }
 
 function addEnvironmentLine(parent, text, className) {
