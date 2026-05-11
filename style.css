@@ -28,7 +28,8 @@ body {
   gap: 16px;
 }
 
-/* Oberer Titelbereich */
+/* HEADER */
+
 #locationPanel {
   background: rgba(0, 0, 0, 0.75);
   border: 1px solid #36ff85;
@@ -50,7 +51,8 @@ body {
   text-transform: uppercase;
 }
 
-/* Storyfeld */
+/* STORY */
+
 #story {
   flex: 1;
   min-height: 280px;
@@ -58,11 +60,29 @@ body {
   border: 1px solid #1f7f4c;
   padding: 24px;
   font-size: 1.1rem;
-  line-height: 1.8;
+  line-height: 1.45;
   white-space: normal;
 }
 
-/* Panels unten */
+.story-location {
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.story-text {
+  line-height: 1.45;
+}
+
+.story-text p {
+  margin: 0 0 16px 0;
+}
+
+.story-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* PANELS */
+
 #panels {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -76,14 +96,12 @@ body {
   min-height: 180px;
 }
 
-/* Überschriften */
 h3 {
   margin-top: 0;
   margin-bottom: 12px;
   color: #36ff85;
 }
 
-/* Standardlisten */
 ul {
   margin: 0;
   padding-left: 18px;
@@ -93,66 +111,7 @@ li {
   margin-bottom: 4px;
 }
 
-/* Aktiver Hotspot */
-.active-hotspot {
-  font-weight: bold;
-  color: #36ff85;
-}
-
-/* Unter-Hotspots */
-.sub-hotspot {
-  margin-left: 28px;
-  list-style: none;
-  color: #b9ffd0;
-  opacity: 0.9;
-}
-
-/* Kommandozeile */
-#commandForm {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(0, 0, 0, 0.85);
-  border: 1px solid #36ff85;
-  padding: 12px;
-}
-
-#commandForm span {
-  color: #36ff85;
-  font-weight: bold;
-}
-
-/* Eingabefeld */
-#commandInput {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #d7ffe1;
-  font-family: inherit;
-  font-size: 1rem;
-}
-
-/* Button */
-button {
-  background: rgba(20, 60, 40, 0.7);
-  border: 1px solid #36ff85;
-  color: #36ff85;
-  padding: 8px 14px;
-  font-family: inherit;
-  letter-spacing: 1px;
-}
-
-button:hover {
-  background: rgba(54, 255, 133, 0.15);
-}
-.current-area {
-  font-weight: bold;
-  color: #36ff85;
-  list-style: none;
-  margin-left: -16px;
-  margin-bottom: 10px;
-}
+/* NAVIGATION */
 
 .environment-heading {
   list-style: none;
@@ -177,11 +136,49 @@ button:hover {
   color: #b9ffd0;
 }
 
-.empty-detail {
-  margin-left: 12px;
-  list-style: none;
-  opacity: 0.6;
+/* COMMAND INPUT */
+
+#commandForm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid #36ff85;
+  padding: 12px;
 }
+
+#commandForm span {
+  color: #36ff85;
+  font-weight: bold;
+}
+
+#commandInput {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #d7ffe1;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+button {
+  background: rgba(20, 60, 40, 0.7);
+  border: 1px solid #36ff85;
+  color: #36ff85;
+  padding: 8px 14px;
+  font-family: inherit;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: rgba(54, 255, 133, 0.15);
+}
+
+/* HELP OVERLAY */
+
 .hidden {
   display: none !important;
 }
@@ -189,46 +186,33 @@ button:hover {
 #helpOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.78);
+  background: rgba(0, 0, 0, 0.88);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
+  z-index: 9999;
   padding: 24px;
 }
 
-#helpModal {
+#helpBox {
   position: relative;
-  width: min(720px, 100%);
+  width: min(760px, 100%);
   max-height: 85vh;
   overflow-y: auto;
-  background: rgba(0, 0, 0, 0.94);
+  background: rgba(0, 0, 0, 0.97);
   border: 1px solid #36ff85;
-  box-shadow: 0 0 24px rgba(54, 255, 133, 0.25);
+  box-shadow: 0 0 28px rgba(54, 255, 133, 0.25);
   padding: 28px;
   color: #d7ffe1;
 }
 
-#helpModal h2 {
-  margin-top: 0;
+#helpBox::before {
+  content: "AURELION HELP TERMINAL";
+  display: block;
   color: #36ff85;
+  font-weight: bold;
   letter-spacing: 1px;
-}
-
-#helpModal h3 {
-  margin-top: 22px;
-  border-bottom: 1px solid rgba(54, 255, 133, 0.35);
-  padding-bottom: 6px;
-}
-
-#helpModal p {
-  line-height: 1.6;
-}
-
-#helpModal code {
-  color: #36ff85;
-  background: rgba(54, 255, 133, 0.08);
-  padding: 2px 5px;
+  margin-bottom: 18px;
 }
 
 #closeHelp {
@@ -239,7 +223,75 @@ button:hover {
   color: #36ff85;
   border: 1px solid #36ff85;
   padding: 4px 8px;
+  cursor: pointer;
 }
+
+.help-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.help-tab {
+  background: transparent;
+  border: 1px solid #36ff85;
+  color: #36ff85;
+  padding: 8px 14px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.help-tab.active {
+  background: rgba(54, 255, 133, 0.15);
+}
+
+.secret-tab {
+  border-color: #5bbcff;
+  color: #5bbcff;
+}
+
+.secret-tab.active {
+  background: rgba(91, 188, 255, 0.15);
+}
+
+.help-content {
+  display: none;
+}
+
+.help-content.active-tab {
+  display: block;
+}
+
+.help-content h3 {
+  margin-top: 0;
+}
+
+.help-content p {
+  line-height: 1.5;
+  margin: 0 0 18px 0;
+}
+
+.field-title {
+  color: #5bbcff;
+}
+
+.field-description {
+  color: #b7dbff;
+  opacity: 0.9;
+}
+
+.secret-locked {
+  color: #5bbcff;
+  opacity: 0.55;
+}
+
+.secret-unlocked {
+  color: #5bbcff;
+  font-weight: bold;
+}
+
+/* MOBILE */
+
 @media (max-width: 700px) {
   #game {
     padding: 12px;
@@ -250,9 +302,12 @@ button:hover {
     gap: 12px;
   }
 
+  #locationPanel {
+    padding: 12px;
+  }
+
   #location {
     font-size: 1rem;
-    padding: 12px;
     line-height: 1.4;
   }
 
@@ -260,7 +315,7 @@ button:hover {
     min-height: 260px;
     padding: 18px;
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1.45;
   }
 
   #panels {
@@ -279,100 +334,23 @@ button:hover {
     gap: 8px;
   }
 
-  #commandInput {
-    font-size: 1rem;
-    min-width: 0;
-  }
-
   button {
     padding: 8px 10px;
     font-size: 0.8rem;
   }
-.story-location {
-  margin-top: 0;
-  margin-bottom: 14px;
-}
 
-.story-text {
-  line-height: 1.45;
-}
+  #helpOverlay {
+    padding: 12px;
+    align-items: flex-start;
+  }
 
-.story-text p {
-  margin: 0 0 16px 0;
-}
+  #helpBox {
+    margin-top: 24px;
+    max-height: 90vh;
+    padding: 22px;
+  }
 
-.story-text p:last-child {
-  margin-bottom: 0;
-}
-  .field-notes-title {
-  color: #5bbcff;
-}
-
-.field-note-text {
-  color: #b8dfff;
-  opacity: 0.85;
-}
-
-.secret-locked {
-  color: #5bbcff;
-  opacity: 0.55;
-}
-
-.secret-unlocked {
-  color: #5bbcff;
-  font-weight: bold;
-}
   .help-tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 18px;
-}
-
-.help-tab {
-  background: transparent;
-  border: 1px solid #36ff85;
-  color: #36ff85;
-  padding: 8px 14px;
-  cursor: pointer;
-}
-
-.help-tab.active {
-  background: rgba(54, 255, 133, 0.12);
-}
-
-.secret-tab {
-  border-color: #5bbcff;
-  color: #5bbcff;
-}
-
-.help-content {
-  display: none;
-}
-
-.active-tab {
-  display: block;
-}
-
-.field-title {
-  color: #5bbcff;
-}
-
-.field-description {
-  color: #b7dbff;
-  opacity: 0.85;
-}
-
-.secret-locked {
-  color: #5bbcff;
-  opacity: 0.45;
-}
-
-.secret-unlocked {
-  color: #5bbcff;
-  font-weight: bold;
-}
-
-.hidden-tab {
-  display: none;
-}
+    flex-wrap: wrap;
+  }
 }
