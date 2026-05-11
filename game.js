@@ -239,7 +239,7 @@ function getVisibleHotspots(room) {
 
 function updateHotspots() {
   const room = rooms[gameState.room];
-  renderList("hotspots", getVisibleHotspots(room));
+  renderHotspots(room);
 }
 
 function updateInventory() {
