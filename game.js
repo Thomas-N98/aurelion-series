@@ -208,15 +208,21 @@ function renderHotspots(room) {
   element.innerHTML = "";
 
   room.hotspots.global.forEach(hotspot => {
+
     const li = document.createElement("li");
 
-if (gameState.focus === hotspot) {
-  li.innerHTML = `<strong>${hotspot}</strong>`;
-} else {
-  li.textContent = hotspot;
-}
+    // Fokus fett markieren
+    if (gameState.focus === hotspot) {
+      const strong = document.createElement("strong");
+      strong.textContent = hotspot;
+      li.appendChild(strong);
+    } else {
+      li.textContent = hotspot;
+    }
 
+    // Unter-Hotspots einrücken
     if (gameState.focus === hotspot && room.hotspots[hotspot]) {
+
       const subList = document.createElement("ul");
 
       room.hotspots[hotspot].forEach(subHotspot => {
