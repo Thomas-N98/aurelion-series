@@ -7,7 +7,7 @@ const rooms = {
   outside: {
     location: "AURELION INDUSTRIES // Außenbereich",
     description:
-      "Ihr steht vor dem Haupttor von Aurelion Industries.\n\nDas Gebäude wirkt verlassen, aber irgendwo hinter den dunklen Fenstern flackert Licht.\n\nEine Kamera bewegt sich langsam in eure Richtung.",
+      "Du stehst vor dem Haupttor von Aurelion Industries.\n\nDas Gebäude wirkt verlassen, aber irgendwo hinter den dunklen Fenstern flackert Licht.\n\nEine Kamera bewegt sich langsam in eure Richtung.",
 
     commands: ["umsehen", "untersuche", "gehe zu/nach", "öffne", "benutze","nimm", "hilfe"],
 
@@ -108,7 +108,8 @@ function normalizeCommand(command) {
   return words.join(" ");
 }
 function handleCommand(input) {
-  const command = input.trim().toLowerCase();
+  let command = input.trim().toLowerCase();
+command = normalizeCommand(command);
   const room = rooms[gameState.room];
 
   if (!command) return;
