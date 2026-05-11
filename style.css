@@ -107,3 +107,14 @@ button {
 button:hover {
   background: #1f7f4c;
 }
+.active-hotspot {
+  font-weight: bold;
+  color: #36ff85;
+}
+
+.sub-hotspot {
+  margin-left: 24px;
+  list-style-type: none;
+  opacity: 0.9;
+  color: #b9ffd0;
+}
