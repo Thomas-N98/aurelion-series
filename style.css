@@ -227,3 +227,52 @@ button:hover {
   border: 1px solid #36ff85;
   padding: 4px 8px;
 }
+@media (max-width: 700px) {
+  #game {
+    padding: 12px;
+  }
+
+  #screen {
+    min-height: auto;
+    gap: 12px;
+  }
+
+  #location {
+    font-size: 1rem;
+    padding: 12px;
+    line-height: 1.4;
+  }
+
+  #story {
+    min-height: 260px;
+    padding: 18px;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  #panels {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  #panels > div {
+    min-height: auto;
+  }
+
+  #commandForm {
+    position: sticky;
+    bottom: 0;
+    padding: 10px;
+    gap: 8px;
+  }
+
+  #commandInput {
+    font-size: 1rem;
+    min-width: 0;
+  }
+
+  button {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+}
