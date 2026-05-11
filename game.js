@@ -671,9 +671,7 @@ function useItem(commandRest) {
 
 function showText(text) {
   document.getElementById("story").innerHTML =
-    `<div class="story-text">
-      ${text.replace(/\n/g, "<br>")}
-    </div>`;
+    `<div class="story-text">${text.replace(/\n/g, "<br>")}</div>`;
 }
 
 document.getElementById("commandForm").addEventListener("submit", function (event) {
