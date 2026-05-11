@@ -292,7 +292,12 @@ document.addEventListener("keydown", function (event) {
     closeHelp();
   }
 });
+function showAreaDescription() {
+  const area = currentArea();
 
+  document.getElementById("story").textContent =
+    area.name.toUpperCase() + "\n\n" + area.description;
+}
 function render() {
   const room = currentRoom();
   const area = currentArea();
@@ -301,7 +306,7 @@ function render() {
   document.getElementById("objective").textContent =
     "PRIMARY OBJECTIVE: " + room.objective;
 
-  document.getElementById("story").textContent = area.description;
+  showAreaDescription();
 
   renderList("commands", room.commands);
   updateEnvironment();
@@ -324,13 +329,6 @@ function updateEnvironment() {
   const element = document.getElementById("hotspots");
 
   element.innerHTML = "";
-
-  // Aktueller Ort
-  addEnvironmentLine(
-    element,
-    `▶ ${area.name}`,
-    "current-area"
-  );
 
   // Details
   addEnvironmentLine(
@@ -450,7 +448,7 @@ function handleCommand(input) {
   }
 
   if (command === "umsehen") {
-    showText(currentArea().description);
+    showAreaDescription();
     updateEnvironment();
     return;
   }
