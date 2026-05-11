@@ -44,7 +44,7 @@ const rooms = {
         discoveredLabel: "verwachsener Waldweg",
         display: "vor dir"
       },
-      straße: {
+      strasse: {
         target: "straße",
         hiddenLabel: "Landstraße",
         discoveredLabel: "Landstraße",
@@ -482,9 +482,7 @@ function normalizeCommand(command) {
   if (command.startsWith("nehmen ")) {
     command = command.replace("nehmen", "nimm");
   }
-  if (command.startsWith("oeffne ")) {
-  command = command.replace("oeffne", "öffne");
-  }
+  
 
   const fillerWords = [
     "nach",
