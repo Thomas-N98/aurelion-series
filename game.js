@@ -20,10 +20,8 @@ const rooms = {
       "umsehen",
       "gehe zu/nach",
       "untersuche",
-      "öffne",
       "benutze",
       "nimm",
-      "inventar",
       "hilfe"
     ],
 
@@ -205,7 +203,34 @@ function renderList(id, items) {
     element.appendChild(li);
   });
 }
+function renderHotspots(room) {
+  const element = document.getElementById("hotspots");
+  element.innerHTML = "";
 
+  room.hotspots.global.forEach(hotspot => {
+    const li = document.createElement("li");
+
+if (gameState.focus === hotspot) {
+  li.innerHTML = `<strong>${hotspot}</strong>`;
+} else {
+  li.textContent = hotspot;
+}
+
+    if (gameState.focus === hotspot && room.hotspots[hotspot]) {
+      const subList = document.createElement("ul");
+
+      room.hotspots[hotspot].forEach(subHotspot => {
+        const subLi = document.createElement("li");
+        subLi.textContent = subHotspot;
+        subList.appendChild(subLi);
+      });
+
+      li.appendChild(subList);
+    }
+
+    element.appendChild(li);
+  });
+}
 function getVisibleHotspots(room) {
   const visible = [...room.hotspots.global];
 
