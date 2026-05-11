@@ -2,81 +2,170 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aurelion</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Aurelion Industries</title>
+
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <main id="game">
-    <section id="screen">
-      <div id="locationPanel">
-  <div id="location"></div>
-  <div id="objective"></div>
-</div>
 
-      <div id="story">
-        Lade System...
+<body>
+
+  <div id="game">
+
+    <div id="screen">
+
+      <!-- HEADER -->
+      <div id="location">
+        AURELION INDUSTRIES // PERIMETER ZONE
+
+        <div id="objective">
+          PRIMARY OBJECTIVE: Gain facility access
+        </div>
       </div>
 
+      <!-- STORY -->
+      <div id="story"></div>
+
+      <!-- SIDE PANELS -->
       <div id="panels">
+
+        <!-- COMMANDS -->
         <div>
           <h3>Commands</h3>
           <ul id="commands"></ul>
         </div>
 
+        <!-- ENVIRONMENT -->
+        <div>
+          <h3>Navigation</h3>
+          <ul id="hotspots"></ul>
+        </div>
+
+        <!-- INVENTORY -->
         <div>
           <h3>Inventory</h3>
           <ul id="inventory"></ul>
         </div>
 
-        <div>
-          <h3>Navigation</h3>
-          <ul id="hotspots"></ul>
-        </div>
       </div>
 
+      <!-- COMMAND INPUT -->
       <form id="commandForm">
+
         <span>&gt;</span>
-        <input id="commandInput" autocomplete="off" autofocus />
-        <button type="submit">EXECUTE</button>
+
+        <input
+          id="commandInput"
+          type="text"
+          autocomplete="off"
+          placeholder="Enter command..."
+        />
+
+        <button type="submit">
+          Execute
+        </button>
+
       </form>
-    </section>
-  </main>
-<div class="help-tabs">
-  <button class="help-tab active" data-tab="general">
-    Commands
-  </button>
 
-  <button class="help-tab secret-tab" data-tab="fieldnotes">
-    Field Notes
-  </button>
-</div>
+    </div>
 
-<div id="generalTab" class="help-content active-tab">
-  <h3>Commands</h3>
+  </div>
 
-  <p><strong>umsehen</strong><br>Beschreibt die Umgebung erneut.</p>
-  <p><strong>gehe ...</strong><br>Bewege dich zu Orten.</p>
-  <p><strong>untersuche ...</strong><br>Sieh dir etwas genauer an.</p>
-  <p><strong>nimm ...</strong><br>Nimm Objekte auf.</p>
-  <p><strong>benutze ...</strong><br>Benutze Items.</p>
-</div>
+  <!-- HELP OVERLAY -->
+  <div id="helpOverlay" class="hidden">
 
-<div id="fieldnotesTab" class="help-content hidden-tab">
+    <div id="helpBox">
 
-  <h3 class="field-title">
-    FIELD NOTES
-  </h3>
+      <button id="closeHelp">
+        ✕
+      </button>
 
-  <p class="field-description">
-    Not every useful interaction is listed.<br>
-    If something appears important, unstable or unusual —
-    try interacting with it.
-  </p>
+      <!-- TABS -->
+      <div class="help-tabs">
 
-  <ul id="discoveredVerbs"></ul>
+        <button
+          class="help-tab active"
+          data-tab="general">
 
-</div>
+          Commands
+
+        </button>
+
+        <button
+          class="help-tab secret-tab"
+          data-tab="fieldnotes">
+
+          Field Notes
+
+        </button>
+
+      </div>
+
+      <!-- COMMAND TAB -->
+      <div
+        id="generalTab"
+        class="help-content active-tab">
+
+        <h3>Commands</h3>
+
+        <p>
+          <strong>umsehen</strong><br>
+          Beschreibt die Umgebung erneut.
+        </p>
+
+        <p>
+          <strong>gehe ...</strong><br>
+          Bewege dich zwischen Orten.
+        </p>
+
+        <p>
+          <strong>untersuche ...</strong><br>
+          Sieh dir Dinge genauer an.
+        </p>
+
+        <p>
+          <strong>nimm ...</strong><br>
+          Hebe Gegenstände auf.
+        </p>
+
+        <p>
+          <strong>benutze ...</strong><br>
+          Benutze Gegenstände.
+        </p>
+
+      </div>
+
+      <!-- SECRET COMMANDS TAB -->
+      <div
+        id="fieldnotesTab"
+        class="help-content">
+
+        <h3 class="field-title">
+          FIELD NOTES
+        </h3>
+
+        <p class="field-description">
+          Not every useful interaction is listed.<br><br>
+
+          If something appears important,
+          unstable or unusual —
+          try interacting with it.
+        </p>
+
+        <ul id="discoveredVerbs">
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
   <script src="game.js"></script>
+
 </body>
 </html>
