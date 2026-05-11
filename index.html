@@ -14,20 +14,14 @@
 
 <body>
 
-  <div id="game">
+  <main id="game">
 
-    <div id="screen">
+    <section id="screen">
 
       <!-- HEADER -->
       <div id="locationPanel">
-  <div id="location"></div>
-  <div id="objective"></div>
-</div>
-        AURELION INDUSTRIES // PERIMETER ZONE
-
-        <div id="objective">
-          PRIMARY OBJECTIVE: Gain facility access
-        </div>
+        <div id="location"></div>
+        <div id="objective"></div>
       </div>
 
       <!-- STORY -->
@@ -36,20 +30,17 @@
       <!-- SIDE PANELS -->
       <div id="panels">
 
-        <!-- COMMANDS -->
-        <div>
+        <div class="panel">
           <h3>Commands</h3>
           <ul id="commands"></ul>
         </div>
 
-        <!-- ENVIRONMENT -->
-        <div>
+        <div class="panel">
           <h3>Navigation</h3>
           <ul id="hotspots"></ul>
         </div>
 
-        <!-- INVENTORY -->
-        <div>
+        <div class="panel">
           <h3>Inventory</h3>
           <ul id="inventory"></ul>
         </div>
@@ -59,12 +50,13 @@
       <!-- COMMAND INPUT -->
       <form id="commandForm">
 
-        <span>&gt;</span>
+        <span class="prompt-symbol">&gt;</span>
 
         <input
           id="commandInput"
           type="text"
           autocomplete="off"
+          spellcheck="false"
           placeholder="Enter command..."
         />
 
@@ -74,9 +66,9 @@
 
       </form>
 
-    </div>
+    </section>
 
-  </div>
+  </main>
 
   <!-- HELP OVERLAY -->
   <div id="helpOverlay" class="hidden">
@@ -108,7 +100,7 @@
 
       </div>
 
-      <!-- COMMAND TAB -->
+      <!-- COMMANDS TAB -->
       <div
         id="generalTab"
         class="help-content active-tab">
@@ -117,7 +109,7 @@
 
         <p>
           <strong>umsehen</strong><br>
-          Beschreibt die Umgebung erneut.
+          Beschreibt die aktuelle Umgebung erneut.
         </p>
 
         <p>
@@ -127,7 +119,7 @@
 
         <p>
           <strong>untersuche ...</strong><br>
-          Sieh dir Dinge genauer an.
+          Untersuche Dinge genauer.
         </p>
 
         <p>
@@ -137,12 +129,12 @@
 
         <p>
           <strong>benutze ...</strong><br>
-          Benutze Gegenstände.
+          Verwende Gegenstände.
         </p>
 
       </div>
 
-      <!-- SECRET COMMANDS TAB -->
+      <!-- FIELD NOTES TAB -->
       <div
         id="fieldnotesTab"
         class="help-content">
@@ -152,11 +144,11 @@
         </h3>
 
         <p class="field-description">
-          Not every useful interaction is listed.<br><br>
+          Not every useful interaction is obvious.<br><br>
 
-          If something appears important,
+          If something seems important,
           unstable or unusual —
-          try interacting with it.
+          try experimenting.
         </p>
 
         <ul id="discoveredVerbs">
