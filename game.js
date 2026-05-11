@@ -1,4 +1,3 @@
-alert("game.js lädt");
 const gameState = {
   room: "outside",
   focus: null,
@@ -204,7 +203,6 @@ function renderList(id, items) {
   });
 }
 function renderHotspots(room) {
-  console.log("renderHotspots läuft");
   const element = document.getElementById("hotspots");
   element.innerHTML = "";
 
@@ -213,9 +211,11 @@ function renderHotspots(room) {
 
     if (gameState.focus === hotspot) {
       mainLi.classList.add("active-hotspot");
+      mainLi.textContent = "▶ " + hotspot;
+    } else {
+      mainLi.textContent = hotspot;
     }
 
-    mainLi.textContent = hotspot;
     element.appendChild(mainLi);
 
     if (gameState.focus === hotspot && room.hotspots[hotspot]) {
@@ -227,20 +227,6 @@ function renderHotspots(room) {
       });
     }
   });
-}
-function getVisibleHotspots(room) {
-  const visible = [...room.hotspots.global];
-
-  if (gameState.focus && room.hotspots[gameState.focus]) {
-    visible.push(...room.hotspots[gameState.focus]);
-  }
-
-  return visible;
-}
-
-function updateHotspots() {
-  const room = rooms[gameState.room];
-  renderHotspots(room);
 }
 
 function updateInventory() {
