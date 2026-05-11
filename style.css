@@ -305,4 +305,22 @@ button:hover {
 .story-text p:last-child {
   margin-bottom: 0;
 }
+  .field-notes-title {
+  color: #5bbcff;
+}
+
+.field-note-text {
+  color: #b8dfff;
+  opacity: 0.85;
+}
+
+.secret-locked {
+  color: #5bbcff;
+  opacity: 0.55;
+}
+
+.secret-unlocked {
+  color: #5bbcff;
+  font-weight: bold;
+}
 }
