@@ -553,7 +553,7 @@ function goToArea(target) {
     gameState.visitedAreas.push(targetAreaId);
   }
 
-  showText(currentArea().description);
+  showAreaDescription();
   updateEnvironment();
 }
 
