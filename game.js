@@ -122,7 +122,7 @@ function render() {
   const area = currentArea();
 
   document.getElementById("location").textContent =
-    `${room.location} // ${area.name}`;
+  room.location;
 
   document.getElementById("story").textContent = area.description;
 
