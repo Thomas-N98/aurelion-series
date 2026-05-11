@@ -1,3 +1,4 @@
+alert("game.js lädt");
 const gameState = {
   room: "outside",
   focus: null,
