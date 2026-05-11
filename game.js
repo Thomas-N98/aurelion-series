@@ -8,7 +8,7 @@ const gameState = {
 const rooms = {
   outside: {
     location: "AURELION INDUSTRIES // PERIMETER ZONE",
-
+    objective: "Gain facility access",
     commands: [
       "umsehen",
       "gehe zu/nach",
@@ -143,6 +143,8 @@ function render() {
 
   document.getElementById("location").textContent =
   room.location;
+  document.getElementById("objective").textContent =
+  "PRIMARY OBJECTIVE: " + room.objective;
 
   document.getElementById("story").textContent = area.description;
 
