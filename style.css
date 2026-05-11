@@ -122,16 +122,16 @@ li {
 
 /* Button */
 button {
-  background: #123d28;
-  color: #d7ffe1;
+  background: rgba(20, 60, 40, 0.7);
   border: 1px solid #36ff85;
-  padding: 8px 12px;
-  cursor: pointer;
-  transition: background 0.15s ease;
+  color: #36ff85;
+  padding: 8px 14px;
+  font-family: inherit;
+  letter-spacing: 1px;
 }
 
 button:hover {
-  background: #1f7f4c;
+  background: rgba(54, 255, 133, 0.15);
 }
 .current-area {
   font-weight: bold;
