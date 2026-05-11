@@ -291,10 +291,18 @@ button:hover {
   }
 .story-location {
   margin-top: 0;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .story-text {
   line-height: 1.45;
+}
+
+.story-text p {
+  margin: 0 0 18px 0;
+}
+
+.story-text p:last-child {
+  margin-bottom: 0;
 }
 }
