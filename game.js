@@ -128,7 +128,7 @@ const rooms = {
     },
     details: ["zugangskarte"]
   }
-}
+},
 
     details: {
       kamera:
@@ -329,7 +329,7 @@ function handleCommand(input) {
   }
 
   if (command === "gehe zurück") {
-    goToArea("außenbereich");
+    goToArea("zurück");
     return;
   }
 
@@ -406,7 +406,7 @@ function examine(target) {
       return;
     }
 
-    if (area.exits.includes(target)) {
+    if (Object.values(area.exits).includes(target)) {
       showText(
         `${room.areas[target].name} liegt in der Nähe. Geh näher heran, um den Ort genauer zu untersuchen.`
       );
