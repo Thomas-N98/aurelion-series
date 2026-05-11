@@ -42,51 +42,40 @@
       </form>
     </section>
   </main>
-<div id="helpOverlay" class="hidden">
-  <div id="helpModal">
-    <button id="closeHelp" type="button">X</button>
+<div class="help-tabs">
+  <button class="help-tab active" data-tab="general">
+    Commands
+  </button>
 
-    <h2>AURELION HELP MENU</h2>
+  <button class="help-tab secret-tab" data-tab="fieldnotes">
+    Field Notes
+  </button>
+</div>
 
-    <h3>Basic Commands</h3>
-    <p><strong>umsehen</strong><br>
-    Zeigt die Beschreibung des aktuellen Ortes erneut.</p>
+<div id="generalTab" class="help-content active-tab">
+  <h3>Commands</h3>
 
-    <p><strong>gehe [ort oder richtung]</strong><br>
-    Bewegt dich zu einem nahegelegenen Ort oder in eine Richtung.<br>
-    Unter <code>Nearby areas</code> siehst du die Richtung in der die Orte liegen.<br>
-    Beispiel: <code>gehe zum haupttor</code><br>
-    Beispiel: <code>gehe nach rechts</code></p>
+  <p><strong>umsehen</strong><br>Beschreibt die Umgebung erneut.</p>
+  <p><strong>gehe ...</strong><br>Bewege dich zu Orten.</p>
+  <p><strong>untersuche ...</strong><br>Sieh dir etwas genauer an.</p>
+  <p><strong>nimm ...</strong><br>Nimm Objekte auf.</p>
+  <p><strong>benutze ...</strong><br>Benutze Items.</p>
+</div>
 
-    <p><strong>untersuche [objekt]</strong><br>
-    Untersucht einen Ort oder ein Detail genauer.<br>
-    Beispiel: <code>untersuche kartenleser</code></p>
+<div id="fieldnotesTab" class="help-content hidden-tab">
 
-    <p><strong>nimm [objekt]</strong><br>
-    Nimmt ein Objekt auf, falls möglich.<br>
-    Beispiel: <code>nimm zugangskarte</code></p>
+  <h3 class="field-title">
+    FIELD NOTES
+  </h3>
 
-    <p><strong>benutze [objekt] [ziel]</strong><br>
-    Benutzt ein Objekt an einem Ziel.<br>
-    Beispiel: <code>benutze zugangskarte kartenleser</code></p>
+  <p class="field-description">
+    Not every useful interaction is listed.<br>
+    If something appears important, unstable or unusual —
+    try interacting with it.
+  </p>
 
-    <h3>Notes</h3>
-    <p>Das System versteht einige Füllwörter automatisch, z. B.:</p>
-    <code>gehe zum haupttor</code><br>
-    <code>untersuche die kamera</code><br>
-    <code>benutze zugangskarte am kartenleser</code>
-    <h3 class="field-notes-title">Field Notes</h3>
+  <ul id="discoveredVerbs"></ul>
 
-<p class="field-note-text">
-  Not every useful interaction is listed. If something seems logical, try it.
-</p>
-
-<ul id="discoveredVerbs">
-  <li>???</li>
-  <li>???</li>
-  <li>???</li>
-</ul>
-  </div>
 </div>
   <script src="game.js"></script>
 </body>
