@@ -1,7 +1,7 @@
 const gameState = {
   room: "outside",
-  area: "außenbereich",
-  visitedAreas: ["außenbereich"],
+  area: "parkplatz",
+  visitedAreas: ["parkplatz"],
   inventory: []
 };
 
@@ -18,55 +18,117 @@ const rooms = {
       "hilfe"
     ],
 
-    areas: {
-      außenbereich: {
-        name: "Außenbereich",
-        description:
-          "Du stehst vor dem Gelände von Aurelion Industries.\n\nDas Gebäude wirkt verlassen, aber irgendwo hinter den dunklen Fenstern flackert Licht.",
-        exits: ["haupttor", "wartungsrohr", "firmenschild", "zaunbereich"],
-        details: []
-      },
-
-      haupttor: {
-        name: "Haupttor",
-        description:
-          "Du stehst direkt vor dem massiven Haupttor von Aurelion Industries.\n\nAus der Nähe erkennst du mehrere technische Vorrichtungen.",
-        exits: ["außenbereich", "zaunbereich"],
-        details: ["kamera", "kartenleser", "schloss"]
-      },
-
-      wartungsrohr: {
-        name: "Wartungsrohr",
-        description:
-          "Du stehst bei einem alten Wartungsrohr am Rand des Gebäudes.\n\nZwischen Laub, Schmutz und Beton liegt etwas Halbverdecktes.",
-        exits: ["außenbereich"],
-        details: ["zugangskarte"]
-      },
-
-      firmenschild: {
-        name: "Firmenschild",
-        description:
-          "Du stehst vor einem verwitterten Firmenschild.\n\nDie Buchstaben sind teilweise abgekratzt, aber der Name AURELION ist noch klar zu erkennen.",
-        exits: ["außenbereich"],
-        details: ["schriftzug"]
-      },
-
-      zaunbereich: {
-        name: "Zaunbereich",
-        description:
-          "Du stehst an einem beschädigten Abschnitt des Zauns.\n\nHier wirkt das Gelände weniger überwacht, aber nicht unbedingt einladender.",
-        exits: ["außenbereich", "haupttor", "waldweg"],
-        details: ["zaun", "warnschild"]
-      },
-
-      waldweg: {
-        name: "Waldweg",
-        description:
-          "Ein schmaler Waldweg führt vom Firmengelände weg.\n\nDer Boden ist feucht. Zwischen den Bäumen erkennst du Reifenspuren.",
-        exits: ["zaunbereich"],
-        details: ["reifenspuren"]
-      }
+   areas: {
+  parkplatz: {
+    name: "Wanderparkplatz",
+    description:
+      "Du stehst auf einem abgelegenen Wanderparkplatz. Dein Auto steht neben dir, dahinter die lange, schlängelnde Straße, die dich tief in den Wald geführt hat.\n\nMehrere Wege führen von hier aus zwischen den Bäumen hindurch. Vermutlich führt einer davon zum alten Firmengelände, aber noch siehst du nichts außer Wald, Schotter und verblasste Markierungen.\n\nAn einem der Wege steht ein alter Wegweiser.\n\nEs ist still. Fast ein bisschen zu still.",
+    exits: {
+      hinten: "waldweg_hinten",
+      links: "waldweg_links",
+      vorne: "waldweg_vorne",
+      straße: "straße"
     },
+    details: ["auto", "wegweiser"]
+  },
+
+  waldweg_hinten: {
+    name: "Hinterer Waldweg",
+    description:
+      "Der Weg führt zunächst parallel zur Straße, biegt dann aber ab und wird deutlich steiler.\n\nDu bist dir ziemlich sicher, dass du hier nicht richtig bist. Aber vielleicht kannst du von weiter oben etwas erkennen.",
+    exits: {
+      zurück: "parkplatz",
+      weiter: "waldweg_hinten2"
+    },
+    details: []
+  },
+
+  waldweg_hinten2: {
+    name: "Aussichtspunkt",
+    description:
+      "Keuchend erreichst du einen kleinen Aussichtspunkt. Eine Felsformation gibt den Blick über den Wald frei. Daneben steht eine alte Holzbank zwischen ein paar Bäumen.\n\nIn der Ferne erkennst du das verfallene Firmengelände. Leider liegt es eindeutig in der anderen Richtung.\n\nVom Parkplatz aus wäre wohl der vordere Weg richtig gewesen.",
+    exits: {
+      zurück: "parkplatz"
+    },
+    details: ["bank", "firmengelände"]
+  },
+
+  waldweg_links: {
+    name: "Linker Waldweg",
+    description:
+      "Nach kurzer Zeit stehst du vor einem Feld aus umgestürzten Bäumen.\n\nDer Weg ist blockiert. Morsche Stämme, nasses Laub und Dornen machen ziemlich deutlich, dass du hier nicht weitergehen solltest.",
+    exits: {
+      zurück: "parkplatz"
+    },
+    details: ["baumstämme"]
+  },
+
+  waldweg_vorne: {
+    name: "Vorderer Waldweg",
+    description:
+      "Der Weg führt eine ganze Weile kerzengerade durch den Wald.\n\nJe weiter du gehst, desto ungepflegter wird er. Das Unkraut reicht dir inzwischen bis an die Schuhe, und zwischen den Bäumen liegt ein feuchter, metallischer Geruch.\n\nNach einer Weile gelangst du an einen alten Zaun. In der Ferne erkennst du erste Umrisse des Firmengeländes.",
+    exits: {
+      zurück: "parkplatz",
+      links: "zaunbereich_links",
+      rechts: "zaunbereich_rechts"
+    },
+    details: ["zaun", "firmengelände"]
+  },
+
+  straße: {
+    name: "Straße",
+    description:
+      "Die Straße führt in die Richtung zurück, aus der du gekommen bist. Irgendwo dort liegt das kleine Dorf mit deiner schäbigen Unterkunft.\n\nIn die andere Richtung verliert sie sich zwischen den Bäumen. Auf der Fahrt hierher hast du kein einziges anderes Auto gesehen.\n\nHier wirst du nicht weiterkommen.",
+    exits: {
+      zurück: "parkplatz"
+    },
+    details: []
+  },
+
+  zaunbereich_links: {
+    name: "Zaunbereich links",
+    description:
+      "Du folgst dem Zaun nach links.\n\nDas Metall ist alt, aber noch stabil. Hinter dem Zaun liegt das überwucherte Gelände von Aurelion Industries.",
+    exits: {
+      zurück: "waldweg_vorne",
+      rechts: "zaunbereich_rechts"
+    },
+    details: ["zaun", "warnschild"]
+  },
+
+  zaunbereich_rechts: {
+    name: "Zaunbereich rechts",
+    description:
+      "Du folgst dem Zaun nach rechts.\n\nZwischen zwei alten Pfosten erkennst du in einiger Entfernung das Haupttor.",
+    exits: {
+      zurück: "waldweg_vorne",
+      links: "zaunbereich_links",
+      weiter: "haupttor"
+    },
+    details: ["zaun", "haupttor"]
+  },
+
+  haupttor: {
+    name: "Haupttor",
+    description:
+      "Du stehst direkt vor dem massiven Haupttor von Aurelion Industries.\n\nAus der Nähe erkennst du mehrere technische Vorrichtungen.",
+    exits: {
+      zurück: "zaunbereich_rechts",
+      links: "wartungsrohr"
+    },
+    details: ["kamera", "kartenleser", "schloss"]
+  },
+
+  wartungsrohr: {
+    name: "Wartungsrohr",
+    description:
+      "Du stehst bei einem alten Wartungsrohr am Rand des Gebäudes.\n\nZwischen Laub, Schmutz und Beton liegt etwas Halbverdecktes.",
+    exits: {
+      zurück: "haupttor"
+    },
+    details: ["zugangskarte"]
+  }
+}
 
     details: {
       kamera:
