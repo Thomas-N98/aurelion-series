@@ -39,7 +39,39 @@
       </form>
     </section>
   </main>
+<div id="helpOverlay" class="hidden">
+  <div id="helpModal">
+    <button id="closeHelp" type="button">X</button>
 
+    <h2>AURELION HELP MENU</h2>
+
+    <h3>Basic Commands</h3>
+    <p><strong>umsehen</strong><br>
+    Zeigt die Beschreibung des aktuellen Ortes erneut.</p>
+
+    <p><strong>gehe zu [ort]</strong><br>
+    Bewegt dich zu einem nahegelegenen Ort.<br>
+    Beispiel: <code>gehe zum haupttor</code></p>
+
+    <p><strong>untersuche [objekt]</strong><br>
+    Untersucht einen Ort oder ein Detail genauer.<br>
+    Beispiel: <code>untersuche kartenleser</code></p>
+
+    <p><strong>nimm [objekt]</strong><br>
+    Nimmt ein Objekt auf, falls möglich.<br>
+    Beispiel: <code>nimm zugangskarte</code></p>
+
+    <p><strong>benutze [objekt] [ziel]</strong><br>
+    Benutzt ein Objekt an einem Ziel.<br>
+    Beispiel: <code>benutze zugangskarte kartenleser</code></p>
+
+    <h3>Notes</h3>
+    <p>Das System versteht einige Füllwörter automatisch, z. B.:</p>
+    <code>gehe zum haupttor</code><br>
+    <code>untersuche die kamera</code><br>
+    <code>benutze zugangskarte am kartenleser</code>
+  </div>
+</div>
   <script src="game.js"></script>
 </body>
 </html>
