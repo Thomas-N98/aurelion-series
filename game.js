@@ -208,33 +208,23 @@ function renderHotspots(room) {
   element.innerHTML = "";
 
   room.hotspots.global.forEach(hotspot => {
+    const mainLi = document.createElement("li");
 
-    const li = document.createElement("li");
-
-    // Fokus fett markieren
     if (gameState.focus === hotspot) {
-      const strong = document.createElement("strong");
-      strong.textContent = hotspot;
-      li.appendChild(strong);
-    } else {
-      li.textContent = hotspot;
+      mainLi.classList.add("active-hotspot");
     }
 
-    // Unter-Hotspots einrücken
+    mainLi.textContent = hotspot;
+    element.appendChild(mainLi);
+
     if (gameState.focus === hotspot && room.hotspots[hotspot]) {
-
-      const subList = document.createElement("ul");
-
       room.hotspots[hotspot].forEach(subHotspot => {
         const subLi = document.createElement("li");
-        subLi.textContent = subHotspot;
-        subList.appendChild(subLi);
+        subLi.classList.add("sub-hotspot");
+        subLi.textContent = "↳ " + subHotspot;
+        element.appendChild(subLi);
       });
-
-      li.appendChild(subList);
     }
-
-    element.appendChild(li);
   });
 }
 function getVisibleHotspots(room) {
