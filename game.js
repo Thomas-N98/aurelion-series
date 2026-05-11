@@ -26,25 +26,29 @@ const rooms = {
       "Du stehst auf einem abgelegenen Wanderparkplatz. Dein Auto steht neben dir, dahinter die lange, schlängelnde Straße, die dich tief in den Wald geführt hat.\n\nMehrere Wege führen von hier aus zwischen den Bäumen hindurch. Vermutlich führt einer davon zum alten Firmengelände, aber noch siehst du nichts außer Wald, Schotter und verblasste Markierungen.\n\nAn einem der Wege steht ein alter Wegweiser.\n\nEs ist still. Fast ein bisschen zu still.",
     exits: {
       hinten: {
-        target: "waldweg_hinten",
-        label: "steiler Waldpfad",
-        display: "hinter dir"
-      },
+    target: "waldweg_hinten",
+    hiddenLabel: "Waldpfad",
+    discoveredLabel: "steiler Waldpfad",
+    display: "hinter dir"
+  },
       links: {
-        target: "waldweg_links",
-        label: "blockierter Pfad",
-        display: "links"
-      },
+    target: "waldweg_links",
+    hiddenLabel: "Waldpfad",
+    discoveredLabel: "blockierter Pfad",
+    display: "links"
+  },
       vorne: {
-        target: "waldweg_vorne",
-        label: "verwachsener Waldweg",
-        display: "vor dir"
-      },
+    target: "waldweg_vorne",
+    hiddenLabel: "Waldpfad",
+    discoveredLabel: "verwachsener Waldweg",
+    display: "vor dir"
+  },
       straße: {
-        target: "straße",
-        label: "Landstraße",
-        display: "zur Straße"
-      }
+    target: "straße",
+    hiddenLabel: "Landstraße",
+    discoveredLabel: "Landstraße",
+    display: "zur Straße"
+  }
     },
     details: ["auto", "wegweiser"]
   },
@@ -378,11 +382,18 @@ function updateEnvironment() {
         ? "area-exit visited-area"
         : "area-exit";
 
-    addEnvironmentLine(
-      element,
-      `${exit.display}: ${exit.label}`,
-      className
-    );
+    const wasVisited =
+  gameState.visitedAreas.includes(exit.target);
+
+const label = wasVisited
+  ? exit.discoveredLabel
+  : exit.hiddenLabel;
+
+addEnvironmentLine(
+  element,
+  `${exit.display}: ${label}`,
+  className
+);
   });
 }
 
