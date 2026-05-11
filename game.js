@@ -353,21 +353,15 @@ function updateEnvironment() {
     return true;
   });
 
-  if (visibleDetails.length === 0) {
+  if (visibleDetails.length > 0) {
+  visibleDetails.forEach(detail => {
     addEnvironmentLine(
       element,
-      "empty",
-      "empty-detail"
+      detail,
+      "area-detail"
     );
-  } else {
-    visibleDetails.forEach(detail => {
-      addEnvironmentLine(
-        element,
-        detail,
-        "area-detail"
-      );
-    });
-  }
+  });
+}
 
   // Nearby Areas
   addEnvironmentLine(
