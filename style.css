@@ -60,7 +60,7 @@ body {
   padding: 24px;
   font-size: 1.1rem;
   line-height: 1.8;
-  white-space: pre-line;
+  white-space: normal;
 }
 
 /* Panels unten */
