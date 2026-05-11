@@ -1,19 +1,13 @@
 const gameState = {
   room: "outside",
-  focus: null,
+  area: "außenbereich",
+  visitedAreas: ["außenbereich"],
   inventory: []
 };
-
-function hasItem(item) {
-  return gameState.inventory.includes(item);
-}
 
 const rooms = {
   outside: {
     location: "AURELION INDUSTRIES // Außenbereich",
-
-    description:
-      "Du stehst vor dem Haupttor von Aurelion Industries.\n\nDas Gebäude wirkt verlassen, aber irgendwo hinter den dunklen Fenstern flackert Licht.\n\nEine Kamera bewegt sich langsam in deine Richtung.",
 
     commands: [
       "umsehen",
@@ -24,171 +18,116 @@ const rooms = {
       "hilfe"
     ],
 
-    hotspots: {
-      global: ["tor", "kamera", "schild", "rohr"],
-      tor: ["kartenleser", "schloss"],
-      rohr: ["zugangskarte"]
+    areas: {
+      außenbereich: {
+        name: "Außenbereich",
+        description:
+          "Du stehst vor dem Gelände von Aurelion Industries.\n\nDas Gebäude wirkt verlassen, aber irgendwo hinter den dunklen Fenstern flackert Licht.",
+        exits: ["haupttor", "wartungsrohr", "firmenschild", "zaunbereich"],
+        details: []
+      },
+
+      haupttor: {
+        name: "Haupttor",
+        description:
+          "Du stehst direkt vor dem massiven Haupttor von Aurelion Industries.\n\nAus der Nähe erkennst du mehrere technische Vorrichtungen.",
+        exits: ["außenbereich", "zaunbereich"],
+        details: ["kamera", "kartenleser", "schloss"]
+      },
+
+      wartungsrohr: {
+        name: "Wartungsrohr",
+        description:
+          "Du stehst bei einem alten Wartungsrohr am Rand des Gebäudes.\n\nZwischen Laub, Schmutz und Beton liegt etwas Halbverdecktes.",
+        exits: ["außenbereich"],
+        details: ["zugangskarte"]
+      },
+
+      firmenschild: {
+        name: "Firmenschild",
+        description:
+          "Du stehst vor einem verwitterten Firmenschild.\n\nDie Buchstaben sind teilweise abgekratzt, aber der Name AURELION ist noch klar zu erkennen.",
+        exits: ["außenbereich"],
+        details: ["schriftzug"]
+      },
+
+      zaunbereich: {
+        name: "Zaunbereich",
+        description:
+          "Du stehst an einem beschädigten Abschnitt des Zauns.\n\nHier wirkt das Gelände weniger überwacht, aber nicht unbedingt einladender.",
+        exits: ["außenbereich", "haupttor", "waldweg"],
+        details: ["zaun", "warnschild"]
+      },
+
+      waldweg: {
+        name: "Waldweg",
+        description:
+          "Ein schmaler Waldweg führt vom Firmengelände weg.\n\nDer Boden ist feucht. Zwischen den Bäumen erkennst du Reifenspuren.",
+        exits: ["zaunbereich"],
+        details: ["reifenspuren"]
+      }
     },
 
-    actions: {
-      "umsehen": () => {
-        if (gameState.focus === "tor") {
-          return "Du stehst direkt vor dem Haupttor.\n\nIn Reichweite erkennst du:\n- kartenleser\n- schloss";
-        }
-
-        if (gameState.focus === "rohr") {
-          return "Du stehst bei dem alten Rohr.\n\nDahinter liegen Schmutz, Laub und eine schmutzige Zugangskarte.";
-        }
-
-        return rooms[gameState.room].description;
-      },
-
-      "hilfe":
-        "Mögliche Eingaben:\n\numsehen\ngehe zum tor\ngehe zum rohr\ngehe zurück\nuntersuche tor\nuntersuche kartenleser\nuntersuche rohr\nnimm zugangskarte\nbenutze zugangskarte tor\ninventar",
-
-      "inventar": () => {
-        if (gameState.inventory.length === 0) {
-          return "Dein Inventar ist leer.";
-        }
-
-        return "Inventar:\n- " + gameState.inventory.join("\n- ");
-      },
-
-      "gehe tor": () => {
-        gameState.focus = "tor";
-        updateHotspots();
-
-        return "Du trittst näher an das Haupttor heran.\n\nAus der Nähe erkennst du einen Kartenleser und ein altes Schloss.";
-      },
-
-      "gehe rohr": () => {
-        gameState.focus = "rohr";
-        updateHotspots();
-
-        return "Du gehst zu dem alten Rohr.\n\nDahinter scheint etwas im Schmutz zu liegen.";
-      },
-
-      "gehe zurück": () => {
-        gameState.focus = null;
-        updateHotspots();
-
-        return rooms[gameState.room].description;
-      },
-
-      "gehe links":
-        "Links endet der Zaun an einem überwucherten Wartungsweg. Noch ist dort nichts Interessantes.",
-
-      "gehe rechts":
-        "Rechts findest du nur weitere Betonwand, Dornen und eine beunruhigend neue Überwachungskamera.",
-
-      "untersuche tor": () => {
-        if (gameState.focus !== "tor") {
-          return "Das Tor ist zu weit entfernt. Geh näher heran, um es genauer zu untersuchen.";
-        }
-
-        return "Das Tor ist massiv und elektronisch verriegelt. Daneben befindet sich ein Kartenleser.";
-      },
-
-      "untersuche kartenleser": () => {
-        if (gameState.focus !== "tor") {
-          return "Dafür müsstest du näher an das Tor herangehen.";
-        }
-
-        return "Der Kartenleser ist alt, aber noch aktiv. Ein schwaches grünes Licht pulsiert unter der zerkratzten Oberfläche.";
-      },
-
-      "untersuche schloss": () => {
-        if (gameState.focus !== "tor") {
-          return "Das Schloss erkennst du von hier aus nicht genau genug.";
-        }
-
-        return "Das Schloss wirkt mechanisch, aber es scheint zusätzlich elektronisch blockiert zu sein.";
-      },
-
-      "untersuche kamera":
+    details: {
+      kamera:
         "Die Kamera folgt deinen Bewegungen. Ein kleines rotes Licht blinkt im Takt.",
 
-      "untersuche schild":
+      kartenleser:
+        "Der Kartenleser ist alt, aber noch aktiv. Ein schwaches grünes Licht pulsiert unter der zerkratzten Oberfläche.",
+
+      schloss:
+        "Das Schloss wirkt mechanisch, aber es scheint zusätzlich elektronisch blockiert zu sein.",
+
+      zugangskarte:
+        "Die Zugangskarte liegt halb verdeckt im Schmutz. Vielleicht funktioniert sie noch.",
+
+      schriftzug:
         "Auf dem Schild steht:\n\nAURELION INDUSTRIES\nFortschritt ist Gehorsam.",
 
-      "untersuche rohr": () => {
-        if (gameState.focus !== "rohr") {
-          return "Von hier aus siehst du nur ein altes Rohr. Vielleicht solltest du näher herangehen.";
-        }
+      zaun:
+        "Der Zaun ist beschädigt, aber nicht völlig offen. Jemand hat ihn notdürftig zurückgebogen.",
 
-        return "Hinter dem Rohr liegt eine schmutzige Zugangskarte.";
-      },
+      warnschild:
+        "Auf dem Warnschild steht:\n\nBETRETEN VERBOTEN\nSICHERHEITSSYSTEM AKTIV",
 
-      "untersuche zugangskarte": () => {
-        if (hasItem("Zugangskarte")) {
-          return "Die Zugangskarte ist zerkratzt, aber der Magnetstreifen sieht noch halbwegs intakt aus.";
-        }
-
-        if (gameState.focus !== "rohr") {
-          return "Du siehst hier keine Zugangskarte.";
-        }
-
-        return "Die Zugangskarte liegt halb verdeckt im Schmutz. Vielleicht funktioniert sie noch.";
-      },
-
-      "nimm zugangskarte": () => {
-        if (gameState.focus !== "rohr") {
-          return "Du siehst hier keine Zugangskarte.";
-        }
-
-        if (hasItem("Zugangskarte")) {
-          return "Du hast die Zugangskarte bereits.";
-        }
-
-        gameState.inventory.push("Zugangskarte");
-        updateInventory();
-
-        return "Du hebst die schmutzige Zugangskarte auf.";
-      },
-
-      "öffne tor": () => {
-        if (gameState.focus !== "tor") {
-          return "Dafür musst du näher an das Tor herangehen.";
-        }
-
-        return "Das Tor bleibt geschlossen. Ohne gültige Autorisierung passiert hier gar nichts.";
-      },
-
-      "benutze zugangskarte tor": () => {
-        if (gameState.focus !== "tor") {
-          return "Du bist zu weit vom Tor entfernt.";
-        }
-
-        if (!hasItem("Zugangskarte")) {
-          return "Du hast keine Zugangskarte.";
-        }
-
-        return "Der Kartenleser piept.\n\nZUGRIFF GEWÄHRT.\n\nDas Tor öffnet sich einen Spalt breit. Dahinter liegt der Eingangsbereich von Aurelion.";
-      },
-
-      "benutze zugangskarte kartenleser": () => {
-        if (gameState.focus !== "tor") {
-          return "Du bist zu weit vom Kartenleser entfernt.";
-        }
-
-        if (!hasItem("Zugangskarte")) {
-          return "Du hast keine Zugangskarte.";
-        }
-
-        return "Der Kartenleser piept.\n\nZUGRIFF GEWÄHRT.\n\nDas Tor öffnet sich einen Spalt breit. Dahinter liegt der Eingangsbereich von Aurelion.";
-      }
+      reifenspuren:
+        "Die Reifenspuren sehen frisch aus. Offenbar ist dieser Ort nicht so verlassen, wie er wirken soll."
     }
   }
 };
 
-function render() {
-  const room = rooms[gameState.room];
+const aliases = {
+  tor: "haupttor",
+  rohr: "wartungsrohr",
+  schild: "firmenschild",
+  zaun: "zaunbereich",
+  weg: "waldweg",
+  karte: "zugangskarte"
+};
 
-  document.getElementById("location").textContent = room.location;
-  document.getElementById("story").textContent = room.description;
+function hasItem(item) {
+  return gameState.inventory.includes(item);
+}
+
+function currentRoom() {
+  return rooms[gameState.room];
+}
+
+function currentArea() {
+  return currentRoom().areas[gameState.area];
+}
+
+function render() {
+  const room = currentRoom();
+  const area = currentArea();
+
+  document.getElementById("location").textContent =
+    `${room.location} // ${area.name}`;
+
+  document.getElementById("story").textContent = area.description;
 
   renderList("commands", room.commands);
-  updateHotspots();
+  updateEnvironment();
   updateInventory();
 }
 
@@ -202,45 +141,50 @@ function renderList(id, items) {
     element.appendChild(li);
   });
 }
-function renderHotspots(room) {
+
+function updateEnvironment() {
+  const room = currentRoom();
+  const area = currentArea();
   const element = document.getElementById("hotspots");
+
   element.innerHTML = "";
 
-  // globale Hotspots anzeigen
-  room.hotspots.global.forEach(hotspot => {
+  addEnvironmentLine(element, `▶ ${area.name}`, "current-area");
 
-    const li = document.createElement("li");
+  addEnvironmentLine(element, "Nahe Orte:", "environment-heading");
 
-    // Fokus markieren
-    if (gameState.focus === hotspot) {
-      li.innerHTML = `<strong>▶ ${hotspot}</strong>`;
-    } else {
-      li.textContent = hotspot;
-    }
-
-    element.appendChild(li);
-
-    // Unterhotspots anzeigen
-    if (
-      gameState.focus === hotspot &&
-      room.hotspots[hotspot]
-    ) {
-
-      room.hotspots[hotspot].forEach(subHotspot => {
-        const subLi = document.createElement("li");
-
-        subLi.className = "sub-hotspot";
-        subLi.textContent = "↳ " + subHotspot;
-
-        element.appendChild(subLi);
-      });
-    }
+  area.exits.forEach(exitId => {
+    const exit = room.areas[exitId];
+    const visitedMarker = gameState.visitedAreas.includes(exitId) ? "✓ " : "";
+    addEnvironmentLine(element, `${visitedMarker}${exit.name}`, "area-exit");
   });
+
+  addEnvironmentLine(element, "Details hier:", "environment-heading");
+
+  const visibleDetails = area.details.filter(detail => {
+    if (detail === "zugangskarte" && hasItem("Zugangskarte")) {
+      return false;
+    }
+
+    return true;
+  });
+
+  if (visibleDetails.length === 0) {
+    addEnvironmentLine(element, "leer", "empty-detail");
+  } else {
+    visibleDetails.forEach(detail => {
+      addEnvironmentLine(element, detail, "area-detail");
+    });
+  }
 }
-function updateHotspots() {
-  const room = rooms[gameState.room];
-  renderHotspots(room);
+
+function addEnvironmentLine(parent, text, className) {
+  const li = document.createElement("li");
+  li.textContent = text;
+  li.className = className;
+  parent.appendChild(li);
 }
+
 function updateInventory() {
   renderList(
     "inventory",
@@ -275,32 +219,173 @@ function normalizeCommand(command) {
   let words = command.split(" ");
   words = words.filter(word => !fillerWords.includes(word));
 
+  words = words.map(word => aliases[word] || word);
+
   return words.join(" ");
 }
 
 function handleCommand(input) {
   const command = normalizeCommand(input);
-  const room = rooms[gameState.room];
 
   if (!command) return;
 
-  const action = room.actions[command];
-
-  if (!action) {
+  if (command === "hilfe") {
     showText(
-      "Befehl nicht erkannt.\n\nTipp: Nutze Eingaben wie:\n- umsehen\n- gehe zum tor\n- gehe zum rohr\n- untersuche kartenleser\n- nimm zugangskarte\n- benutze zugangskarte tor"
+      "Mögliche Eingaben:\n\numsehen\ngehe zum haupttor\ngehe zum wartungsrohr\ngehe zurück\nuntersuche kartenleser\nuntersuche zugangskarte\nnimm zugangskarte\nbenutze zugangskarte kartenleser"
     );
     return;
   }
 
-  if (typeof action === "function") {
-    showText(action());
-  } else {
-    showText(action);
+  if (command === "umsehen") {
+    showText(currentArea().description);
+    updateEnvironment();
+    return;
   }
 
-  updateInventory();
-  updateHotspots();
+  if (command === "gehe zurück") {
+    goToArea("außenbereich");
+    return;
+  }
+
+  if (command.startsWith("gehe ")) {
+    const target = command.replace("gehe ", "");
+    goToArea(target);
+    return;
+  }
+
+  if (command.startsWith("untersuche ")) {
+    const target = command.replace("untersuche ", "");
+    examine(target);
+    return;
+  }
+
+  if (command.startsWith("nimm ")) {
+    const target = command.replace("nimm ", "");
+    takeItem(target);
+    return;
+  }
+
+  if (command.startsWith("benutze ")) {
+    useItem(command.replace("benutze ", ""));
+    return;
+  }
+
+  showText(
+    "Befehl nicht erkannt.\n\nTipp: Nutze Eingaben wie:\n- umsehen\n- gehe zum haupttor\n- untersuche kartenleser\n- nimm zugangskarte"
+  );
+}
+
+function goToArea(targetAreaId) {
+  const room = currentRoom();
+  const area = currentArea();
+
+  if (!room.areas[targetAreaId]) {
+    showText("Diesen Ort gibt es hier nicht.");
+    return;
+  }
+
+  if (!area.exits.includes(targetAreaId)) {
+    showText("Von hier aus kommst du dort nicht direkt hin.");
+    return;
+  }
+
+  gameState.area = targetAreaId;
+
+  if (!gameState.visitedAreas.includes(targetAreaId)) {
+    gameState.visitedAreas.push(targetAreaId);
+  }
+
+  showText(currentArea().description);
+  updateEnvironment();
+}
+
+function examine(target) {
+  const room = currentRoom();
+  const area = currentArea();
+
+  if (room.areas[target]) {
+    if (gameState.area === target) {
+      showText(area.description);
+      return;
+    }
+
+    if (area.exits.includes(target)) {
+      showText(
+        `${room.areas[target].name} liegt in der Nähe. Geh näher heran, um den Ort genauer zu untersuchen.`
+      );
+      return;
+    }
+
+    showText("Von hier aus kannst du diesen Ort nicht genauer erkennen.");
+    return;
+  }
+
+  if (!area.details.includes(target)) {
+    showText("Das kannst du von hier aus nicht untersuchen.");
+    return;
+  }
+
+  showText(room.details[target] || "Du findest nichts Auffälliges.");
+}
+
+function takeItem(target) {
+  const area = currentArea();
+
+  if (!area.details.includes(target)) {
+    showText("Das kannst du hier nicht nehmen.");
+    return;
+  }
+
+  if (target === "zugangskarte") {
+    if (hasItem("Zugangskarte")) {
+      showText("Du hast die Zugangskarte bereits.");
+      return;
+    }
+
+    gameState.inventory.push("Zugangskarte");
+    showText("Du hebst die schmutzige Zugangskarte auf.");
+    updateInventory();
+    updateEnvironment();
+    return;
+  }
+
+  showText("Das lässt sich nicht sinnvoll mitnehmen.");
+}
+
+function useItem(commandRest) {
+  const parts = commandRest.split(" ");
+
+  if (parts.length < 2) {
+    showText("Woran möchtest du das benutzen?");
+    return;
+  }
+
+  const item = parts[0];
+  const target = parts.slice(1).join(" ");
+
+  if (item === "zugangskarte" && target === "kartenleser") {
+    if (gameState.area !== "haupttor") {
+      showText("Hier gibt es keinen Kartenleser.");
+      return;
+    }
+
+    if (!hasItem("Zugangskarte")) {
+      showText("Du hast keine Zugangskarte.");
+      return;
+    }
+
+    showText(
+      "Der Kartenleser piept.\n\nZUGRIFF GEWÄHRT.\n\nDas Haupttor öffnet sich einen Spalt breit. Dahinter liegt der Eingangsbereich von Aurelion."
+    );
+    return;
+  }
+
+  if (item === "zugangskarte" && target === "haupttor") {
+    showText("Vielleicht solltest du die Zugangskarte direkt am Kartenleser benutzen.");
+    return;
+  }
+
+  showText("Das scheint hier nichts zu bewirken.");
 }
 
 function showText(text) {
