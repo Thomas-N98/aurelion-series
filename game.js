@@ -405,6 +405,11 @@ function updateInventory() {
 
 function normalizeCommand(command) {
   command = command.trim().toLowerCase();
+  command = command
+  .replaceAll("ä", "ae")
+  .replaceAll("ö", "oe")
+  .replaceAll("ü", "ue")
+  .replaceAll("ß", "ss");
 
   if (command.startsWith("nehmen ")) {
     command = command.replace("nehmen", "nimm");
