@@ -1,1 +1,101 @@
+* {
+  box-sizing: border-box;
+}
 
+body {
+  margin: 0;
+  font-family: Consolas, monospace;
+  background: #050807;
+  color: #d7ffe1;
+}
+
+#game {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.75)),
+    url("assets/outside.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 24px;
+}
+
+#screen {
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#location {
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid #36ff85;
+  padding: 12px 16px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+#story {
+  flex: 1;
+  min-height: 280px;
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid #1f7f4c;
+  padding: 24px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+#panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+#panels > div {
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid #1f7f4c;
+  padding: 12px 16px;
+}
+
+h3 {
+  margin-top: 0;
+  color: #36ff85;
+}
+
+ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+#commandForm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid #36ff85;
+  padding: 12px;
+}
+
+#commandInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #d7ffe1;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+button {
+  background: #123d28;
+  color: #d7ffe1;
+  border: 1px solid #36ff85;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1f7f4c;
+}
