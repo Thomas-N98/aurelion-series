@@ -525,9 +525,24 @@ function goToArea(target) {
   }
 
   if (!targetAreaId) {
-    showText("Von hier aus kommst du dort nicht direkt hin.");
-    return;
+
+  // existiert der Ort grundsätzlich?
+  const areaExists = Object.values(room.areas).some(area =>
+    normalizeText(area.name) === normalizeText(target)
+  );
+
+  if (room.areas[target] || areaExists) {
+    showText(
+      "Diesen Ort kannst du von hier aus nicht erreichen."
+    );
+  } else {
+    showText(
+      "Ich verstehe nicht, wohin du gehen möchtest."
+    );
   }
+
+  return;
+}
 
   gameState.area = targetAreaId;
 
