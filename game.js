@@ -358,6 +358,39 @@ document.addEventListener("keydown", function (event) {
     closeHelp();
   }
 });
+document.querySelectorAll(".help-tab").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    document
+      .querySelectorAll(".help-tab")
+      .forEach(tab =>
+        tab.classList.remove("active")
+      );
+
+    document
+      .querySelectorAll(".help-content")
+      .forEach(content =>
+        content.classList.remove("active-tab")
+      );
+
+    button.classList.add("active");
+
+    const tabName = button.dataset.tab;
+
+    if (tabName === "general") {
+      document
+        .getElementById("generalTab")
+        .classList.add("active-tab");
+    }
+
+    if (tabName === "fieldnotes") {
+      document
+        .getElementById("fieldnotesTab")
+        .classList.add("active-tab");
+    }
+  });
+});
 function showAreaDescription() {
   const area = currentArea();
 
