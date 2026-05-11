@@ -36,10 +36,11 @@ body {
 }
 
 #location {
+  color: #36ff85;
   letter-spacing: 1px;
   font-weight: bold;
-  font-size: 1.1rem;
-  color: #d7ffe1;
+  font-size: 1.45rem;
+  text-transform: uppercase;
 }
 
 #objective {
