@@ -28,6 +28,7 @@ body {
   gap: 16px;
 }
 
+/* Oberer Titelbereich */
 #location {
   background: rgba(0, 0, 0, 0.75);
   border: 1px solid #36ff85;
@@ -36,6 +37,7 @@ body {
   font-weight: bold;
 }
 
+/* Storyfeld */
 #story {
   flex: 1;
   min-height: 280px;
@@ -43,10 +45,11 @@ body {
   border: 1px solid #1f7f4c;
   padding: 24px;
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.8;
   white-space: pre-line;
 }
 
+/* Panels unten */
 #panels {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -57,26 +60,41 @@ body {
   background: rgba(0, 0, 0, 0.72);
   border: 1px solid #1f7f4c;
   padding: 12px 16px;
+  min-height: 180px;
 }
 
+/* Überschriften */
 h3 {
   margin-top: 0;
+  margin-bottom: 12px;
   color: #36ff85;
 }
 
+/* Standardlisten */
 ul {
   margin: 0;
   padding-left: 18px;
 }
-#hotspots ul {
-  margin-top: 6px;
-  margin-left: 20px;
-  padding-left: 16px;
-}
 
-#hotspots li {
+li {
   margin-bottom: 4px;
 }
+
+/* Aktiver Hotspot */
+.active-hotspot {
+  font-weight: bold;
+  color: #36ff85;
+}
+
+/* Unter-Hotspots */
+.sub-hotspot {
+  margin-left: 28px;
+  list-style: none;
+  color: #b9ffd0;
+  opacity: 0.9;
+}
+
+/* Kommandozeile */
 #commandForm {
   display: flex;
   align-items: center;
@@ -86,6 +104,12 @@ ul {
   padding: 12px;
 }
 
+#commandForm span {
+  color: #36ff85;
+  font-weight: bold;
+}
+
+/* Eingabefeld */
 #commandInput {
   flex: 1;
   background: transparent;
@@ -96,24 +120,16 @@ ul {
   font-size: 1rem;
 }
 
+/* Button */
 button {
   background: #123d28;
   color: #d7ffe1;
   border: 1px solid #36ff85;
   padding: 8px 12px;
   cursor: pointer;
+  transition: background 0.15s ease;
 }
 
 button:hover {
   background: #1f7f4c;
-}
-.active-hotspot {
-  font-weight: bold;
-  color: #36ff85;
-}
-
-.sub-hotspot {
-  margin-left: 28px;
-  list-style: none;
-  color: #b9ffd0;
 }
