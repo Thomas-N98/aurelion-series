@@ -60,12 +60,14 @@ const rooms = {
     exits: {
       zurueck: {
         target: "parkplatz",
-        label: "Wanderparkplatz",
+        hiddenLabel: "Wanderparkplatz",
+        discoveredLabel: "Wanderparkplatz",
         display: "zurück"
       },
       weiter: {
         target: "waldweg_hinten2",
-        label: "noch steilerer Pfad",
+        hiddenLabel: "Waldpfad",
+        discoveredLabel: "noch steilerer Waldpfad",
         display: "weiter oben"
       }
     },
@@ -79,7 +81,8 @@ const rooms = {
     exits: {
       zurueck: {
         target: "parkplatz",
-        label: "Wanderparkplatz",
+        hiddenLabel: "Wanderparkplatz",
+        discoveredLabel: "Wanderparkplatz",
         display: "zurück"
       }
     },
@@ -93,7 +96,8 @@ const rooms = {
     exits: {
       zurueck: {
         target: "parkplatz",
-        label: "Wanderparkplatz",
+        hiddenLabel: "Wanderparkplatz",
+        discoveredLabel: "Wanderparkplatz",
         display: "zurück"
       }
     },
@@ -107,17 +111,20 @@ const rooms = {
     exits: {
       zurueck: {
         target: "parkplatz",
-        label: "Wanderparkplatz",
+        hiddenLabel: "Wanderparkplatz",
+        discoveredLabel: "Wanderparkplatz",
         display: "zurück"
       },
       links: {
         target: "zaunbereich_links",
-        label: "Zaunverlauf nach links",
+        hiddenLabel: "Zaunverlauf nach links",
+        discoveredLabel: "Zaunverlauf nach links",
         display: "links"
       },
       rechts: {
         target: "zaunbereich_rechts",
-        label: "Zaunverlauf nach rechts",
+        hiddenLabel: "Zaunverlauf nach rechts",
+        discoveredLabel: "Zaunverlauf nach rechts",
         display: "rechts"
       }
     },
@@ -131,7 +138,8 @@ const rooms = {
     exits: {
       zurueck: {
         target: "parkplatz",
-        label: "Wanderparkplatz",
+        hiddenLabel: "Wanderparkplatz",
+        discoveredLabel: "Wanderparkplatz",
         display: "zurück"
       }
     },
@@ -145,12 +153,14 @@ const rooms = {
     exits: {
       zurueck: {
         target: "waldweg_vorne",
-        label: "verwachsener Waldweg",
+        hiddenLabel: "verwachsener Waldweg",
+        discoveredLabel: "verwachsener Waldweg",
         display: "zurück"
       },
       rechts: {
         target: "zaunbereich_rechts",
-        label: "Zaunverlauf nach rechts",
+        hiddenLabel: "Zaunverlauf nach rechts",
+        discoveredLabel: "Zaunverlauf nach rechts",
         display: "rechts"
       }
     },
@@ -164,17 +174,20 @@ const rooms = {
     exits: {
       zurueck: {
         target: "waldweg_vorne",
-        label: "verwachsener Waldweg",
+        hiddenLabel: "verwachsener Waldweg",
+        discoveredLabel: "verwachsener Waldweg",
         display: "zurück"
       },
       links: {
         target: "zaunbereich_links",
-        label: "Zaunverlauf nach links",
+        hiddenLabel: "Zaunverlauf nach links",
+        discoveredLabel: "Zaunverlauf nach links",
         display: "links"
       },
       weiter: {
         target: "haupttor",
-        label: "massives Haupttor",
+        hiddenLabel: "Zaunverlauf nach rechts",
+        discoveredLabel: "Haupttor",,
         display: "weiter vorne"
       }
     },
@@ -188,12 +201,14 @@ const rooms = {
     exits: {
       zurueck: {
         target: "zaunbereich_rechts",
-        label: "Zaunverlauf",
+        hiddenLabel: "Zaunverlauf nach links",
+        discoveredLabel: "Zaunverlauf nach links",
         display: "zurück"
       },
       links: {
         target: "wartungsrohr",
-        label: "Gebäudeseite",
+        hiddenLabel: "Gebäudeseite",
+        discoveredLabel: "Gebäudeseite",
         display: "links"
       }
     },
@@ -207,7 +222,8 @@ const rooms = {
     exits: {
       zurueck: {
         target: "haupttor",
-        label: "Haupttor",
+        hiddenLabel: "Haupttor",
+        discoveredLabel: "Haupttor",
         display: "zurück"
       }
     },
