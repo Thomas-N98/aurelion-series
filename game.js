@@ -295,8 +295,13 @@ document.addEventListener("keydown", function (event) {
 function showAreaDescription() {
   const area = currentArea();
 
-  document.getElementById("story").textContent =
-    area.name.toUpperCase() + "\n\n" + area.description;
+  document.getElementById("story").innerHTML =
+    `<div class="story-location">
+      ${area.name.toUpperCase()}
+    </div>
+    <div class="story-text">
+      ${area.description.replace(/\n/g, "<br>")}
+    </div>`;
 }
 function render() {
   const room = currentRoom();
@@ -644,7 +649,10 @@ function useItem(commandRest) {
 }
 
 function showText(text) {
-  document.getElementById("story").textContent = text;
+  document.getElementById("story").innerHTML =
+    `<div class="story-text">
+      ${text.replace(/\n/g, "<br>")}
+    </div>`;
 }
 
 document.getElementById("commandForm").addEventListener("submit", function (event) {
