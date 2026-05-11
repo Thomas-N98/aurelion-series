@@ -295,10 +295,15 @@ document.addEventListener("keydown", function (event) {
 function showAreaDescription() {
   const area = currentArea();
 
+  const formattedText = area.description
+    .split("\n\n")
+    .map(paragraph => `<p>${paragraph}</p>`)
+    .join("");
+
   document.getElementById("story").innerHTML =
     `<h3 class="story-location">${area.name}</h3>
      <div class="story-text">
-       ${area.description.replace(/\n/g, "<br>")}
+       ${formattedText}
      </div>`;
 }
 function render() {
