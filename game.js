@@ -346,6 +346,7 @@ function render() {
   renderList("commands", room.commands);
   updateEnvironment();
   updateInventory();
+  updateHelpMenu();
 }
 
 function renderList(id, items) {
