@@ -133,3 +133,33 @@ button {
 button:hover {
   background: #1f7f4c;
 }
+.current-area {
+  font-weight: bold;
+  color: #36ff85;
+  list-style: none;
+  margin-left: -16px;
+  margin-bottom: 10px;
+}
+
+.environment-heading {
+  list-style: none;
+  margin-left: -16px;
+  margin-top: 10px;
+  color: #36ff85;
+  opacity: 0.85;
+}
+
+.area-exit {
+  margin-left: 12px;
+}
+
+.area-detail {
+  margin-left: 12px;
+  color: #b9ffd0;
+}
+
+.empty-detail {
+  margin-left: 12px;
+  list-style: none;
+  opacity: 0.6;
+}
