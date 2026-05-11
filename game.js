@@ -204,6 +204,7 @@ function renderList(id, items) {
   });
 }
 function renderHotspots(room) {
+  console.log("renderHotspots läuft");
   const element = document.getElementById("hotspots");
   element.innerHTML = "";
 
