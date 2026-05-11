@@ -54,7 +54,7 @@ const rooms = {
     description:
       "Der Weg führt zunächst parallel zur Straße, biegt dann aber ab und wird deutlich steiler.\n\nDu bist dir ziemlich sicher, dass du hier nicht richtig bist. Aber vielleicht kannst du von weiter oben etwas erkennen.",
     exits: {
-      zurück: {
+      zurueck: {
         target: "parkplatz",
         label: "Wanderparkplatz",
         display: "zurück"
@@ -73,7 +73,7 @@ const rooms = {
     description:
       "Keuchend erreichst du einen kleinen Aussichtspunkt. Eine Felsformation gibt den Blick über den Wald frei. Daneben steht eine alte Holzbank zwischen ein paar Bäumen.\n\nIn der Ferne erkennst du das verfallene Firmengelände. Leider liegt es eindeutig in der anderen Richtung.\n\nVom Parkplatz aus wäre wohl der vordere Weg richtig gewesen.",
     exits: {
-      zurück: {
+      zurueck: {
         target: "parkplatz",
         label: "Wanderparkplatz",
         display: "zurück"
@@ -87,7 +87,7 @@ const rooms = {
     description:
       "Nach kurzer Zeit stehst du vor einem Feld aus umgestürzten Bäumen.\n\nDer Weg ist blockiert. Morsche Stämme, nasses Laub und Dornen machen ziemlich deutlich, dass du hier nicht weitergehen solltest.",
     exits: {
-      zurück: {
+      zurueck: {
         target: "parkplatz",
         label: "Wanderparkplatz",
         display: "zurück"
@@ -101,7 +101,7 @@ const rooms = {
     description:
       "Der Weg führt eine ganze Weile kerzengerade durch den Wald.\n\nJe weiter du gehst, desto ungepflegter wird er. Das Unkraut reicht dir inzwischen bis an die Schuhe, und zwischen den Bäumen liegt ein feuchter, metallischer Geruch.\n\nNach einer Weile gelangst du an einen alten Zaun. In der Ferne erkennst du erste Umrisse des Firmengeländes.",
     exits: {
-      zurück: {
+      zurueck: {
         target: "parkplatz",
         label: "Wanderparkplatz",
         display: "zurück"
@@ -125,7 +125,7 @@ const rooms = {
     description:
       "Die Straße führt in die Richtung zurück, aus der du gekommen bist. Irgendwo dort liegt das kleine Dorf mit deiner schäbigen Unterkunft.\n\nIn die andere Richtung verliert sie sich zwischen den Bäumen. Auf der Fahrt hierher hast du kein einziges anderes Auto gesehen.\n\nHier wirst du nicht weiterkommen.",
     exits: {
-      zurück: {
+      zurueck: {
         target: "parkplatz",
         label: "Wanderparkplatz",
         display: "zurück"
@@ -139,7 +139,7 @@ const rooms = {
     description:
       "Du folgst dem Zaun nach links.\n\nDas Metall ist alt, aber noch stabil. Hinter dem Zaun liegt das überwucherte Gelände von Aurelion Industries.",
     exits: {
-      zurück: {
+      zurueck: {
         target: "waldweg_vorne",
         label: "verwachsener Waldweg",
         display: "zurück"
@@ -158,7 +158,7 @@ const rooms = {
     description:
       "Du folgst dem Zaun nach rechts.\n\nZwischen zwei alten Pfosten erkennst du in einiger Entfernung das Haupttor.",
     exits: {
-      zurück: {
+      zurueck: {
         target: "waldweg_vorne",
         label: "verwachsener Waldweg",
         display: "zurück"
@@ -182,7 +182,7 @@ const rooms = {
     description:
       "Du stehst direkt vor dem massiven Haupttor von Aurelion Industries.\n\nAus der Nähe erkennst du mehrere technische Vorrichtungen.",
     exits: {
-      zurück: {
+      zurueck: {
         target: "zaunbereich_rechts",
         label: "Zaunverlauf",
         display: "zurück"
@@ -201,7 +201,7 @@ const rooms = {
     description:
       "Du stehst bei einem alten Wartungsrohr am Rand des Gebäudes.\n\nZwischen Laub, Schmutz und Beton liegt etwas Halbverdecktes.",
     exits: {
-      zurück: {
+      zurueck: {
         target: "haupttor",
         label: "Haupttor",
         display: "zurück"
