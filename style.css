@@ -294,8 +294,6 @@ button:hover {
 }
 
 .story-text {
-  color: #d7ffe1;
-  line-height: 1.65;
-  white-space: normal;
+  line-height: 1.45;
 }
 }
