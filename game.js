@@ -1,5 +1,6 @@
 const gameState = {
   room: "outside",
+  focus: null,
   inventory: []
 };
 
@@ -11,15 +12,45 @@ const rooms = {
 
     commands: ["umsehen", "untersuche", "gehe zu/nach", "öffne", "benutze","nimm", "hilfe"],
 
-    hotspots: ["tor", "kamera", "schild", "lampe", "rohr"],
+   hotspots: {
+  global: [
+    "tor",
+    "kamera",
+    "schild",
+    "rohr"
+  ],
+
+  tor: [
+    "kartenleser",
+    "schloss"
+  ],
+
+  rohr: [
+    "zugangskarte"
+  ]
+},
 
     actions: {
        "umsehen": () => {
-    return rooms[gameState.room].description;
-  },
+  if (gameState.focus === "tor") {
+    return "Ihr steht direkt vor dem Haupttor.\n\nIn Reichweite befinden sich der Kartenleser und der Türmechanismus.";
+  }
+
+  if (gameState.focus === "rohr") {
+    return "Ihr steht bei dem alten Rohr.\n\nDahinter liegt Schmutz, Laub und etwas Plastikartiges.";
+  }
+
+  return rooms[gameState.room].description;
+},
       "untersuche tor":
         "Das Tor ist massiv und elektronisch verriegelt. Daneben befindet sich ein Kartenleser.",
+"untersuche kartenleser": () => {
+  if (gameState.focus !== "tor") {
+    return "Dafür müsst ihr näher an das Tor herangehen.";
+  }
 
+  return "Der Kartenleser ist alt, aber noch aktiv. Ein schwaches grünes Licht pulsiert unter der zerkratzten Oberfläche.";
+},
       "untersuche kamera":
         "Die Kamera folgt euren Bewegungen. Ein kleines rotes Licht blinkt im Takt.",
 
@@ -32,17 +63,24 @@ const rooms = {
       "untersuche rohr":
         "Hinter dem Rohr liegt eine schmutzige Zugangskarte.",
       
-      "nimm zugangskarte": () => {
-        if (!gameState.inventory.includes("Zugangskarte")) {
-          gameState.inventory.push("Zugangskarte");
-          return "Ihr nehmt die Zugangskarte. Sie ist zerkratzt, aber vielleicht noch lesbar.";
-        }
-        return "Ihr habt die Zugangskarte bereits.";
-      },
+     "nimm zugangskarte": () => {
+  if (gameState.focus !== "rohr") {
+    return "Ihr seht hier keine Zugangskarte.";
+  }
+
+  if (!gameState.inventory.includes("Zugangskarte")) {
+    gameState.inventory.push("Zugangskarte");
+    renderList("inventory", gameState.inventory);
+
+    return "Ihr hebt die schmutzige Zugangskarte auf.";
+  }
+
+  return "Ihr habt die Zugangskarte bereits.";
+},
       "öffne tor":
         "Das Tor bleibt geschlossen. Ohne gültige Autorisierung passiert hier gar nichts.",
 
-      "benutze karte tor":
+      "benutze zugangskarte tor":
         "Der Kartenleser piept.\n\nZUGRIFF GEWÄHRT.\n\nDas Tor öffnet sich einen Spalt breit. Dahinter liegt der Eingangsbereich von Aurelion.",
 
       "gehe links":
@@ -53,6 +91,26 @@ const rooms = {
 
       "hilfe":
         "Gib Befehle ein wie:\n\nuntersuche tor\nuntersuche rohr\nnimm karte\nbenutze karte tor",
+      "gehe tor": () => {
+  gameState.focus = "tor";
+  renderList("hotspots", getVisibleHotspots(rooms[gameState.room]));
+
+  return "Ihr tretet näher an das Haupttor heran.\n\nAus der Nähe erkennt ihr einen Kartenleser und den Türmechanismus.";
+},
+
+"gehe rohr": () => {
+  gameState.focus = "rohr";
+  renderList("hotspots", getVisibleHotspots(rooms[gameState.room]));
+
+  return "Ihr geht zu dem alten Rohr.\n\nDahinter scheint etwas im Schmutz zu liegen.";
+},
+
+"gehe zurück": () => {
+  gameState.focus = null;
+  renderList("hotspots", getVisibleHotspots(rooms[gameState.room]));
+
+  return rooms[gameState.room].description;
+},
 
       "inventar": () => {
         if (gameState.inventory.length === 0) return "Euer Inventar ist leer.";
@@ -69,7 +127,7 @@ function render() {
   document.getElementById("story").textContent = room.description;
 
   renderList("commands", room.commands);
-  renderList("hotspots", room.hotspots);
+  renderList("hotspots", getVisibleHotspots(room));
   renderList("inventory", gameState.inventory.length ? gameState.inventory : ["leer"]);
 }
 
@@ -82,6 +140,15 @@ function renderList(id, items) {
     li.textContent = item;
     element.appendChild(li);
   });
+}
+function getVisibleHotspots(room) {
+  const visible = [...room.hotspots.global];
+
+  if (gameState.focus && room.hotspots[gameState.focus]) {
+    visible.push(...room.hotspots[gameState.focus]);
+  }
+
+  return visible;
 }
 function normalizeCommand(command) {
 
@@ -99,6 +166,7 @@ function normalizeCommand(command) {
     "das",
     "die",
     "der"
+    "am"
   ];
 
   let words = command.split(" ");
