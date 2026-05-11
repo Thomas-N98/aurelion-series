@@ -255,15 +255,15 @@ function updateEnvironment() {
 
   addEnvironmentLine(element, "Nahe Orte:", "environment-heading");
 
-  area.exits.forEach(exitId => {
-    const exit = room.areas[exitId];
+  Object.entries(area.exits).forEach(([direction, exitId]) => {
+  const exit = room.areas[exitId];
 
-    const className = gameState.visitedAreas.includes(exitId)
-      ? "area-exit visited-area"
-      : "area-exit";
+  const className = gameState.visitedAreas.includes(exitId)
+    ? "area-exit visited-area"
+    : "area-exit";
 
-    addEnvironmentLine(element, exit.name, className);
-  });
+  addEnvironmentLine(element, `${direction}: ${exit.name}`, className);
+});
 }
 
 function addEnvironmentLine(parent, text, className) {
@@ -361,16 +361,27 @@ function handleCommand(input) {
   );
 }
 
-function goToArea(targetAreaId) {
+function goToArea(target) {
   const room = currentRoom();
   const area = currentArea();
 
-  if (!room.areas[targetAreaId]) {
-    showText("Diesen Ort gibt es hier nicht.");
-    return;
+  let targetAreaId = null;
+
+  // 1. Richtung prüfen, z. B. "links", "vorne", "zurück"
+  if (area.exits[target]) {
+    targetAreaId = area.exits[target];
   }
 
-  if (!area.exits.includes(targetAreaId)) {
+  // 2. Direktes Area-Ziel prüfen, z. B. "haupttor"
+  else if (room.areas[target]) {
+    const possibleExits = Object.values(area.exits);
+
+    if (possibleExits.includes(target)) {
+      targetAreaId = target;
+    }
+  }
+
+  if (!targetAreaId) {
     showText("Von hier aus kommst du dort nicht direkt hin.");
     return;
   }
