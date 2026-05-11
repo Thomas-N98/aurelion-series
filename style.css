@@ -288,4 +288,18 @@ button:hover {
     padding: 8px 10px;
     font-size: 0.8rem;
   }
+  .story-location {
+  color: #36ff85;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.story-text {
+  color: #d7ffe1;
+  line-height: 1.8;
+  white-space: normal;
+}
 }
