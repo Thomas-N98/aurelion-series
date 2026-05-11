@@ -517,29 +517,35 @@ function goToArea(target) {
   const area = currentArea();
 
   let targetAreaId = null;
-
   const exits = Object.entries(area.exits);
 
-  // 1. Richtung prüfen, z. B. "links", "vorne", "zurück"
+  // 1. Richtung prüfen, z. B. vorne, links, zurueck
   if (area.exits[target]) {
     targetAreaId = area.exits[target].target;
   }
 
-  // 2. Angezeigtes Label prüfen, z. B. "verwachsener waldweg"
+  // 2. Label prüfen, z. B. "verwachsener waldweg"
   if (!targetAreaId) {
-    const matchingExit = exits.find(([direction, exitData]) => {
-  return (
-    normalizeText(exitData.hiddenLabel) === normalizeText(target) ||
-    normalizeText(exitData.discoveredLabel) === normalizeText(target)
-  );
-});
+    const matchingExits = exits.filter(([direction, exitData]) => {
+      return (
+        normalizeText(exitData.hiddenLabel) === normalizeText(target) ||
+        normalizeText(exitData.discoveredLabel) === normalizeText(target)
+      );
+    });
 
-    if (matchingExit) {
-      targetAreaId = matchingExit[1].target;
+    if (matchingExits.length === 1) {
+      targetAreaId = matchingExits[0][1].target;
+    }
+
+    if (matchingExits.length > 1) {
+      showText(
+        "Das ist nicht eindeutig.\n\nEs gibt mehrere passende Wege. Nutze eine Richtung, zum Beispiel:\n\ngehe vorne\ngehe links\ngehe hinten"
+      );
+      return;
     }
   }
 
-  // 3. Direkter Area-Name prüfen, z. B. "haupttor"
+  // 3. Direkter Area-Key prüfen, z. B. haupttor
   if (!targetAreaId && room.areas[target]) {
     const possibleExits = Object.values(area.exits).map(exit => exit.target);
 
@@ -549,24 +555,18 @@ function goToArea(target) {
   }
 
   if (!targetAreaId) {
-
-  // existiert der Ort grundsätzlich?
-  const areaExists = Object.values(room.areas).some(area =>
-    normalizeText(area.name) === normalizeText(target)
-  );
-
-  if (room.areas[target] || areaExists) {
-    showText(
-      "Diesen Ort kannst du von hier aus nicht erreichen."
+    const areaExists = Object.values(room.areas).some(area =>
+      normalizeText(area.name) === normalizeText(target)
     );
-  } else {
-    showText(
-      "Ich verstehe nicht, wohin du gehen möchtest."
-    );
+
+    if (room.areas[target] || areaExists) {
+      showText("Diesen Ort kannst du von hier aus nicht erreichen.");
+    } else {
+      showText("Ich verstehe nicht, wohin du gehen möchtest.");
+    }
+
+    return;
   }
-
-  return;
-}
 
   gameState.area = targetAreaId;
 
