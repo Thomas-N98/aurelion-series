@@ -358,9 +358,18 @@ document.addEventListener("keydown", function (event) {
     closeHelp();
   }
 });
-document.querySelectorAll(".help-tab").forEach(button => {
+function triggerHelpFlicker() {
+  const helpBox = document.getElementById("helpBox");
 
+  helpBox.classList.remove("flicker");
+  void helpBox.offsetWidth;
+  helpBox.classList.add("flicker");
+}
+
+document.querySelectorAll(".help-tab").forEach(button => {
   button.addEventListener("click", () => {
+    const helpBox = document.getElementById("helpBox");
+    const tabName = button.dataset.tab;
 
     document
       .querySelectorAll(".help-tab")
@@ -376,19 +385,23 @@ document.querySelectorAll(".help-tab").forEach(button => {
 
     button.classList.add("active");
 
-    const tabName = button.dataset.tab;
-
     if (tabName === "general") {
+      helpBox.classList.remove("field-mode");
+
       document
         .getElementById("generalTab")
         .classList.add("active-tab");
     }
 
     if (tabName === "fieldnotes") {
+      helpBox.classList.add("field-mode");
+
       document
         .getElementById("fieldnotesTab")
         .classList.add("active-tab");
     }
+
+    triggerHelpFlicker();
   });
 });
 function showAreaDescription() {
