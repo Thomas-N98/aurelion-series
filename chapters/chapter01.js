@@ -274,6 +274,26 @@ interactions: {
     kamera() {
       setFlag("cameraExamined");
     }
+  },
+
+  open: {
+    auto() {
+      discoverVerb("oeffne");
+
+      if (hasFlag("autoOpened")) {
+        showText("Du hast das Auto bereits durchsucht.");
+        return;
+      }
+
+      setFlag("autoOpened");
+      gameState.inventory.push("Taschenlampe");
+
+      showText(
+        "Du öffnest die Autotür.\n\nIm Innenraum riecht es nach kaltem Kaffee und feuchter Kleidung. Im Seitenfach findest du eine kleine Taschenlampe.\n\nNeue Interaktion entdeckt: ÖFFNE"
+      );
+
+      updateInventory();
+    }
   }
 }
 }
