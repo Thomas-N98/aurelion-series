@@ -726,18 +726,9 @@ function takeItem(target) {
     return;
   }
 
-  if (target === "zugangskarte") {
-    if (hasItem("Zugangskarte")) {
-      showText("Du hast die Zugangskarte bereits.");
-      return;
-    }
+  const wasHandled = runRoomInteraction("take", target);
 
-    gameState.inventory.push("Zugangskarte");
-    showText("Du hebst die schmutzige Zugangskarte auf.");
-    updateInventory();
-    updateEnvironment();
-    return;
-  }
+  if (wasHandled) return;
 
   showText("Das lässt sich nicht sinnvoll mitnehmen.");
 }
