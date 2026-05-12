@@ -101,38 +101,77 @@
       </div>
 
       <!-- COMMANDS TAB -->
-      <div
-        id="generalTab"
-        class="help-content active-tab">
+<div
+  id="generalTab"
+  class="help-content active-tab">
 
-        <h3>Commands</h3>
+  <h3>COMMANDS</h3>
 
-        <p>
-          <strong>umsehen</strong><br>
-          Beschreibt die aktuelle Umgebung erneut.
-        </p>
+  <div class="help-section">
 
-        <p>
-          <strong>gehe ...</strong><br>
-          Bewege dich zwischen Orten.
-        </p>
+    <h4>NAVIGATION</h4>
 
-        <p>
-          <strong>untersuche ...</strong><br>
-          Untersuche Dinge genauer.
-        </p>
+    <p>
+      <strong>umsehen</strong><br>
+      Beschreibt die aktuelle Umgebung erneut.
+    </p>
 
-        <p>
-          <strong>nimm ...</strong><br>
-          Hebe Gegenstände auf.
-        </p>
+    <p>
+      <strong>gehe [richtung/ort]</strong><br>
+      Bewege dich zwischen Orten.
+    </p>
 
-        <p>
-          <strong>benutze ...</strong><br>
-          Verwende Gegenstände.
-        </p>
+    <div class="example">
+      &gt; gehe vorne<br>
+      &gt; gehe links<br>
+      &gt; gehe haupttor
+    </div>
 
-      </div>
+  </div>
+
+  <div class="help-section">
+
+    <h4>INTERACTION</h4>
+
+    <p>
+      <strong>untersuche [objekt]</strong><br>
+      Inspiziert Gegenstände, Orte oder Hinweise genauer.
+    </p>
+
+    <p>
+      <strong>nimm [objekt]</strong><br>
+      Hebt Gegenstände auf, wenn möglich.
+    </p>
+
+    <p>
+      <strong>benutze [objekt] [ziel]</strong><br>
+      Verwendet einen Gegenstand auf etwas.
+    </p>
+
+    <div class="example">
+      &gt; untersuche wegweiser<br>
+      &gt; nimm zugangskarte<br>
+      &gt; benutze zugangskarte kartenleser
+    </div>
+
+  </div>
+
+  <div class="help-section">
+
+    <h4>SYSTEM</h4>
+
+    <p>
+      <strong>hilfe</strong><br>
+      Öffnet dieses Terminal.
+    </p>
+
+    <p class="terminal-hint">
+      Some interactions are not documented.
+    </p>
+
+  </div>
+
+</div>
 
       <!-- FIELD NOTES TAB -->
       <div
