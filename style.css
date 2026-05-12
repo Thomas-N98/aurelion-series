@@ -324,9 +324,29 @@ button:hover {
   margin-top: 0;
 }
 
-.help-content p {
-  line-height: 1.5;
-  margin: 0 0 18px 0;
+.help-section {
+  margin-bottom: 28px;
+}
+
+.help-section h4 {
+  color: #36ff85;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+}
+
+.example {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-left: 2px solid rgba(54, 255, 133, 0.4);
+  background: rgba(54, 255, 133, 0.04);
+  color: rgba(215, 255, 225, 0.82);
+  line-height: 1.6;
+}
+
+.terminal-hint {
+  opacity: 0.7;
+  font-style: italic;
 }
 
 .field-title {
