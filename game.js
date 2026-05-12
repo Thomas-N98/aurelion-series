@@ -473,7 +473,7 @@ function hasDiscoveredVerb(verb) {
   return gameState.discoveredVerbs.includes(verb);
 }
 function currentRoom() {
-  return rooms[gameState.room];
+  return currentChapter().rooms[gameState.room];
 }
 
 function currentArea() {
