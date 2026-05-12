@@ -570,4 +570,75 @@ button:hover {
     right: 10px;
     height: calc(100% - 142px);
   }
+  /* OBSERVATIONS */
+
+.observation-tab {
+  border-color: #ffcc66;
+  color: #ffcc66;
+}
+
+#helpBox.observation-mode {
+  border-color: #ffcc66;
+  box-shadow: 0 0 28px rgba(255, 204, 102, 0.22);
+}
+
+#helpBox.observation-mode .help-tab.active {
+  background: rgba(255, 204, 102, 0.15);
+}
+
+#helpBox.observation-mode #scrollIndicator {
+  background: rgba(255, 204, 102, 0.12);
+}
+
+#helpBox.observation-mode #scrollThumb {
+  background: #ffcc66;
+  box-shadow: 0 0 8px rgba(255, 204, 102, 0.5);
+}
+
+.observation-title {
+  color: #ffcc66;
+}
+
+.observation-description {
+  color: rgba(255, 230, 180, 0.8);
+  margin-bottom: 18px;
+}
+
+#observationsList {
+  list-style: none;
+  padding-left: 0;
+}
+
+.observation-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  background: rgba(255, 204, 102, 0.03);
+  border: 1px solid rgba(255, 204, 102, 0.10);
+  line-height: 1.4;
+}
+
+.observation-card strong {
+  display: inline-block;
+  color: #ffe6b4;
+  background: rgba(255, 204, 102, 0.06);
+  border: 1px solid rgba(255, 204, 102, 0.12);
+  padding: 2px 6px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.observation-text {
+  color: rgba(255, 230, 180, 0.86);
+  line-height: 1.45;
+}
+
+.empty-observation {
+  display: block;
+  color: rgba(255, 230, 180, 0.5);
+  font-style: italic;
+}
 }
