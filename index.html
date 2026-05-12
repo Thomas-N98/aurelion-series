@@ -99,110 +99,153 @@
         </button>
 
       </div>
-<div id="helpScroll">
 
-  <div id="scrollIndicator">
-    <div id="scrollThumb"></div>
-  </div>
-      <!-- COMMANDS TAB -->
-<div
-  id="generalTab"
-  class="help-content active-tab">
+      <div id="helpScroll">
 
-  <h3>COMMANDS</h3>
+        <div id="scrollIndicator">
+          <div id="scrollThumb"></div>
+        </div>
 
-  <div class="help-section">
+        <!-- COMMANDS TAB -->
+        <div
+          id="generalTab"
+          class="help-content active-tab">
 
-    <h4>NAVIGATION</h4>
+          <h3>COMMANDS</h3>
 
-    <div class="command-entry">
-      <strong>umsehen</strong><br>
-      Beschreibt die aktuelle Umgebung erneut.
-    </div>
+          <div class="help-section">
 
-    <div class="command-entry">
-      <strong>gehe [richtung/ort]</strong><br>
-      Bewege dich zwischen Orten.
-    </div>
+            <h4>NAVIGATION</h4>
 
-  <div class="example-label">BEISPIELE</div>
-    
-    <div class="example">
-      &gt; gehe vorne<br>
-      &gt; gehe links<br>
-      &gt; gehe haupttor
-    </div>
+            <div class="command-entry">
+              <strong>umsehen</strong>
 
-  </div>
+              <div class="command-description">
+                Beschreibt die aktuelle Umgebung erneut.
+              </div>
+            </div>
 
-  <div class="help-section">
+            <div class="command-entry">
+              <strong>gehe [richtung/ort]</strong>
 
-    <h4>INTERACTION</h4>
+              <div class="command-description">
+                Bewegt dich zwischen Orten.
+              </div>
 
-    <p>
-      <strong>untersuche [objekt]</strong><br>
-      Inspiziert Gegenstände, Orte oder Hinweise genauer.
-    </p>
+              <div class="example-label">
+                BEISPIELE
+              </div>
 
-    <div class="command-entry">
-      <strong>nimm [objekt]</strong><br>
-      Hebt Gegenstände auf, wenn möglich.
-    </div>
+              <div class="example">
+                &gt; gehe vorne<br>
+                &gt; gehe links<br>
+                &gt; gehe haupttor
+              </div>
+            </div>
 
-    <div class="command-entry">
-      <strong>benutze [objekt] [ziel]</strong><br>
-      Verwendet einen Gegenstand auf etwas.
-    </div>
+          </div>
 
-  <div class="example-label">BEISPIELE</div>
-    
-    <div class="example">
-      &gt; untersuche wegweiser<br>
-      &gt; nimm zugangskarte<br>
-      &gt; benutze zugangskarte kartenleser
-    </div>
+          <div class="help-section">
 
-  </div>
+            <h4>INTERACTION</h4>
 
-  <div class="help-section">
+            <div class="command-entry">
+              <strong>untersuche [objekt]</strong>
 
-    <h4>SYSTEM</h4>
+              <div class="command-description">
+                Inspiziert Gegenstände, Orte oder Hinweise genauer.
+              </div>
 
-    <div class="command-entry">
-      <strong>hilfe</strong><br>
-      Öffnet dieses Terminal.
-    </div>
+              <div class="example-label">
+                BEISPIELE
+              </div>
 
-    <p class="terminal-hint">
-      Some interactions are not documented.
-    </p>
+              <div class="example">
+                &gt; untersuche wegweiser<br>
+                &gt; untersuche kartenleser
+              </div>
+            </div>
 
-  </div>
+            <div class="command-entry">
+              <strong>nimm [objekt]</strong>
 
-</div>
+              <div class="command-description">
+                Hebt Gegenstände auf, wenn möglich.
+              </div>
 
-      <!-- FIELD NOTES TAB -->
-      <div
-        id="fieldnotesTab"
-        class="help-content">
+              <div class="example-label">
+                BEISPIELE
+              </div>
 
-        <h3 class="field-title">
-          FIELD NOTES
-        </h3>
+              <div class="example">
+                &gt; nimm zugangskarte<br>
+                &gt; nimm taschenlampe
+              </div>
+            </div>
 
-        <p class="field-description">
-          Not every useful interaction is obvious.<br><br>
+            <div class="command-entry">
+              <strong>benutze [objekt] [ziel]</strong>
 
-          If something seems important,
-          unstable or unusual —
-          try experimenting.
-        </p>
+              <div class="command-description">
+                Verwendet einen Gegenstand auf etwas.
+              </div>
 
-        <ul id="discoveredVerbs">
-        </ul>
+              <div class="example-label">
+                BEISPIELE
+              </div>
+
+              <div class="example">
+                &gt; benutze zugangskarte kartenleser<br>
+                &gt; benutze taschenlampe rohr
+              </div>
+            </div>
+
+          </div>
+
+          <div class="help-section">
+
+            <h4>SYSTEM</h4>
+
+            <div class="command-entry">
+              <strong>hilfe</strong>
+
+              <div class="command-description">
+                Öffnet dieses Terminal.
+              </div>
+            </div>
+
+            <p class="terminal-hint">
+              Some interactions are not documented.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- FIELD NOTES TAB -->
+        <div
+          id="fieldnotesTab"
+          class="help-content">
+
+          <h3 class="field-title">
+            FIELD NOTES
+          </h3>
+
+          <p class="field-description">
+            Not every useful interaction is obvious.<br><br>
+
+            If something seems important,
+            unstable or unusual —
+            try experimenting.
+          </p>
+
+          <ul id="discoveredVerbs">
+          </ul>
+
+        </div>
 
       </div>
-      </div> <!-- Ende helpScroll -->
+
     </div>
 
   </div>
