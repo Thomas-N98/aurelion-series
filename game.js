@@ -306,11 +306,27 @@ function updateHelpMenu() {
 
   secretVerbs.forEach(verb => {
     const li = document.createElement("li");
+    li.className = "field-card";
 
     if (hasDiscoveredVerb(verb.id)) {
-      li.innerHTML = `<span class="secret-unlocked">${verb.label}</span> — ${verb.description}`;
+      li.innerHTML = `
+        <strong>${verb.label}</strong>
+
+        <div class="field-description-card">
+          ${verb.description}
+        </div>
+      `;
     } else {
-      li.innerHTML = `<span class="secret-locked">???</span>`;
+      li.innerHTML = `
+        <strong class="locked-command">
+          ???
+        </strong>
+
+        <div class="field-description-card locked-text">
+          Unknown interaction pattern.<br>
+          No documentation available.
+        </div>
+      `;
     }
 
     list.appendChild(li);
