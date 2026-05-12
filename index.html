@@ -50,19 +50,29 @@
       <!-- COMMAND INPUT -->
       <form id="commandForm">
 
-        <span class="prompt-symbol">&gt;</span>
+        <button
+  id="openTerminal"
+  type="button"
+  title="Open Aurelion System Terminal"
+  aria-label="Open Aurelion System Terminal">
 
-        <input
-          id="commandInput"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          placeholder="Enter command..."
-        />
+  ☰
 
-        <button type="submit">
-          Execute
-        </button>
+</button>
+
+<span class="prompt-symbol">&gt;</span>
+
+<input
+  id="commandInput"
+  type="text"
+  autocomplete="off"
+  spellcheck="false"
+  placeholder="Enter command..."
+/>
+
+<button type="submit">
+  Execute
+</button>
 
       </form>
 
