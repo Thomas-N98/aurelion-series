@@ -382,24 +382,27 @@ button:hover {
 /* COMMAND CARDS */
 
 .command-entry {
-  margin-bottom: 18px;
-  padding: 14px 16px;
-  background: rgba(54, 255, 133, 0.03);
-  border: 1px solid rgba(54, 255, 133, 0.12);
+  margin-bottom: 16px;
+  padding: 14px 18px;
+  background: rgba(54, 255, 133, 0.035);
+  border: 1px solid rgba(54, 255, 133, 0.10);
   line-height: 1.45;
 }
 
 .command-entry strong {
   display: inline-block;
   color: #d7ffe1;
-  background: rgba(54, 255, 133, 0.08);
-  padding: 3px 8px;
-  margin-bottom: 10px;
+  background: rgba(54, 255, 133, 0.06);
+  border: 1px solid rgba(54, 255, 133, 0.12);
+  padding: 2px 8px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
 }
 
 .command-description {
-  margin-bottom: 12px;
-  color: rgba(215, 255, 225, 0.92);
+  margin-bottom: 14px;
+  color: rgba(215, 255, 225, 0.88);
+  line-height: 1.5;
 }
 
 .example-label {
@@ -412,10 +415,11 @@ button:hover {
 
 .example {
   margin-top: 8px;
+  margin-left: 10px;
   padding: 10px 14px;
-  background: rgba(0, 0, 0, 0.18);
-  color: rgba(215, 255, 225, 0.82);
-  line-height: 1.7;
+  background: rgba(0, 0, 0, 0.14);
+  color: rgba(215, 255, 225, 0.78);
+  line-height: 1.75;
 }
 
 .terminal-hint {
