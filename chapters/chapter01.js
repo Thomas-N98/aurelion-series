@@ -294,6 +294,22 @@ interactions: {
 
       updateInventory();
     }
+  },
+
+  take: {
+    zugangskarte() {
+      if (hasItem("Zugangskarte")) {
+        showText("Du hast die Zugangskarte bereits.");
+        return;
+      }
+
+      gameState.inventory.push("Zugangskarte");
+
+      showText("Du hebst die schmutzige Zugangskarte auf.");
+
+      updateInventory();
+      updateEnvironment();
+    }
   }
 }
 }
