@@ -245,7 +245,33 @@ button:hover {
   border-color: var(--amber);
   box-shadow: 0 0 28px rgba(255, 204, 102, 0.22);
 }
+#helpBox.field-mode::before {
+  color: var(--blue);
+}
 
+#helpBox.observation-mode::before {
+  color: var(--amber);
+}
+
+#helpBox.field-mode #closeHelp {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+#helpBox.field-mode #closeHelp:hover {
+  background: var(--blue-soft);
+  box-shadow: 0 0 10px rgba(91, 188, 255, 0.35);
+}
+
+#helpBox.observation-mode #closeHelp {
+  color: var(--amber);
+  border-color: var(--amber);
+}
+
+#helpBox.observation-mode #closeHelp:hover {
+  background: var(--amber-soft);
+  box-shadow: 0 0 10px rgba(255, 204, 102, 0.35);
+}
 #helpBox.flicker {
   animation: helpFlicker 0.16s steps(2);
 }
