@@ -30,7 +30,13 @@ function createInitialGameState() {
 }
 
 let gameState = createInitialGameState();
+const chapters = {
+  chapter01
+};
 
+function currentChapter() {
+  return chapters[gameState.chapterId];
+}
 const rooms = {
   outside: {
     location: "AURELION INDUSTRIES // PERIMETER ZONE",
