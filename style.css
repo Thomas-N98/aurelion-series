@@ -153,7 +153,18 @@ li {
 }
 
 /* COMMAND INPUT */
-
+#openTerminal {
+  width: 42px;
+  min-width: 42px;
+  padding: 8px 0;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1;
+}
+#openTerminal:hover {
+  background: rgba(54, 255, 133, 0.15);
+  box-shadow: 0 0 10px rgba(54, 255, 133, 0.28);
+}
 #commandForm {
   display: flex;
   align-items: center;
