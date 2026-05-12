@@ -322,6 +322,9 @@ button:hover {
 }
 
 .help-tab {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
   background: transparent;
   border: 1px solid #36ff85;
   color: #36ff85;
@@ -581,7 +584,32 @@ button:hover {
   border-color: #ffcc66;
   box-shadow: 0 0 28px rgba(255, 204, 102, 0.22);
 }
+/* Active Observations Tab = gelb */
 
+#helpBox.observation-mode
+.help-tab[data-tab="observations"] {
+  border-color: #ffcc66;
+  color: #ffcc66;
+}
+
+#helpBox.observation-mode
+.help-tab.active {
+  background: rgba(255, 204, 102, 0.15);
+}
+
+/* Andere Tabs behalten ihre Farben */
+
+#helpBox.observation-mode
+.help-tab[data-tab="general"] {
+  border-color: #36ff85;
+  color: #36ff85;
+}
+
+#helpBox.observation-mode
+.help-tab[data-tab="fieldnotes"] {
+  border-color: #5bbcff;
+  color: #5bbcff;
+}
 #helpBox.observation-mode .help-tab.active {
   background: rgba(255, 204, 102, 0.15);
 }
