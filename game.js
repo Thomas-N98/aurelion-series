@@ -749,22 +749,9 @@ function openObject(target) {
     return;
   }
 
-  if (target === "auto") {
-    discoverVerb("oeffne");
+  const wasHandled = runRoomInteraction("open", target);
 
-    if (hasFlag("autoOpened")) {
-  showText("Du hast das Auto bereits durchsucht.");
-  return;
-}
-setFlag("autoOpened");
-    gameState.inventory.push("Taschenlampe");
-    showText(
-      "Du öffnest die Autotür.\n\nIm Innenraum riecht es nach kaltem Kaffee und feuchter Kleidung. Im Seitenfach findest du eine kleine Taschenlampe.\n\nNeue Interaktion entdeckt: ÖFFNE"
-    );
-
-    updateInventory();
-    return;
-  }
+  if (wasHandled) return;
 
   showText("Das lässt sich nicht öffnen.");
 }
