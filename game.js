@@ -853,7 +853,9 @@ function examine(target) {
     showText("Das kannst du von hier aus nicht untersuchen.");
     return;
   }
-
+if (target === "wegweiser") {
+  addObservation("Der Wegweiser erwähnt ein altes INDUSTRIEGELÄNDE.");
+}
   showText(room.details[target] || "Du findest nichts Auffälliges.");
 }
 
