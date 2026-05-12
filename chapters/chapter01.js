@@ -310,6 +310,32 @@ interactions: {
       updateInventory();
       updateEnvironment();
     }
+  },
+  
+  use: {
+    zugangskarte: {
+      kartenleser() {
+        if (gameState.area !== "haupttor") {
+          showText("Hier gibt es keinen Kartenleser.");
+          return;
+        }
+
+        if (!hasItem("Zugangskarte")) {
+          showText("Du hast keine Zugangskarte.");
+          return;
+        }
+
+        setFlag("gateUnlocked");
+
+        showText(
+          "Der Kartenleser piept.\n\nZUGRIFF GEWÄHRT.\n\nDas Haupttor öffnet sich einen Spalt breit. Dahinter liegt der Eingangsbereich von Aurelion."
+        );
+      },
+
+      haupttor() {
+        showText("Vielleicht solltest du die Zugangskarte direkt am Kartenleser benutzen.");
+      }
+    }
   }
 }
 }
