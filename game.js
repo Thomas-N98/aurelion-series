@@ -3,7 +3,7 @@ const gameState = {
   area: "parkplatz",
   visitedAreas: ["parkplatz"],
   inventory: [],
-  discoveredVerbs: []
+  discoveredVerbs: [],
   observations: []
 };
 
