@@ -283,17 +283,32 @@ const secretVerbs = [
   {
     id: "oeffne",
     label: "öffne",
-    description: "Open containers, doors or mechanisms."
+    description:
+      "Open containers, doors or mechanisms.",
+    examples: [
+      "öffne auto",
+      "öffne schloss"
+    ]
   },
   {
     id: "lies",
     label: "lies",
-    description: "Read signs, notes or labels."
+    description:
+      "Read signs, notes or labels.",
+    examples: [
+      "lies warnschild",
+      "lies notiz"
+    ]
   },
   {
     id: "ziehe",
     label: "ziehe",
-    description: "Pull handles, levers or loose objects."
+    description:
+      "Pull handles, levers or loose objects.",
+    examples: [
+      "ziehe hebel",
+      "ziehe kabel"
+    ]
   }
 ];
 
@@ -310,12 +325,22 @@ function updateHelpMenu() {
 
     if (hasDiscoveredVerb(verb.id)) {
       li.innerHTML = `
-        <strong>${verb.label}</strong>
+  <strong>${verb.label}</strong>
 
-        <div class="field-description-card">
-          ${verb.description}
-        </div>
-      `;
+  <div class="field-description-card">
+    ${verb.description}
+  </div>
+
+  <div class="example-label">
+    BEISPIELE
+  </div>
+
+  <div class="example">
+    ${verb.examples
+      .map(example => `&gt; ${example}`)
+      .join("<br>")}
+  </div>
+`;
     } else {
       li.innerHTML = `
         <strong class="locked-command">
