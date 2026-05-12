@@ -1,12 +1,35 @@
-const gameState = {
-  room: "outside",
-  area: "parkplatz",
-  visitedAreas: ["parkplatz"],
-  inventory: [],
-  discoveredVerbs: [],
-  observations: [],
-  flags: []
-};
+function createInitialGameState() {
+  return {
+    playerName: "",
+    mode: "story", // "story" | "geocaching"
+
+    chapterId: "chapter01",
+
+    room: "outside",
+    area: "parkplatz",
+    visitedAreas: ["parkplatz"],
+
+    inventory: [],
+    discoveredVerbs: [],
+    observations: [],
+
+    // flags als Objekt statt Array: leichter abzufragen und zu speichern
+    flags: {},
+
+    health: "healthy", // "healthy" | "light" | "severe" | "dead"
+
+    settings: {
+      masterVolume: 0.8,
+      voiceVolume: 1,
+      ambienceVolume: 0.6,
+      sfxVolume: 0.8,
+      muted: false,
+      textSize: "normal"
+    }
+  };
+}
+
+let gameState = createInitialGameState();
 
 const rooms = {
   outside: {
@@ -368,14 +391,77 @@ function discoverVerb(verb) {
     updateHelpMenu();
   }
 }
-function setFlag(flag) {
-  if (!gameState.flags.includes(flag)) {
-    gameState.flags.push(flag);
-  }
+function setFlag(flag, value = true) {
+  gameState.flags[flag] = value;
 }
 
 function hasFlag(flag) {
-  return gameState.flags.includes(flag);
+  return gameState.flags[flag] === true;
+}
+function setHealth(state) {
+  const validStates = ["healthy", "light", "severe", "dead"];
+
+  if (!validStates.includes(state)) {
+    console.warn("Invalid health state:", state);
+    return;
+  }
+
+  gameState.health = state;
+}
+
+function injure(level = "light") {
+  if (gameState.health === "dead") return;
+
+  if (level === "light" && gameState.health === "healthy") {
+    gameState.health = "light";
+    return;
+  }
+
+  if (level === "severe") {
+    gameState.health = "severe";
+    return;
+  }
+
+  if (level === "dead") {
+    gameState.health = "dead";
+  }
+}
+
+function heal() {
+  if (gameState.health === "severe") {
+    gameState.health = "light";
+    return;
+  }
+
+  if (gameState.health === "light") {
+    gameState.health = "healthy";
+  }
+}
+const SAVE_KEY = "aurelion_save_v1";
+
+function saveGame() {
+  localStorage.setItem(SAVE_KEY, JSON.stringify(gameState));
+}
+
+function loadGame() {
+  const savedData = localStorage.getItem(SAVE_KEY);
+
+  if (!savedData) {
+    return false;
+  }
+
+  gameState = JSON.parse(savedData);
+  render();
+  return true;
+}
+
+function resetGame() {
+  gameState = createInitialGameState();
+  localStorage.removeItem(SAVE_KEY);
+  render();
+}
+function getFlag(flag) {
+  return gameState.flags[flag];
 }
 function hasDiscoveredVerb(verb) {
   return gameState.discoveredVerbs.includes(verb);
