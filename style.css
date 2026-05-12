@@ -258,6 +258,13 @@ button:hover {
   border: 1px solid #36ff85;
   padding: 4px 8px;
   cursor: pointer;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#closeHelp:hover {
+  background: rgba(54, 255, 133, 0.15);
+  box-shadow: 0 0 10px rgba(54, 255, 133, 0.35);
 }
 
 .help-tabs {
