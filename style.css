@@ -377,7 +377,20 @@ button:hover {
   letter-spacing: 1px;
   font-size: 0.95rem;
 }
+.command-entry {
+  margin-bottom: 18px;
+  padding-left: 10px;
+  border-left: 2px solid rgba(54, 255, 133, 0.35);
+  line-height: 1.45;
+}
 
+.command-entry strong {
+  display: inline-block;
+  color: #d7ffe1;
+  background: rgba(54, 255, 133, 0.08);
+  padding: 2px 6px;
+  margin-bottom: 3px;
+}
 .example {
   margin-top: 12px;
   padding: 10px 14px;
@@ -386,7 +399,14 @@ button:hover {
   color: rgba(215, 255, 225, 0.82);
   line-height: 1.6;
 }
-
+.example-label {
+  margin-top: 12px;
+  margin-bottom: 6px;
+  color: rgba(54, 255, 133, 0.75);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
 .terminal-hint {
   opacity: 0.7;
   font-style: italic;
