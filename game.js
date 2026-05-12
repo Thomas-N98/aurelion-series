@@ -215,6 +215,28 @@ function currentRoom() {
 function currentArea() {
   return currentRoom().areas[gameState.area];
 }
+function getRoomInteraction(type, target) {
+  const room = currentRoom();
+
+  if (
+    !room.interactions ||
+    !room.interactions[type] ||
+    !room.interactions[type][target]
+  ) {
+    return null;
+  }
+
+  return room.interactions[type][target];
+}
+
+function runRoomInteraction(type, target) {
+  const interaction = getRoomInteraction(type, target);
+
+  if (!interaction) return false;
+
+  interaction();
+  return true;
+}
 function addObservation(text) {
   if (!gameState.observations.includes(text)) {
     gameState.observations.push(text);
@@ -691,13 +713,9 @@ function examine(target) {
     showText("Das kannst du von hier aus nicht untersuchen.");
     return;
   }
-if (target === "wegweiser") {
-  addObservation("Der Wegweiser erwähnt ein altes INDUSTRIEGELÄNDE.");
-}
-  if (target === "kamera") {
-  setFlag("cameraExamined");
-}
-  showText(room.details[target] || "Du findest nichts Auffälliges.");
+runRoomInteraction("examine", target);
+
+showText(room.details[target] || "Du findest nichts Auffälliges.");
 }
 
 function takeItem(target) {
