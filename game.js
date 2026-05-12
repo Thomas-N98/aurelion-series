@@ -4,7 +4,8 @@ const gameState = {
   visitedAreas: ["parkplatz"],
   inventory: [],
   discoveredVerbs: [],
-  observations: []
+  observations: [],
+  flags: []
 };
 
 const rooms = {
@@ -361,13 +362,22 @@ function updateHelpMenu() {
 function hasItem(item) {
   return gameState.inventory.includes(item);
 }
+
 function discoverVerb(verb) {
   if (!gameState.discoveredVerbs.includes(verb)) {
     gameState.discoveredVerbs.push(verb);
     updateHelpMenu();
   }
 }
+function setFlag(flag) {
+  if (!gameState.flags.includes(flag)) {
+    gameState.flags.push(flag);
+  }
+}
 
+function hasFlag(flag) {
+  return gameState.flags.includes(flag);
+}
 function hasDiscoveredVerb(verb) {
   return gameState.discoveredVerbs.includes(verb);
 }
@@ -573,6 +583,8 @@ function render() {
   updateInventory();
   updateHelpMenu();
   updateObservationsLog();
+
+  console.log(gameState.flags);
 }
 
 function renderList(id, items) {
@@ -856,6 +868,9 @@ function examine(target) {
 if (target === "wegweiser") {
   addObservation("Der Wegweiser erwähnt ein altes INDUSTRIEGELÄNDE.");
 }
+  if (target === "kamera") {
+  setFlag("cameraExamined");
+}
   showText(room.details[target] || "Du findest nichts Auffälliges.");
 }
 
@@ -893,11 +908,11 @@ function openObject(target) {
   if (target === "auto") {
     discoverVerb("oeffne");
 
-    if (gameState.inventory.includes("Taschenlampe")) {
-      showText("Du hast das Auto bereits durchsucht.");
-      return;
-    }
-
+    if (hasFlag("autoOpened")) {
+  showText("Du hast das Auto bereits durchsucht.");
+  return;
+}
+setFlag("autoOpened");
     gameState.inventory.push("Taschenlampe");
 
     showText(
@@ -931,7 +946,7 @@ function useItem(commandRest) {
       showText("Du hast keine Zugangskarte.");
       return;
     }
-
+    setFlag("gateUnlocked");
     showText(
       "Der Kartenleser piept.\n\nZUGRIFF GEWÄHRT.\n\nDas Haupttor öffnet sich einen Spalt breit. Dahinter liegt der Eingangsbereich von Aurelion."
     );
