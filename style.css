@@ -212,7 +212,7 @@ button:hover {
 }
 
 #helpBox::before {
-  content: "AURELION HELP TERMINAL";
+  content: "AURELION SYSTEM TERMINAL";
   display: block;
   color: #36ff85;
   font-weight: bold;
