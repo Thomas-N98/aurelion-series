@@ -13,11 +13,11 @@ const rooms = {
 
     commands: [
       "umsehen",
-      "gehe zu/nach",
+      "gehe",
       "untersuche",
       "benutze",
       "nimm",
-      "hilfe"
+      "terminal"
     ],
 
     areas: {
@@ -653,10 +653,15 @@ function handleCommand(input) {
 
   if (!command) return;
 
-  if (command === "hilfe") {
-    openHelp();
-    return;
-  }
+  if (
+  command === "terminal" ||
+  command === "hilfe" ||
+  command === "menu" ||
+  command === "menue"
+) {
+  openHelp();
+  return;
+}
 
   if (command === "umsehen") {
     showAreaDescription();
