@@ -197,8 +197,10 @@ button:hover {
 #helpBox {
   position: relative;
   width: min(760px, 100%);
-  max-height: 85vh;
-  overflow-y: auto;
+  height: min(780px, 85vh);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   background: rgba(0, 0, 0, 0.97);
   border: 1px solid #36ff85;
   box-shadow: 0 0 28px rgba(54, 255, 133, 0.25);
@@ -208,7 +210,12 @@ button:hover {
     border-color 0.15s ease,
     box-shadow 0.15s ease;
 }
-
+#helpScroll {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 14px;
+  min-height: 0;
+}
 #helpBox.field-mode {
   border-color: #5bbcff;
   box-shadow: 0 0 28px rgba(91, 188, 255, 0.25);
@@ -431,54 +438,38 @@ button:hover {
   .help-tabs {
     flex-wrap: wrap;
   }
-  /* AURELION TERMINAL SCROLLBAR */
-
-#helpBox {
+  #helpScroll {
   scrollbar-width: thin;
   scrollbar-color: #36ff85 #020604;
 }
 
-#helpBox::-webkit-scrollbar {
+#helpScroll::-webkit-scrollbar {
   width: 8px;
-  height: 8px;
 }
 
-#helpBox::-webkit-scrollbar-track {
+#helpScroll::-webkit-scrollbar-track {
   background: #020604;
 }
 
-#helpBox::-webkit-scrollbar-thumb {
+#helpScroll::-webkit-scrollbar-thumb {
   background-color: rgba(54, 255, 133, 0.45);
   border: 1px solid #36ff85;
-  border-radius: 0;
 }
 
-#helpBox::-webkit-scrollbar-thumb:hover {
+#helpScroll::-webkit-scrollbar-thumb:hover {
   background-color: rgba(54, 255, 133, 0.7);
 }
 
-#helpBox::-webkit-scrollbar-button {
-  display: none;
-  width: 0;
-  height: 0;
-}
-
-#helpBox::-webkit-scrollbar-corner {
-  background: #020604;
-}
-
-/* Field Notes blau */
-
-#helpBox.field-mode {
+#helpBox.field-mode #helpScroll {
   scrollbar-color: #5bbcff #020604;
 }
 
-#helpBox.field-mode::-webkit-scrollbar-thumb {
+#helpBox.field-mode #helpScroll::-webkit-scrollbar-thumb {
   background-color: rgba(91, 188, 255, 0.45);
   border-color: #5bbcff;
 }
 
-#helpBox.field-mode::-webkit-scrollbar-thumb:hover {
+#helpBox.field-mode #helpScroll::-webkit-scrollbar-thumb:hover {
   background-color: rgba(91, 188, 255, 0.7);
 }
 }
