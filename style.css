@@ -204,6 +204,40 @@ button:hover {
   box-shadow: 0 0 28px rgba(54, 255, 133, 0.25);
   padding: 28px;
   color: #d7ffe1;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+#helpBox.field-mode {
+  border-color: #5bbcff;
+  box-shadow: 0 0 28px rgba(91, 188, 255, 0.25);
+}
+
+#helpBox.flicker {
+  animation: helpFlicker 0.16s steps(2);
+}
+
+@keyframes helpFlicker {
+  0% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+
+  40% {
+    opacity: 0.65;
+    filter: brightness(1.6);
+  }
+
+  70% {
+    opacity: 0.9;
+    filter: brightness(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
 }
 
 #helpBox::before {
@@ -252,6 +286,23 @@ button:hover {
 
 .secret-tab.active {
   background: rgba(91, 188, 255, 0.15);
+}
+
+/* Wenn Field Notes aktiv ist */
+#helpBox.field-mode .help-tab.active {
+  background: rgba(91, 188, 255, 0.15);
+}
+
+/* Commands-Button bleibt grün, auch wenn Field Notes aktiv ist */
+#helpBox.field-mode .help-tab[data-tab="general"] {
+  border-color: #36ff85;
+  color: #36ff85;
+}
+
+/* Field-Notes-Button bleibt blau */
+#helpBox.field-mode .help-tab[data-tab="fieldnotes"] {
+  border-color: #5bbcff;
+  color: #5bbcff;
 }
 
 .help-content {
