@@ -3,5 +3,9 @@ const chapter01 = {
   startRoom: "outside",
   startArea: "parkplatz",
 
-  rooms: {}
+  rooms: {
+    outside: {
+      // HIER KOMMT DEIN KOMPLETTER OUTSIDE BLOCK REIN
+    }
+  }
 };
