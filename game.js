@@ -237,6 +237,29 @@ function runRoomInteraction(type, target) {
   interaction();
   return true;
 }
+function getUseInteraction(item, target) {
+  const room = currentRoom();
+
+  if (
+    !room.interactions ||
+    !room.interactions.use ||
+    !room.interactions.use[item] ||
+    !room.interactions.use[item][target]
+  ) {
+    return null;
+  }
+
+  return room.interactions.use[item][target];
+}
+
+function runUseInteraction(item, target) {
+  const interaction = getUseInteraction(item, target);
+
+  if (!interaction) return false;
+
+  interaction();
+  return true;
+}
 function addObservation(text) {
   if (!gameState.observations.includes(text)) {
     gameState.observations.push(text);
@@ -757,27 +780,9 @@ function useItem(commandRest) {
   const item = parts[0];
   const target = parts.slice(1).join(" ");
 
-  if (item === "zugangskarte" && target === "kartenleser") {
-    if (gameState.area !== "haupttor") {
-      showText("Hier gibt es keinen Kartenleser.");
-      return;
-    }
+  const wasHandled = runUseInteraction(item, target);
 
-    if (!hasItem("Zugangskarte")) {
-      showText("Du hast keine Zugangskarte.");
-      return;
-    }
-    setFlag("gateUnlocked");
-    showText(
-      "Der Kartenleser piept.\n\nZUGRIFF GEWÄHRT.\n\nDas Haupttor öffnet sich einen Spalt breit. Dahinter liegt der Eingangsbereich von Aurelion."
-    );
-    return;
-  }
-
-  if (item === "zugangskarte" && target === "haupttor") {
-    showText("Vielleicht solltest du die Zugangskarte direkt am Kartenleser benutzen.");
-    return;
-  }
+  if (wasHandled) return;
 
   showText("Das scheint hier nichts zu bewirken.");
 }
