@@ -415,6 +415,53 @@ function showAreaDescription() {
   document.getElementById("story").innerHTML =
     `<h3 class="story-location">${area.name}</h3><div class="story-text">${formattedText}</div>`;
 }
+function updateHelpScrollbar() {
+  const scroll = document.getElementById("helpScroll");
+  const thumb = document.getElementById("scrollThumb");
+
+  if (!scroll || !thumb) return;
+
+  const scrollTop = scroll.scrollTop;
+  const scrollHeight = scroll.scrollHeight;
+  const clientHeight = scroll.clientHeight;
+
+  const maxScroll = scrollHeight - clientHeight;
+
+  if (maxScroll <= 0) {
+    thumb.style.display = "none";
+    return;
+  }
+
+  thumb.style.display = "block";
+
+  const thumbHeight =
+    (clientHeight / scrollHeight) *
+    scroll.clientHeight;
+
+  const maxThumbMove =
+    scroll.clientHeight - thumbHeight;
+
+  const thumbTop =
+    (scrollTop / maxScroll) *
+    maxThumbMove;
+
+  thumb.style.height =
+    `${Math.max(40, thumbHeight)}px`;
+
+  thumb.style.transform =
+    `translateY(${thumbTop}px)`;
+}
+
+document
+  .getElementById("helpScroll")
+  .addEventListener("scroll", updateHelpScrollbar);
+
+window.addEventListener(
+  "resize",
+  updateHelpScrollbar
+);
+
+updateHelpScrollbar();
 function render() {
   const room = currentRoom();
   const area = currentArea();
