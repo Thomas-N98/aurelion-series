@@ -4,6 +4,7 @@ const gameState = {
   visitedAreas: ["parkplatz"],
   inventory: [],
   discoveredVerbs: []
+  observations: []
 };
 
 const rooms = {
