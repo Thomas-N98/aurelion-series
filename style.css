@@ -461,13 +461,26 @@ button:hover {
   border: 1px solid rgba(91, 188, 255, 0.10);
   line-height: 1.45;
 }
+/* FIELD NOTE EXAMPLES */
 
+.field-card .example-label {
+  color: rgba(91, 188, 255, 0.72);
+}
+
+.field-card .example {
+  margin-top: 8px;
+  margin-left: 10px;
+  padding: 10px 14px;
+  background: rgba(91, 188, 255, 0.06);
+  color: rgba(183, 219, 255, 0.86);
+  line-height: 1.75;
+}
 .field-card strong {
   display: inline-block;
-  color: #b7dbff;
-  background: rgba(91, 188, 255, 0.06);
-  border: 1px solid rgba(91, 188, 255, 0.12);
-  padding: 2px 8px;
+  color: #d7eeff;
+  background: rgba(91, 188, 255, 0.08);
+  border: 1px solid rgba(91, 188, 255, 0.16);
+  padding: 3px 8px;
   margin-bottom: 12px;
   font-size: 0.95rem;
 }
