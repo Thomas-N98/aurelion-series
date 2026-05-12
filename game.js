@@ -378,7 +378,43 @@ function currentRoom() {
 function currentArea() {
   return currentRoom().areas[gameState.area];
 }
+function addObservation(text) {
+  if (!gameState.observations.includes(text)) {
+    gameState.observations.push(text);
+    updateObservationsLog();
+  }
+}
 
+function updateObservationsLog() {
+  const list = document.getElementById("observationsList");
+
+  if (!list) return;
+
+  list.innerHTML = "";
+
+  if (gameState.observations.length === 0) {
+    const li = document.createElement("li");
+    li.className = "observation-card empty-observation";
+    li.textContent = "No relevant observations recorded.";
+    list.appendChild(li);
+    return;
+  }
+
+  gameState.observations.forEach((observation, index) => {
+    const li = document.createElement("li");
+    li.className = "observation-card";
+
+    li.innerHTML = `
+      <strong>LOG ${String(index + 1).padStart(3, "0")}</strong>
+
+      <div class="observation-text">
+        ${observation}
+      </div>
+    `;
+
+    list.appendChild(li);
+  });
+}
 function openHelp() {
   document.getElementById("helpOverlay").classList.remove("hidden");
 
@@ -433,6 +469,7 @@ document.querySelectorAll(".help-tab").forEach(button => {
 
     if (tabName === "general") {
       helpBox.classList.remove("field-mode");
+      helpBox.classList.remove("observation-mode");
 
       document
         .getElementById("generalTab")
@@ -441,13 +478,24 @@ document.querySelectorAll(".help-tab").forEach(button => {
 
     if (tabName === "fieldnotes") {
       helpBox.classList.add("field-mode");
+      helpBox.classList.remove("observation-mode");
 
       document
         .getElementById("fieldnotesTab")
         .classList.add("active-tab");
     }
 
+    if (tabName === "observations") {
+      helpBox.classList.remove("field-mode");
+      helpBox.classList.add("observation-mode");
+
+      document
+        .getElementById("observationsTab")
+        .classList.add("active-tab");
+    }
+
     triggerHelpFlicker();
+    updateHelpScrollbar();
   });
 });
 function showAreaDescription() {
@@ -524,6 +572,7 @@ function render() {
   updateEnvironment();
   updateInventory();
   updateHelpMenu();
+  updateObservationsLog();
 }
 
 function renderList(id, items) {
