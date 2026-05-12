@@ -211,48 +211,13 @@ button:hover {
     box-shadow 0.15s ease;
 }
 
-#helpScroll {
-  flex: 1;
-  overflow-y: auto;
-  padding-right: 10px;
-  min-height: 0;
-
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-/* CUSTOM TERMINAL SCROLLBAR */
-
-#scrollIndicator {
-  position: absolute;
-  top: 120px;
-  right: 14px;
-  width: 2px;
-  height: calc(100% - 150px);
-
-  background: rgba(54, 255, 133, 0.12);
-  pointer-events: none;
-}
-
-#scrollThumb {
-  width: 100%;
-  height: 80px;
-  background: #36ff85;
-  box-shadow: 0 0 8px rgba(54, 255, 133, 0.5);
-  transition: background-color 0.15s ease;
-}
-
-/* Field Notes = blau */
-
-#helpBox.field-mode #scrollIndicator {
-  background: rgba(91, 188, 255, 0.12);
-}
-
-#helpBox.field-mode #scrollThumb {
-  background: #5bbcff;
-  box-shadow: 0 0 8px rgba(91, 188, 255, 0.5);
-}
-#helpScroll::-webkit-scrollbar {
-  display: none;
+#helpBox::before {
+  content: "AURELION HELP TERMINAL";
+  display: block;
+  color: #36ff85;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
 }
 
 #helpBox.field-mode {
@@ -286,14 +251,51 @@ button:hover {
   }
 }
 
-#helpBox::before {
-  content: "AURELION HELP TERMINAL";
-  display: block;
-  color: #36ff85;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-bottom: 18px;
+/* HELP SCROLL AREA */
+
+#helpScroll {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+  min-height: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+
+#helpScroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* CUSTOM TERMINAL SCROLLBAR */
+
+#scrollIndicator {
+  position: absolute;
+  top: 120px;
+  right: 14px;
+  width: 2px;
+  height: calc(100% - 150px);
+  background: rgba(54, 255, 133, 0.12);
+  pointer-events: none;
+}
+
+#scrollThumb {
+  width: 100%;
+  height: 80px;
+  background: #36ff85;
+  box-shadow: 0 0 8px rgba(54, 255, 133, 0.5);
+  transition: background-color 0.15s ease;
+}
+
+#helpBox.field-mode #scrollIndicator {
+  background: rgba(91, 188, 255, 0.12);
+}
+
+#helpBox.field-mode #scrollThumb {
+  background: #5bbcff;
+  box-shadow: 0 0 8px rgba(91, 188, 255, 0.5);
+}
+
+/* HELP HEADER CONTROLS */
 
 #closeHelp {
   position: absolute;
@@ -337,10 +339,7 @@ button:hover {
   color: #5bbcff;
 }
 
-.secret-tab.active {
-  background: rgba(91, 188, 255, 0.15);
-}
-
+.secret-tab.active,
 #helpBox.field-mode .help-tab.active {
   background: rgba(91, 188, 255, 0.15);
 }
@@ -355,6 +354,8 @@ button:hover {
   color: #5bbcff;
 }
 
+/* HELP CONTENT */
+
 .help-content {
   display: none;
 }
@@ -368,19 +369,23 @@ button:hover {
 }
 
 .help-section {
-  margin-bottom: 28px;
+  margin-bottom: 30px;
 }
 
 .help-section h4 {
   color: #36ff85;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   letter-spacing: 1px;
   font-size: 0.95rem;
 }
+
+/* COMMAND CARDS */
+
 .command-entry {
   margin-bottom: 18px;
-  padding-left: 10px;
+  padding: 14px 16px;
   border-left: 2px solid rgba(54, 255, 133, 0.35);
+  background: rgba(54, 255, 133, 0.03);
   line-height: 1.45;
 }
 
@@ -388,29 +393,38 @@ button:hover {
   display: inline-block;
   color: #d7ffe1;
   background: rgba(54, 255, 133, 0.08);
-  padding: 2px 6px;
-  margin-bottom: 3px;
+  padding: 3px 8px;
+  margin-bottom: 10px;
 }
-.example {
-  margin-top: 12px;
-  padding: 10px 14px;
-  border-left: 2px solid rgba(54, 255, 133, 0.4);
-  background: rgba(54, 255, 133, 0.04);
-  color: rgba(215, 255, 225, 0.82);
-  line-height: 1.6;
+
+.command-description {
+  margin-bottom: 12px;
+  color: rgba(215, 255, 225, 0.92);
 }
+
 .example-label {
-  margin-top: 12px;
-  margin-bottom: 6px;
-  color: rgba(54, 255, 133, 0.75);
-  font-size: 0.75rem;
+  margin-bottom: 8px;
+  color: rgba(54, 255, 133, 0.72);
+  font-size: 0.72rem;
   letter-spacing: 1px;
   font-weight: bold;
 }
+
+.example {
+  margin-top: 8px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.22);
+  border-left: 2px solid rgba(54, 255, 133, 0.25);
+  color: rgba(215, 255, 225, 0.82);
+  line-height: 1.7;
+}
+
 .terminal-hint {
   opacity: 0.7;
   font-style: italic;
 }
+
+/* FIELD NOTES */
 
 .field-title {
   color: #5bbcff;
@@ -493,5 +507,11 @@ button:hover {
 
   .help-tabs {
     flex-wrap: wrap;
+  }
+
+  #scrollIndicator {
+    top: 116px;
+    right: 10px;
+    height: calc(100% - 142px);
   }
 }
