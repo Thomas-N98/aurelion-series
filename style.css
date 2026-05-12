@@ -210,12 +210,21 @@ button:hover {
     border-color 0.15s ease,
     box-shadow 0.15s ease;
 }
+
 #helpScroll {
   flex: 1;
   overflow-y: auto;
-  padding-right: 14px;
+  padding-right: 10px;
   min-height: 0;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+
+#helpScroll::-webkit-scrollbar {
+  display: none;
+}
+
 #helpBox.field-mode {
   border-color: #5bbcff;
   box-shadow: 0 0 28px rgba(91, 188, 255, 0.25);
@@ -302,18 +311,15 @@ button:hover {
   background: rgba(91, 188, 255, 0.15);
 }
 
-/* Wenn Field Notes aktiv ist */
 #helpBox.field-mode .help-tab.active {
   background: rgba(91, 188, 255, 0.15);
 }
 
-/* Commands-Button bleibt grün, auch wenn Field Notes aktiv ist */
 #helpBox.field-mode .help-tab[data-tab="general"] {
   border-color: #36ff85;
   color: #36ff85;
 }
 
-/* Field-Notes-Button bleibt blau */
 #helpBox.field-mode .help-tab[data-tab="fieldnotes"] {
   border-color: #5bbcff;
   color: #5bbcff;
@@ -431,45 +437,11 @@ button:hover {
 
   #helpBox {
     margin-top: 24px;
-    max-height: 90vh;
+    height: calc(100vh - 48px);
     padding: 22px;
   }
 
   .help-tabs {
     flex-wrap: wrap;
   }
-  #helpScroll {
-  scrollbar-width: thin;
-  scrollbar-color: #36ff85 #020604;
-}
-
-#helpScroll::-webkit-scrollbar {
-  width: 8px;
-}
-
-#helpScroll::-webkit-scrollbar-track {
-  background: #020604;
-}
-
-#helpScroll::-webkit-scrollbar-thumb {
-  background-color: rgba(54, 255, 133, 0.45);
-  border: 1px solid #36ff85;
-}
-
-#helpScroll::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(54, 255, 133, 0.7);
-}
-
-#helpBox.field-mode #helpScroll {
-  scrollbar-color: #5bbcff #020604;
-}
-
-#helpBox.field-mode #helpScroll::-webkit-scrollbar-thumb {
-  background-color: rgba(91, 188, 255, 0.45);
-  border-color: #5bbcff;
-}
-
-#helpBox.field-mode #helpScroll::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(91, 188, 255, 0.7);
-}
 }
