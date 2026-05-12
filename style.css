@@ -447,7 +447,45 @@ button:hover {
   color: #5bbcff;
   font-weight: bold;
 }
+/* FIELD NOTE CARDS */
 
+#discoveredVerbs {
+  list-style: none;
+  padding-left: 0;
+}
+
+.field-card {
+  margin-bottom: 16px;
+  padding: 14px 18px;
+  background: rgba(91, 188, 255, 0.035);
+  border: 1px solid rgba(91, 188, 255, 0.10);
+  line-height: 1.45;
+}
+
+.field-card strong {
+  display: inline-block;
+  color: #b7dbff;
+  background: rgba(91, 188, 255, 0.06);
+  border: 1px solid rgba(91, 188, 255, 0.12);
+  padding: 2px 8px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.field-description-card {
+  color: rgba(183, 219, 255, 0.88);
+  line-height: 1.5;
+}
+
+.locked-command {
+  opacity: 0.65;
+  letter-spacing: 2px;
+}
+
+.locked-text {
+  opacity: 0.45;
+  font-style: italic;
+}
 /* MOBILE */
 
 @media (max-width: 700px) {
