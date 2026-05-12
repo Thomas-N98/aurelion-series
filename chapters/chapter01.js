@@ -260,8 +260,20 @@ details: {
     "Zwischen den Baumwipfeln erkennst du das verfallene Firmengelände. Selbst aus der Entfernung wirkt es zu groß für etwas, das angeblich aufgegeben wurde.",
 
   baumstämme:
-    "Die Baumstämme liegen kreuz und quer über dem Weg. Einige sehen frisch gebrochen aus."
-}
-}
+  "Die Baumstämme liegen kreuz und quer über dem Weg. Einige sehen frisch gebrochen aus."
+},
+
+interactions: {
+  examine: {
+    wegweiser() {
+      addObservation(
+        "Der Wegweiser erwähnt ein altes INDUSTRIEGELÄNDE."
+      );
+    },
+
+    kamera() {
+      setFlag("cameraExamined");
+    }
+  }
 }
 };
