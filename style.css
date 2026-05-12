@@ -464,6 +464,8 @@ button:hover {
 /* FIELD NOTE EXAMPLES */
 
 .field-card .example-label {
+  margin-top: 14px;
+  margin-bottom: 8px;
   color: rgba(91, 188, 255, 0.72);
 }
 
@@ -471,8 +473,8 @@ button:hover {
   margin-top: 8px;
   margin-left: 10px;
   padding: 10px 14px;
-  background: rgba(91, 188, 255, 0.06);
-  color: rgba(183, 219, 255, 0.86);
+  background: rgba(0, 0, 0, 0.14);
+  color: rgba(183, 219, 255, 0.78);
   line-height: 1.75;
 }
 .field-card strong {
