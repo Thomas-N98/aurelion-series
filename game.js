@@ -584,7 +584,6 @@ function render() {
   updateHelpMenu();
   updateObservationsLog();
 
-  console.log(gameState.flags);
 }
 
 function renderList(id, items) {
@@ -914,7 +913,7 @@ function openObject(target) {
 }
 setFlag("autoOpened");
     gameState.inventory.push("Taschenlampe");
-
+    console.log(gameState.flags);
     showText(
       "Du öffnest die Autotür.\n\nIm Innenraum riecht es nach kaltem Kaffee und feuchter Kleidung. Im Seitenfach findest du eine kleine Taschenlampe.\n\nNeue Interaktion entdeckt: ÖFFNE"
     );
