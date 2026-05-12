@@ -336,7 +336,23 @@ button:hover {
 .help-tab.active {
   background: rgba(54, 255, 133, 0.15);
 }
+/* FIELD NOTES active = blau */
 
+#helpBox.field-mode
+.help-tab[data-tab="fieldnotes"].active {
+  background: rgba(91, 188, 255, 0.15);
+  border-color: #5bbcff;
+  color: #5bbcff;
+}
+
+/* OBSERVATIONS active = amber */
+
+#helpBox.observation-mode
+.help-tab[data-tab="observations"].active {
+  background: rgba(255, 204, 102, 0.15);
+  border-color: #ffcc66;
+  color: #ffcc66;
+}
 .secret-tab {
   border-color: #5bbcff;
   color: #5bbcff;
