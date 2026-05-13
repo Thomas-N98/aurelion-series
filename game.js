@@ -889,5 +889,67 @@ document.getElementById("commandForm").addEventListener("submit", function (even
   handleCommand(input.value);
   input.value = "";
 });
+function showGame() {
+  document
+    .getElementById("startScreen")
+    .classList.add("hidden");
 
-render();
+  document
+    .getElementById("game")
+    .classList.remove("hidden");
+
+  render();
+}
+
+function startNewGame() {
+  gameState =
+    createInitialGameState();
+
+  localStorage.removeItem(SAVE_KEY);
+
+  showGame();
+}
+
+function continueGame() {
+  const loaded = loadGame();
+
+  if (!loaded) {
+    showText(
+      "Kein Speicherstand gefunden."
+    );
+    return;
+  }
+
+  showGame();
+}
+document
+  .getElementById("newGameBtn")
+  .addEventListener(
+    "click",
+    startNewGame
+  );
+
+document
+  .getElementById("continueBtn")
+  .addEventListener(
+    "click",
+    continueGame
+  );
+
+document
+  .getElementById("settingsBtn")
+  .addEventListener(
+    "click",
+    () => {
+      alert("Settings coming soon.");
+    }
+  );
+if (localStorage.getItem(SAVE_KEY)) {
+  document
+    .getElementById("continueBtn")
+    .disabled = false;
+} else {
+  document
+    .getElementById("continueBtn")
+    .disabled = true;
+}
