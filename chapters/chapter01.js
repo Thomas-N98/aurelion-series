@@ -379,7 +379,7 @@ interactions: {
         showText("Vielleicht solltest du die Zugangskarte direkt am Kartenleser benutzen.");
       }
     }
-  }
+  },
   combine: {
 }
 }
