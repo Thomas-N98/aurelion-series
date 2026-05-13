@@ -287,9 +287,11 @@ baumstämme: {
     "Die Baumstämme liegen kreuz und quer über dem Weg. Einige sehen frisch gebrochen aus."
 },
   zugangskarte: {
-  text: "Die Zugangskarte liegt halb verdeckt im Schmutz. Vielleicht funktioniert sie noch.",
-  hideWhenInInventory: "zugangskarte"
+    text: "Die Zugangskarte liegt halb verdeckt im Schmutz. Vielleicht funktioniert sie noch.",
+    hideWhenInInventory: "zugangskarte"
+  }
 },
+
 items: {
   zugangskarte: {
     name: "Zugangskarte",
@@ -303,6 +305,7 @@ items: {
       "Eine kleine Taschenlampe aus deinem Auto. Nicht besonders hell, aber besser als gar nichts."
   }
 },
+
 interactions: {
   examine: {
     wegweiser() {
