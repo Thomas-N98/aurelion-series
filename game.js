@@ -247,7 +247,10 @@ function getItemName(itemId) {
 }
 function getDetailData(detailId) {
   const room = currentRoom();
-  return room.details[detailId];
+
+  if (!room.details) return null;
+
+  return room.details[detailId] || null;
 }
 
 function getDetailText(detailId) {
