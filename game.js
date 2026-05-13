@@ -37,7 +37,9 @@ const chapters = {
 function currentChapter() {
   return chapters[gameState.chapterId];
 }
-
+function currentAliases() {
+  return currentChapter().aliases || {};
+}
 
 const secretVerbs = [
   {
@@ -570,7 +572,11 @@ function normalizeCommand(command) {
 
   let words = command.split(" ");
   words = words.filter(word => !fillerWords.includes(word));
-  words = words.map(word => aliases[word] || word);
+  const aliases = currentAliases();
+
+words = words.map(
+  word => aliases[word] || word
+);
 
   return normalizeText(words.join(" "));
 }
