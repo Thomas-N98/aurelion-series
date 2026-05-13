@@ -727,6 +727,7 @@ button:hover {
 #startScreen {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -744,32 +745,37 @@ button:hover {
 }
 
 #startTerminal {
-  width: 100%;
-  max-width: 520px;
+  width: min(560px, 100%);
+  padding: 48px 40px;
 
   background: rgba(0,0,0,0.82);
   border: 1px solid #36ff85;
 
-  padding: 40px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 
   box-shadow:
     0 0 24px rgba(54,255,133,0.12);
 }
 
+.start-header {
+  text-align: center;
+}
+
 .start-header h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   letter-spacing: 2px;
 }
 
 .start-header p {
-  margin-top: 8px;
-  opacity: 0.7;
+  margin: 8px 0 0;
+  opacity: 0.75;
 }
 
 .terminal-status {
-  margin: 32px 0;
+  text-align: center;
   color: #7cffb0;
 }
 
@@ -784,8 +790,10 @@ button:hover {
   border: 1px solid #36ff85;
   color: #d7ffe1;
 
-  padding: 14px;
+  padding: 16px;
+  font-size: 1rem;
   font-family: inherit;
+  text-align: left;
   cursor: pointer;
 
   transition: 0.15s;
@@ -793,10 +801,11 @@ button:hover {
 
 .menu-buttons button:hover {
   background: rgba(54,255,133,0.12);
+  transform: translateX(4px);
 }
 
 .start-footer {
-  margin-top: 30px;
+  text-align: center;
   opacity: 0.45;
   font-size: 0.9rem;
 }
