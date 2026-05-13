@@ -237,40 +237,58 @@ aliases: {
 },
 
 details: {
-  auto:
-    "Dein Auto steht verlassen auf dem Parkplatz. Es wirkt plötzlich deutlich weniger beruhigend als noch vor ein paar Minuten.",
+auto: {
+  text:
+    "Dein Auto steht verlassen auf dem Parkplatz. Es wirkt plötzlich deutlich weniger beruhigend als noch vor ein paar Minuten."
+},
 
-  wegweiser:
-    "Der Wegweiser ist alt und teilweise überwachsen. Die Richtungsschilder sind kaum noch lesbar.\n\nEin Pfeil zeigt nach vorne. Darunter steht verblasst: INDUSTRIEGELÄNDE.",
+wegweiser: {
+  text:
+    "Der Wegweiser ist alt und teilweise überwachsen. Die Richtungsschilder sind kaum noch lesbar.\n\nEin Pfeil zeigt nach vorne. Darunter steht verblasst: INDUSTRIEGELÄNDE."
+},
 
-  kamera:
-    "Die Kamera folgt deinen Bewegungen. Ein kleines rotes Licht blinkt im Takt.",
+kamera: {
+  text:
+    "Die Kamera folgt deinen Bewegungen. Ein kleines rotes Licht blinkt im Takt."
+},
 
-  kartenleser:
-    "Der Kartenleser ist alt, aber noch aktiv. Ein schwaches grünes Licht pulsiert unter der zerkratzten Oberfläche.",
+kartenleser: {
+  text:
+    "Der Kartenleser ist alt, aber noch aktiv. Ein schwaches grünes Licht pulsiert unter der zerkratzten Oberfläche."
+},
 
-  schloss:
-    "Das Schloss wirkt mechanisch, aber es scheint zusätzlich elektronisch blockiert zu sein.",
+schloss: {
+  text:
+    "Das Schloss wirkt mechanisch, aber es scheint zusätzlich elektronisch blockiert zu sein."
+},
 
+zaun: {
+  text:
+    "Der Zaun ist beschädigt, aber nicht völlig offen. Jemand hat ihn notdürftig zurückgebogen."
+},
+
+warnschild: {
+  text:
+    "Auf dem Warnschild steht:\n\nBETRETEN VERBOTEN\nSICHERHEITSSYSTEM AKTIV"
+},
+
+bank: {
+  text:
+    "Die Bank ist feucht, morsch und mit Moos überwachsen. Jemand hat etwas in das Holz geritzt: KEIN SIGNAL."
+},
+
+firmengelände: {
+  text:
+    "Zwischen den Baumwipfeln erkennst du das verfallene Firmengelände. Selbst aus der Entfernung wirkt es zu groß für etwas, das angeblich aufgegeben wurde."
+},
+
+baumstämme: {
+  text:
+    "Die Baumstämme liegen kreuz und quer über dem Weg. Einige sehen frisch gebrochen aus."
+},
   zugangskarte: {
   text: "Die Zugangskarte liegt halb verdeckt im Schmutz. Vielleicht funktioniert sie noch.",
   hideWhenInInventory: "zugangskarte"
-},
-
-  zaun:
-    "Der Zaun ist beschädigt, aber nicht völlig offen. Jemand hat ihn notdürftig zurückgebogen.",
-
-  warnschild:
-    "Auf dem Warnschild steht:\n\nBETRETEN VERBOTEN\nSICHERHEITSSYSTEM AKTIV",
-
-  bank:
-    "Die Bank ist feucht, morsch und mit Moos überwachsen. Jemand hat etwas in das Holz geritzt: KEIN SIGNAL.",
-
-  firmengelände:
-    "Zwischen den Baumwipfeln erkennst du das verfallene Firmengelände. Selbst aus der Entfernung wirkt es zu groß für etwas, das angeblich aufgegeben wurde.",
-
-  baumstämme:
-  "Die Baumstämme liegen kreuz und quer über dem Weg. Einige sehen frisch gebrochen aus."
 },
 items: {
   zugangskarte: {
