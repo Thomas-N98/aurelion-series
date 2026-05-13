@@ -724,7 +724,9 @@ command = words.join(" ");
   "einem",
   "mir",
   "mal",
-  "bitte"
+  "bitte",
+  "und",
+  "and"
   ];
 
   words = command.split(" ");
