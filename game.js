@@ -605,29 +605,66 @@ function normalizeCommand(command) {
   .replaceAll("ü", "ue")
   .replaceAll("ß", "ss");
 
-  if (command.startsWith("nehmen ")) {
-    command = command.replace("nehmen", "nimm");
-  }
+  const commandAliases = {
+  "nehmen": "nimm",
+  "nehme": "nimm",
+  "take": "nimm",
+  "pick": "nimm",
+
+  "schau": "untersuche",
+  "schaue": "untersuche",
+  "sieh": "untersuche",
+  "siehe": "untersuche",
+  "inspect": "untersuche",
+  "look": "untersuche",
+
+  "geh": "gehe",
+  "laufe": "gehe",
+  "lauf": "gehe",
+  "go": "gehe",
+
+  "nutze": "benutze",
+  "verwende": "benutze",
+  "use": "benutze",
+
+  "öffne": "oeffne",
+  "open": "oeffne"
+};
+
+let words = command.split(" ");
+
+if (words.length > 0 && commandAliases[words[0]]) {
+  words[0] = commandAliases[words[0]];
+}
+
+command = words.join(" ");
   
 
   const fillerWords = [
-    "nach",
-    "zum",
-    "zur",
-    "zu",
-    "in",
-    "an",
-    "am",
-    "auf",
-    "mit",
-    "den",
-    "dem",
-    "das",
-    "die",
-    "der"
+     "nach",
+  "zum",
+  "zur",
+  "zu",
+  "in",
+  "an",
+  "am",
+  "auf",
+  "mit",
+  "den",
+  "dem",
+  "das",
+  "die",
+  "der",
+  "ein",
+  "eine",
+  "einen",
+  "einem",
+  "mir",
+  "mal",
+  "bitte"
   ];
 
-  let words = command.split(" ");
+  words = command.split(" ");
   words = words.filter(word => !fillerWords.includes(word));
   const aliases = currentAliases();
 
