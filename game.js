@@ -371,7 +371,7 @@ function closeHelp() {
 }
 
 document.getElementById("closeHelp").addEventListener("click", closeHelp);
-document.getElementById("openTerminal").addEventListener("click", openSystemMenu);
+document.getElementById("openTerminal").addEventListener("click", openHelp);
 document.getElementById("helpOverlay").addEventListener("click", function (event) {
   if (event.target.id === "helpOverlay") {
     closeHelp();
