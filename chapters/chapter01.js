@@ -252,8 +252,10 @@ details: {
   schloss:
     "Das Schloss wirkt mechanisch, aber es scheint zusätzlich elektronisch blockiert zu sein.",
 
-  zugangskarte:
-    "Die Zugangskarte liegt halb verdeckt im Schmutz. Vielleicht funktioniert sie noch.",
+  zugangskarte: {
+  text: "Die Zugangskarte liegt halb verdeckt im Schmutz. Vielleicht funktioniert sie noch.",
+  hideWhenInInventory: "Zugangskarte"
+},
 
   zaun:
     "Der Zaun ist beschädigt, aber nicht völlig offen. Jemand hat ihn notdürftig zurückgebogen.",
