@@ -48,6 +48,13 @@
 
 </div>
   <main id="game" class="hidden">
+    <button
+  id="openSystemMenu"
+  type="button"
+  title="Systemmenü öffnen"
+  aria-label="Systemmenü öffnen">
+  ☰
+</button>
     <section id="screen">
 
       <!-- HEADER -->
@@ -107,29 +114,37 @@
 </button>
 
       </form>
-<div id="systemMenu" class="hidden">
 
-  <button id="saveBtn">
-    Spiel speichern
-  </button>
-
-  <button id="returnToMenuBtn">
-    Zum Startbildschirm
-  </button>
-
-  <button id="deleteSaveBtn">
-    Spielstand löschen
-  </button>
-
-  <button id="closeSystemMenuBtn">
-    Schließen
-  </button>
-
-</div>
     </section>
 
   </main>
+<div id="systemMenuOverlay" class="hidden">
 
+  <div id="systemMenuBox">
+
+    <h2>SYSTEM</h2>
+
+    <button id="resumeBtn">
+      Fortsetzen
+    </button>
+
+    <button id="saveBtn">
+      Spiel speichern
+    </button>
+
+    <button id="returnToMenuBtn">
+      Zum Startbildschirm
+    </button>
+
+    <button id="deleteSaveBtn">
+      Spielstand löschen
+    </button>
+
+  </div>
+
+</div>
+
+<div id="systemToast" class="hidden"></div>
   <!-- HELP OVERLAY -->
   <div id="helpOverlay" class="hidden">
 
