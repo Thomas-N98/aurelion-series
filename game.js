@@ -631,9 +631,7 @@ function normalizeCommand(command) {
   words = words.filter(word => !fillerWords.includes(word));
   const aliases = currentAliases();
 
-words = words.map(
-  word => aliases[word] || word
-);
+words = words.map(word => aliases[word] || word);
 
   return normalizeText(words.join(" "));
 }
