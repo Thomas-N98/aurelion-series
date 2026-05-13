@@ -38,13 +38,7 @@ function currentChapter() {
   return chapters[gameState.chapterId];
 }
 
-const aliases = {
-  tor: "haupttor",
-  rohr: "wartungsrohr",
-  karte: "zugangskarte",
-  auto: "auto",
-  wegweiser: "wegweiser"
-};
+
 const secretVerbs = [
   {
     id: "oeffne",
