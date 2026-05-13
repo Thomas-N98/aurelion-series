@@ -2,6 +2,14 @@ const chapter01 = {
   id: "chapter01",
   startRoom: "outside",
   startArea: "parkplatz",
+  
+aliases = {
+  tor: "haupttor",
+  rohr: "wartungsrohr",
+  karte: "zugangskarte",
+  auto: "auto",
+  wegweiser: "wegweiser"
+},
 
   rooms: {
   outside: {
