@@ -254,7 +254,7 @@ details: {
 
   zugangskarte: {
   text: "Die Zugangskarte liegt halb verdeckt im Schmutz. Vielleicht funktioniert sie noch.",
-  hideWhenInInventory: "Zugangskarte"
+  hideWhenInInventory: "zugangskarte"
 },
 
   zaun:
@@ -308,7 +308,7 @@ interactions: {
       }
 
       setFlag("autoOpened");
-      gameState.inventory.push("Taschenlampe");
+      gameState.inventory.push("taschenlampe");
 
       showText(
         "Du öffnest die Autotür.\n\nIm Innenraum riecht es nach kaltem Kaffee und feuchter Kleidung. Im Seitenfach findest du eine kleine Taschenlampe.\n\nNeue Interaktion entdeckt: ÖFFNE"
@@ -320,12 +320,12 @@ interactions: {
 
   take: {
     zugangskarte() {
-      if (hasItem("Zugangskarte")) {
+      if (hasItem("zugangskarte")) {
         showText("Du hast die Zugangskarte bereits.");
         return;
       }
 
-      gameState.inventory.push("Zugangskarte");
+      gameState.inventory.push("zugangskarte");
 
       showText("Du hebst die schmutzige Zugangskarte auf.");
 
@@ -342,7 +342,7 @@ interactions: {
           return;
         }
 
-        if (!hasItem("Zugangskarte")) {
+        if (!hasItem("zugangskarte")) {
           showText("Du hast keine Zugangskarte.");
           return;
         }
