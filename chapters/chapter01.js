@@ -1,7 +1,7 @@
 const chapter01 = {
   id: "chapter01",
   startRoom: "outside",
-  startArea: "parkplatz",
+  startArea: "haupttor",
   
 aliases: {
   tor: "haupttor",
