@@ -138,8 +138,8 @@ function updateHelpMenu() {
     list.appendChild(li);
   });
 }
-function hasItem(item) {
-  return gameState.inventory.includes(item);
+function hasItem(itemId) {
+  return gameState.inventory.includes(itemId);
 }
 
 function discoverVerb(verb) {
@@ -229,6 +229,21 @@ function currentRoom() {
 
 function currentArea() {
   return currentRoom().areas[gameState.area];
+}
+function getItemData(itemId) {
+  const room = currentRoom();
+
+  if (!room.items) return null;
+
+  return room.items[itemId] || null;
+}
+
+function getItemName(itemId) {
+  const itemData = getItemData(itemId);
+
+  if (!itemData) return itemId;
+
+  return itemData.name || itemId;
 }
 function getDetailData(detailId) {
   const room = currentRoom();
@@ -578,10 +593,9 @@ function addEnvironmentLine(parent, text, className) {
 }
 
 function updateInventory() {
-  renderList(
-    "inventory",
-    gameState.inventory
-  );
+  const itemNames = gameState.inventory.map(getItemName);
+
+  renderList("inventory", itemNames);
 }
 
 function normalizeCommand(command) {
