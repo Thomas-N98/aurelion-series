@@ -640,36 +640,94 @@ button:hover {
    SYSTEM MENU
 ========================= */
 
-#systemMenu {
+#openSystemMenu {
   position: fixed;
-  bottom: 90px;
-  left: 28px;
+  top: 24px;
+  right: 24px;
+  z-index: 900;
 
-  width: 280px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid var(--green);
+  color: var(--green);
+}
+
+#openSystemMenu:hover {
+  background: var(--green-soft);
+  box-shadow: 0 0 10px rgba(54,255,133,0.28);
+}
+
+#systemMenuOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.78);
+  padding: 24px;
+}
+
+#systemMenuBox {
+  width: min(420px, 100%);
 
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 
-  padding: 16px;
+  padding: 28px;
 
-  background: rgba(0,0,0,0.94);
+  background: rgba(0, 0, 0, 0.96);
   border: 1px solid var(--green);
+
+  box-shadow:
+    0 0 24px rgba(54,255,133,0.18);
+}
+
+#systemMenuBox h2 {
+  margin: 0 0 12px;
+  color: var(--green);
+  letter-spacing: 2px;
+}
+
+#systemMenuBox button {
+  text-align: left;
+  background: transparent;
+  padding: 14px;
+}
+
+#systemMenuBox button:hover {
+  background: var(--green-soft);
+  transform: translateX(4px);
+}
+
+#systemToast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1200;
+
+  max-width: 360px;
+
+  padding: 14px 18px;
+
+  background: rgba(0, 0, 0, 0.94);
+  border: 1px solid var(--green);
+  color: var(--text-green);
 
   box-shadow:
     0 0 18px rgba(54,255,133,0.18);
 
-  z-index: 1000;
-}
-
-#systemMenu button {
-  width: 100%;
-  text-align: left;
-  background: transparent;
-}
-
-#systemMenu button:hover {
-  transform: translateX(4px);
+  line-height: 1.4;
 }
 /* MOBILE */
 
