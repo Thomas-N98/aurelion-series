@@ -994,28 +994,6 @@ document
       .classList.remove("hidden");
   });
 
-document
-  .getElementById("deleteSaveBtn")
-  .addEventListener("click", () => {
-    const confirmed = confirm(
-      "Spielstand wirklich löschen?"
-    );
-
-    if (!confirmed) return;
-
-    localStorage.removeItem(SAVE_KEY);
-
-    document
-      .getElementById("continueBtn")
-      .disabled = true;
-
-    closeSystemMenu();
-
-    showSystemToast(
-      "LOCAL MEMORY PURGE:\nSpielstand gelöscht."
-    );
-  });
-
 if (localStorage.getItem(SAVE_KEY)) {
   document
     .getElementById("continueBtn")
