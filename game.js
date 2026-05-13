@@ -46,6 +46,18 @@ function currentChapter() {
 function currentAliases() {
   return currentChapter().aliases || {};
 }
+function getUnknownCommandHint() {
+  const chapterHint = currentChapter().unknownCommandHint;
+
+  if (chapterHint) {
+    return chapterHint;
+  }
+
+  return (
+    "Befehl nicht erkannt.\n\n" +
+    "Schreibe hilfe oder clicke unten links um dir deine commands anzusehen"
+  );
+}
 
 const secretVerbs = [
   {
@@ -661,9 +673,7 @@ function handleCommand(input) {
     return;
   }
 
-  showText(
-    "Befehl nicht erkannt.\n\nTipp: Nutze Eingaben wie:\n- umsehen\n- gehe nach vorne\n- gehe zurück\n- untersuche wegweiser\n- nimm zugangskarte"
-  );
+  showText(getUnknownCommandHint());
 }
 function normalizeText(text) {
   return text
