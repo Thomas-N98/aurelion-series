@@ -272,7 +272,19 @@ details: {
   baumstämme:
   "Die Baumstämme liegen kreuz und quer über dem Weg. Einige sehen frisch gebrochen aus."
 },
+items: {
+  zugangskarte: {
+    name: "Zugangskarte",
+    inventoryText:
+      "Die Zugangskarte ist schmutzig und zerkratzt. Das Aurelion-Logo ist kaum noch zu erkennen."
+  },
 
+  taschenlampe: {
+    name: "Taschenlampe",
+    inventoryText:
+      "Eine kleine Taschenlampe aus deinem Auto. Nicht besonders hell, aber besser als gar nichts."
+  }
+},
 interactions: {
   examine: {
     wegweiser() {
