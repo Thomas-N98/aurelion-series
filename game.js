@@ -381,18 +381,31 @@ document.getElementById("helpOverlay").addEventListener("click", function (event
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
     closeHelp();
+    closeSystemMenu();
   }
 });
 function openSystemMenu() {
   document
-    .getElementById("systemMenu")
+    .getElementById("systemMenuOverlay")
     .classList.remove("hidden");
 }
 
 function closeSystemMenu() {
   document
-    .getElementById("systemMenu")
+    .getElementById("systemMenuOverlay")
     .classList.add("hidden");
+}
+
+function showSystemToast(message) {
+  const toast =
+    document.getElementById("systemToast");
+
+  toast.textContent = message;
+  toast.classList.remove("hidden");
+
+  setTimeout(() => {
+    toast.classList.add("hidden");
+  }, 2600);
 }
 function triggerHelpFlicker() {
   const helpBox = document.getElementById("helpBox");
@@ -912,8 +925,7 @@ function showGame() {
 }
 
 function startNewGame() {
-  gameState =
-    createInitialGameState();
+  gameState = createInitialGameState();
 
   localStorage.removeItem(SAVE_KEY);
 
@@ -924,42 +936,48 @@ function continueGame() {
   const loaded = loadGame();
 
   if (!loaded) {
-    showText(
-      "Kein Speicherstand gefunden."
-    );
+    showSystemToast("Kein Speicherstand gefunden.");
     return;
   }
 
   showGame();
 }
+
 document
   .getElementById("newGameBtn")
-  .addEventListener(
-    "click",
-    startNewGame
-  );
+  .addEventListener("click", startNewGame);
 
 document
   .getElementById("continueBtn")
-  .addEventListener(
-    "click",
-    continueGame
-  );
+  .addEventListener("click", continueGame);
 
 document
   .getElementById("settingsBtn")
-  .addEventListener(
-    "click",
-    () => {
-      alert("Settings coming soon.");
-    }
-  );
+  .addEventListener("click", () => {
+    showSystemToast("SYSTEM SETTINGS:\nNoch nicht verfügbar.");
+  });
+
+document
+  .getElementById("openSystemMenu")
+  .addEventListener("click", openSystemMenu);
+
+document
+  .getElementById("resumeBtn")
+  .addEventListener("click", closeSystemMenu);
+
 document
   .getElementById("saveBtn")
   .addEventListener("click", () => {
     saveGame();
     closeSystemMenu();
-    alert("Spiel gespeichert.");
+
+    showSystemToast(
+      "AURELION BACKUP NODE:\nLokaler Zustand gesichert."
+    );
+
+    document
+      .getElementById("continueBtn")
+      .disabled = false;
   });
 
 document
@@ -992,14 +1010,12 @@ document
       .disabled = true;
 
     closeSystemMenu();
+
+    showSystemToast(
+      "LOCAL MEMORY PURGE:\nSpielstand gelöscht."
+    );
   });
 
-document
-  .getElementById("closeSystemMenuBtn")
-  .addEventListener(
-    "click",
-    closeSystemMenu
-  );
 if (localStorage.getItem(SAVE_KEY)) {
   document
     .getElementById("continueBtn")
