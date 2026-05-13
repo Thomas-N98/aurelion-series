@@ -211,6 +211,39 @@ function currentRoom() {
 function currentArea() {
   return currentRoom().areas[gameState.area];
 }
+function getDetailData(detailId) {
+  const room = currentRoom();
+  return room.details[detailId];
+}
+
+function getDetailText(detailId) {
+  const detailData = getDetailData(detailId);
+
+  if (!detailData) {
+    return "Du findest nichts Auffälliges.";
+  }
+
+  if (typeof detailData === "string") {
+    return detailData;
+  }
+
+  return detailData.text || "Du findest nichts Auffälliges.";
+}
+
+function shouldShowDetail(detailId) {
+  const detailData = getDetailData(detailId);
+
+  if (
+    detailData &&
+    typeof detailData === "object" &&
+    detailData.hideWhenInInventory &&
+    hasItem(detailData.hideWhenInInventory)
+  ) {
+    return false;
+  }
+
+  return true;
+}
 function getRoomInteraction(type, target) {
   const room = currentRoom();
 
@@ -478,16 +511,8 @@ function updateEnvironment() {
     "environment-heading"
   );
 
-  const visibleDetails = area.details.filter(detail => {
-    if (
-      detail === "zugangskarte" &&
-      hasItem("Zugangskarte")
-    ) {
-      return false;
-    }
-
-    return true;
-  });
+  const visibleDetails =
+  area.details.filter(shouldShowDetail);
 
   if (visibleDetails.length > 0) {
   visibleDetails.forEach(detail => {
