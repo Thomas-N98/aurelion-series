@@ -1,13 +1,17 @@
-function createInitialGameState() {
+function createInitialGameState(
+  chapterId = "chapter01"
+) {
+  const chapter = chapters[chapterId];
+
   return {
     playerName: "",
     mode: "story", // "story" | "geocaching"
 
-    chapterId: "chapter01",
+    chapterId,
 
-    room: "outside",
-    area: "parkplatz",
-    visitedAreas: ["parkplatz"],
+    room: chapter.startRoom,
+    area: chapter.startArea,
+    visitedAreas: [chapter.startArea],
 
     inventory: [],
     discoveredVerbs: [],
@@ -29,10 +33,12 @@ function createInitialGameState() {
   };
 }
 
-let gameState = createInitialGameState();
 const chapters = {
   chapter01
 };
+
+let gameState =
+  createInitialGameState();
 
 function currentChapter() {
   return chapters[gameState.chapterId];
