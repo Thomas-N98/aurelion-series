@@ -716,4 +716,88 @@ button:hover {
     grid-template-columns: 1fr;
     gap: 6px;
   }
+/* =========================
+   START SCREEN
+========================= */
+
+#game.hidden {
+  display: none;
+}
+
+#startScreen {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+    linear-gradient(
+      rgba(0,0,0,0.75),
+      rgba(0,0,0,0.9)
+    ),
+    url("assets/outside.jpg");
+
+  background-size: cover;
+  background-position: center;
+
+  padding: 24px;
+}
+
+#startTerminal {
+  width: 100%;
+  max-width: 520px;
+
+  background: rgba(0,0,0,0.82);
+  border: 1px solid #36ff85;
+
+  padding: 40px;
+  text-align: center;
+
+  box-shadow:
+    0 0 24px rgba(54,255,133,0.12);
+}
+
+.start-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 2px;
+}
+
+.start-header p {
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+.terminal-status {
+  margin: 32px 0;
+  color: #7cffb0;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.menu-buttons button {
+  background: transparent;
+  border: 1px solid #36ff85;
+  color: #d7ffe1;
+
+  padding: 14px;
+  font-family: inherit;
+  cursor: pointer;
+
+  transition: 0.15s;
+}
+
+.menu-buttons button:hover {
+  background: rgba(54,255,133,0.12);
+}
+
+.start-footer {
+  margin-top: 30px;
+  opacity: 0.45;
+  font-size: 0.9rem;
+}
 }
