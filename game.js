@@ -208,7 +208,6 @@ function loadGame() {
   }
 
   gameState = JSON.parse(savedData);
-  render();
   return true;
 }
 
