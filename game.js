@@ -257,10 +257,6 @@ function getDetailText(detailId) {
     return "Du findest nichts Auffälliges.";
   }
 
-  if (typeof detailData === "string") {
-    return detailData;
-  }
-
   return detailData.text || "Du findest nichts Auffälliges.";
 }
 
