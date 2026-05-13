@@ -716,6 +716,8 @@ button:hover {
     grid-template-columns: 1fr;
     gap: 6px;
   }
+}
+
 /* =========================
    START SCREEN
 ========================= */
@@ -808,5 +810,4 @@ button:hover {
   text-align: center;
   opacity: 0.45;
   font-size: 0.9rem;
-}
 }
