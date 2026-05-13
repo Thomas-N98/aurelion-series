@@ -371,7 +371,7 @@ function closeHelp() {
 }
 
 document.getElementById("closeHelp").addEventListener("click", closeHelp);
-document.getElementById("openTerminal").addEventListener("click", openHelp);
+document.getElementById("openTerminal").addEventListener("click", openSystemMenu);
 document.getElementById("helpOverlay").addEventListener("click", function (event) {
   if (event.target.id === "helpOverlay") {
     closeHelp();
@@ -383,6 +383,17 @@ document.addEventListener("keydown", function (event) {
     closeHelp();
   }
 });
+function openSystemMenu() {
+  document
+    .getElementById("systemMenu")
+    .classList.remove("hidden");
+}
+
+function closeSystemMenu() {
+  document
+    .getElementById("systemMenu")
+    .classList.add("hidden");
+}
 function triggerHelpFlicker() {
   const helpBox = document.getElementById("helpBox");
 
@@ -942,6 +953,52 @@ document
     () => {
       alert("Settings coming soon.");
     }
+  );
+document
+  .getElementById("saveBtn")
+  .addEventListener("click", () => {
+    saveGame();
+    closeSystemMenu();
+    alert("Spiel gespeichert.");
+  });
+
+document
+  .getElementById("returnToMenuBtn")
+  .addEventListener("click", () => {
+    closeSystemMenu();
+
+    document
+      .getElementById("game")
+      .classList.add("hidden");
+
+    document
+      .getElementById("startScreen")
+      .classList.remove("hidden");
+  });
+
+document
+  .getElementById("deleteSaveBtn")
+  .addEventListener("click", () => {
+    const confirmed = confirm(
+      "Spielstand wirklich löschen?"
+    );
+
+    if (!confirmed) return;
+
+    localStorage.removeItem(SAVE_KEY);
+
+    document
+      .getElementById("continueBtn")
+      .disabled = true;
+
+    closeSystemMenu();
+  });
+
+document
+  .getElementById("closeSystemMenuBtn")
+  .addEventListener(
+    "click",
+    closeSystemMenu
   );
 if (localStorage.getItem(SAVE_KEY)) {
   document
