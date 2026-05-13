@@ -90,7 +90,17 @@ const secretVerbs = [
       "ziehe hebel",
       "ziehe kabel"
     ]
-  }
+  },
+  {
+  id: "kombiniere",
+  label: "kombiniere",
+  description:
+    "Combine objects to create something new.",
+  examples: [
+    "kombiniere kabel batterie",
+    "kombiniere karte leser"
+  ]
+}
 ];
 
 function updateHelpMenu() {
@@ -315,6 +325,32 @@ function getUseInteraction(item, target) {
 
 function runUseInteraction(item, target) {
   const interaction = getUseInteraction(item, target);
+
+  if (!interaction) return false;
+
+  interaction();
+  return true;
+}
+function getCombineInteraction(itemA, itemB) {
+  const room = currentRoom();
+
+  if (!room.interactions || !room.interactions.combine) {
+    return null;
+  }
+
+  const keyA = `${itemA}+${itemB}`;
+  const keyB = `${itemB}+${itemA}`;
+
+  return (
+    room.interactions.combine[keyA] ||
+    room.interactions.combine[keyB] ||
+    null
+  );
+}
+
+function runCombineInteraction(itemA, itemB) {
+  const interaction =
+    getCombineInteraction(itemA, itemB);
 
   if (!interaction) return false;
 
@@ -646,6 +682,10 @@ function normalizeCommand(command) {
   "lauf": "gehe",
   "go": "gehe",
 
+  "kombiniere": "kombiniere",
+  "combine": "kombiniere",
+  "verbinde": "kombiniere",
+    
   "nutze": "benutze",
   "verwende": "benutze",
   "use": "benutze",
@@ -744,7 +784,15 @@ function handleCommand(input) {
     useItem(command.replace("benutze ", ""));
     return;
   }
+  if (command.startsWith("kombiniere ")) {
+    if (!hasDiscoveredVerb("kombiniere")) {
+      showText(getUnknownCommandHint());
+      return;
+    }
 
+    combineItems(command.replace("kombiniere ", ""));
+    return;
+  }
   showText(getUnknownCommandHint());
 }
 function normalizeText(text) {
@@ -899,7 +947,34 @@ function useItem(commandRest) {
 
   showText("Das scheint hier nichts zu bewirken.");
 }
+function combineItems(commandRest) {
+  const parts = commandRest.split(" ");
 
+  if (parts.length < 2) {
+    showText("Welche zwei Objekte möchtest du kombinieren?");
+    return;
+  }
+
+  const itemA = parts[0];
+  const itemB = parts.slice(1).join(" ");
+
+  if (!hasItem(itemA)) {
+    showText("Du hast " + itemA + " nicht im Inventar.");
+    return;
+  }
+
+  if (!hasItem(itemB)) {
+    showText("Du hast " + itemB + " nicht im Inventar.");
+    return;
+  }
+
+  const wasHandled =
+    runCombineInteraction(itemA, itemB);
+
+  if (wasHandled) return;
+
+  showText("Diese Objekte lassen sich nicht sinnvoll kombinieren.");
+}
 function showText(text) {
   document.getElementById("story").innerHTML =
     `<div class="story-text">${text.replace(/\n/g, "<br>")}</div>`;
