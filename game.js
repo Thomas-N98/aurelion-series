@@ -55,7 +55,8 @@ function getUnknownCommandHint() {
 
   return (
     "Befehl nicht erkannt.\n\n" +
-    "Schreibe hilfe oder clicke unten links um dir deine commands anzusehen"
+    "TERMINAL-HINWEIS:\n" +
+    "Schreibe „hilfe“ oder öffne den TERMINAL unten links, um bekannte Interaktionsmuster abzurufen."
   );
 }
 
