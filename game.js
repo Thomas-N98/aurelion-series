@@ -738,7 +738,7 @@ function examine(target) {
   }
 runRoomInteraction("examine", target);
 
-showText(room.details[target] || "Du findest nichts Auffälliges.");
+showText(getDetailText(target));
 }
 
 function takeItem(target) {
