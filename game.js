@@ -1075,18 +1075,15 @@ function showHint(target = null) {
   const hint = getMatchingHint(target);
 
   if (!hint) {
-    showText("AURELION ASSIST\n\nKeine spezifischen Hinweise verfügbar.");
-
     showParserHint(
-      "SYSTEM HINT: Prüfe deine Umgebung erneut oder öffne den TERMINAL unten links."
+      "SYSTEM HINT: Keine spezifischen Hinweise verfügbar. Prüfe deine Umgebung erneut oder öffne den TERMINAL unten links."
     );
 
     return;
   }
 
-  showText(
-    "AURELION ASSIST\n\n" +
-    hint
+  showParserHint(
+    "SYSTEM HINT: " + hint.replace(/\n+/g, " ")
   );
 }
 
