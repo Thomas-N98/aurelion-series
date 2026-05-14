@@ -1356,9 +1356,9 @@ function renderSaveSlots() {
   </div>
 
   <div class="save-meta">
-          ${getChapterTitle(saveData.chapterId)}<br>
-          Bereich: ${saveData.area || "Unbekannt"}<br>
-          Letzter Zugriff: ${formatSaveDate(saveData.lastSavedAt)}
+          ${getChapterTitle(saveData.activeChapterId)}<br>
+Kapitel-Saves: ${Object.keys(saveData.chapterSaves).length}<br>
+Letzter Zugriff: ${formatSaveDate(saveData.updatedAt)}
         </div>
 
         <div class="save-actions">
@@ -1418,7 +1418,7 @@ function renderSaveSlots() {
 function renderChapterCards(slotId) {
   const label = document.getElementById("chapterProfileLabel");
   const container = document.getElementById("chapterCards");
-  const saveData = getSaveSlotData(slotId);
+  const profile = getSaveSlotData(slotId);
 
   label.textContent = `PROFIL ${String(slotId).padStart(2, "0")}`;
   container.innerHTML = "";
@@ -1429,7 +1429,7 @@ function renderChapterCards(slotId) {
     chapterId: "tutorial",
     title: "TUTORIAL",
     subtitle: "Systemeinweisung",
-    status: "sofort zugänglich",
+    status: getChapterStatus(profile, "tutorial"),
     locked: false
   });
 
@@ -1439,7 +1439,7 @@ function renderChapterCards(slotId) {
     chapterId: "chapter01",
     title: "KAPITEL 1",
     subtitle: "Eintritt in Aurelion",
-    status: saveData ? "verfügbar" : "neuer Zugriffspunkt",
+    status: getChapterStatus(profile, "chapter01"),
     locked: false
   });
 
@@ -1452,6 +1452,28 @@ function renderChapterCards(slotId) {
     status: "Weitere Freigabe ausstehend.",
     locked: true
   });
+}
+
+function getChapterStatus(profile, chapterId) {
+  if (!profile) {
+    return "neuer Zugriffspunkt";
+  }
+
+  if (profile.chapterSaves && profile.chapterSaves[chapterId]) {
+    return "Spielstand vorhanden";
+  }
+
+  const previousChapterId = getPreviousChapterId(chapterId);
+
+  if (
+    previousChapterId &&
+    profile.chapterSaves &&
+    profile.chapterSaves[previousChapterId]
+  ) {
+    return "bereit mit Übergabezustand";
+  }
+
+  return "neuer Zugriffspunkt";
 }
 function renderChapterCard({
   container,
@@ -1545,26 +1567,31 @@ function deleteSlot(slotId) {
   });
 }
 function startChapterInSlot(slotId, chapterId) {
-  const existingSave = getSaveSlotData(slotId);
+  const profile =
+    getProfileFromSlot(slotId) ||
+    createEmptyProfile(slotId);
 
-  if (!existingSave) {
-    createNewGameInSlot(slotId, chapterId);
+  activeSlot = slotId;
+
+  // Existierenden Kapitel-Save laden
+  if (profile.chapterSaves[chapterId]) {
+    gameState = profile.chapterSaves[chapterId];
+    profile.activeChapterId = chapterId;
+    writeProfileToSlot(slotId, profile);
     showGame();
     return;
   }
 
-  gameState = {
-    ...createInitialGameState(chapterId),
-    createdAt: existingSave.createdAt || new Date().toISOString(),
-    lastSavedAt: new Date().toISOString()
-  };
+  // Neuen Kapitel-Save mit Übergabezustand erstellen
+  const carryOver =
+    getCarryOverForChapter(profile, chapterId);
 
-  activeSlot = slotId;
+  gameState = createChapterGameState(chapterId, carryOver);
 
-  localStorage.setItem(
-    getSlotKey(slotId),
-    JSON.stringify(gameState)
-  );
+  profile.activeChapterId = chapterId;
+  profile.chapterSaves[chapterId] = gameState;
+
+  writeProfileToSlot(slotId, profile);
 
   showGame();
 }
