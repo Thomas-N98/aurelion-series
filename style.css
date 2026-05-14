@@ -84,11 +84,11 @@ body {
 }
 #parserHint {
   margin-top: auto;
-  padding-top: 18px;
+  padding-top: 14px;
 
   color: rgba(215, 255, 225, 0.42);
   font-size: 0.78rem;
-  line-height: 1.35;
+  line-height: 1.25;
   letter-spacing: 0.3px;
 }
 .story-location {
