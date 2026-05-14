@@ -40,7 +40,48 @@ const tutorial = {
             "hinweis",
             "ausgang"
           ],
+          hints: {
+  general: [
+    {
+      when: () => !hasFlag("tutorial_terminal_untersucht"),
+      text:
+        "Das Terminal ist vermutlich dein erster sinnvoller Ansatzpunkt.\n\n" +
+        "Versuche, es genauer zu untersuchen."
+    },
+    {
+      when: () => hasFlag("tutorial_terminal_untersucht"),
+      text:
+        "Du hast das Terminal bereits untersucht.\n\n" +
+        "Der nächste sinnvolle Schritt ist, dich in der Umgebung zu orientieren."
+    }
+  ],
 
+  targets: {
+    terminal: [
+      {
+        when: () => !hasFlag("tutorial_terminal_untersucht"),
+        text:
+          "Das Terminal reagiert vermutlich nicht auf bloße Anwesenheit.\n\n" +
+          "Versuche: „untersuche terminal“."
+      },
+      {
+        when: () => hasFlag("tutorial_terminal_untersucht"),
+        text:
+          "Das Terminal wurde bereits untersucht.\n\n" +
+          "Achte darauf, ob sich dadurch neue Möglichkeiten ergeben haben."
+      }
+    ],
+
+    ausgang: [
+      {
+        when: () => true,
+        text:
+          "Der Ausgang ist ein erreichbarer Bereich.\n\n" +
+          "Versuche: „gehe vorne“."
+      }
+    ]
+  }
+}
           exits: {
             vorne: {
               target: "ausgang",
