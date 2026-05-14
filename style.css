@@ -1018,6 +1018,22 @@ button:hover {
   background: var(--green);
   box-shadow: 0 0 8px rgba(54, 255, 133, 0.5);
 }
+.chapter-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chapter-reset-btn {
+  opacity: 0.72;
+  border-color: rgba(255, 204, 102, 0.45);
+  color: var(--amber);
+}
+
+.chapter-reset-btn:hover {
+  background: var(--amber-soft);
+  box-shadow: 0 0 10px rgba(255, 204, 102, 0.18);
+}
 .confirm-actions {
   display: flex;
   gap: 12px;
