@@ -175,6 +175,7 @@ function setHealth(state) {
   }
 
   gameState.health = state;
+  updateStatusPanel();
 }
 
 function injure(level = "light") {
@@ -193,16 +194,19 @@ function injure(level = "light") {
   if (level === "dead") {
     gameState.health = "dead";
   }
+  updateStatusPanel();
 }
 
 function heal() {
   if (gameState.health === "severe") {
     gameState.health = "light";
+    updateStatusPanel();
     return;
   }
 
   if (gameState.health === "light") {
     gameState.health = "healthy";
+    updateStatusPanel();
   }
 }
 const SAVE_PREFIX = "aurelion_slot_";
@@ -623,7 +627,7 @@ function render() {
 
   showAreaDescription();
 
-  renderList("commands", room.commands);
+  updateStatusPanel();
   updateEnvironment();
   updateInventory();
   updateHelpMenu();
@@ -641,7 +645,71 @@ function renderList(id, items) {
     element.appendChild(li);
   });
 }
+function updateStatusPanel() {
+  const element = document.getElementById("statusList");
 
+  if (!element) return;
+
+  element.innerHTML = "";
+
+  const status = getHealthStatusDisplay();
+
+  addStatusLine(
+    element,
+    "Bioscan:",
+    status.label,
+    status.className
+  );
+
+  addStatusLine(
+    element,
+    "Warning:",
+    status.warning,
+    status.className
+  );
+}
+
+function getHealthStatusDisplay() {
+  const states = {
+    healthy: {
+      label: "stabil",
+      warning: "keine akute Warnung",
+      className: "health-healthy"
+    },
+
+    light: {
+      label: "leicht verletzt",
+      warning: "körperliche Belastung erhöht",
+      className: "health-light"
+    },
+
+    severe: {
+      label: "kritisch verletzt",
+      warning: "medizinische Versorgung erforderlich",
+      className: "health-severe"
+    },
+
+    dead: {
+      label: "keine Vitalwerte",
+      warning: "Systemfehler: Subjekt nicht reaktionsfähig",
+      className: "health-dead"
+    }
+  };
+
+  return states[gameState.health] || states.healthy;
+}
+
+function addStatusLine(parent, label, value, className) {
+  const li = document.createElement("li");
+  li.className = `status-entry ${className}`;
+
+  li.innerHTML = `
+    <span class="status-label">${label}</span>
+    <span class="status-value">${value}</span>
+  `;
+
+  parent.appendChild(li);
+}
 function updateEnvironment() {
   const area = currentArea();
   const element = document.getElementById("hotspots");
