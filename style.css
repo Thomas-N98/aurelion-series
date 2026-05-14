@@ -811,7 +811,7 @@ button:hover {
 }
 
 /* =========================
-   START SCREEN
+   START / SAVE HUB / CHAPTER SELECT
 ========================= */
 
 #game.hidden {
@@ -820,15 +820,11 @@ button:hover {
 
 #startScreen {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
   background:
     linear-gradient(
-      rgba(0,0,0,0.75),
-      rgba(0,0,0,0.9)
+      rgba(0,0,0,0.72),
+      rgba(0,0,0,0.92)
     ),
     url("assets/outside.jpg");
 
@@ -838,19 +834,36 @@ button:hover {
   padding: 24px;
 }
 
-#startTerminal {
-  width: min(560px, 100%);
+.menu-screen {
+  min-height: calc(100vh - 48px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start-terminal {
+  width: min(720px, 100%);
   padding: 48px 40px;
 
-  background: rgba(0,0,0,0.82);
-  border: 1px solid #36ff85;
+  background: rgba(0,0,0,0.84);
+  border: 1px solid var(--green);
 
   display: flex;
   flex-direction: column;
   gap: 24px;
 
   box-shadow:
-    0 0 24px rgba(54,255,133,0.12);
+    0 0 24px rgba(54,255,133,0.14);
+}
+
+.landing-terminal {
+  width: min(560px, 100%);
+  text-align: center;
+}
+
+.save-terminal,
+.chapter-terminal {
+  width: min(900px, 100%);
 }
 
 .start-header {
@@ -871,35 +884,129 @@ button:hover {
 .terminal-status {
   text-align: center;
   color: #7cffb0;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
 }
 
-.menu-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.hero-button {
+  align-self: center;
+  width: min(360px, 100%);
+  padding: 18px 22px;
+  font-size: 1.05rem;
+  text-align: center;
 }
 
-.menu-buttons button {
+.secondary-menu-button {
+  align-self: center;
+  width: min(360px, 100%);
   background: transparent;
-  border: 1px solid #36ff85;
-  color: #d7ffe1;
-
-  padding: 16px;
-  font-size: 1rem;
-  font-family: inherit;
-  text-align: left;
-  cursor: pointer;
-
-  transition: 0.15s;
-}
-
-.menu-buttons button:hover {
-  background: rgba(54,255,133,0.12);
-  transform: translateX(4px);
+  opacity: 0.78;
 }
 
 .start-footer {
   text-align: center;
   opacity: 0.45;
   font-size: 0.9rem;
+}
+
+.menu-topline {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-button {
+  background: transparent;
+  opacity: 0.82;
+}
+
+.save-slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.save-card,
+.chapter-card {
+  min-height: 230px;
+  padding: 18px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  background: rgba(54, 255, 133, 0.035);
+  border: 1px solid rgba(54, 255, 133, 0.24);
+}
+
+.save-card.empty {
+  opacity: 0.82;
+  border-style: dashed;
+}
+
+.save-card h2,
+.chapter-card h2 {
+  margin: 0;
+  color: var(--green);
+  letter-spacing: 1px;
+}
+
+.save-meta,
+.chapter-meta {
+  flex: 1;
+  color: rgba(215, 255, 225, 0.75);
+  line-height: 1.45;
+  font-size: 0.92rem;
+}
+
+.save-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.save-actions button,
+.chapter-card button {
+  text-align: left;
+  background: transparent;
+  padding: 12px;
+}
+
+.save-actions button:hover,
+.chapter-card button:hover {
+  background: var(--green-soft);
+  transform: translateX(4px);
+}
+
+.slot-secondary {
+  opacity: 0.75;
+}
+
+.chapter-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.chapter-card.locked {
+  opacity: 0.45;
+  border-style: dashed;
+}
+
+.chapter-card.locked button {
+  cursor: not-allowed;
+}
+
+@media (max-width: 800px) {
+  .save-slots {
+    grid-template-columns: 1fr;
+  }
+
+  .start-terminal {
+    padding: 32px 22px;
+  }
+
+  .save-card,
+  .chapter-card {
+    min-height: auto;
+  }
 }
