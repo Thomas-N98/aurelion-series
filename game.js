@@ -1261,24 +1261,50 @@ function continueSlot(slotId) {
 
   showGame();
 }
+let pendingConfirmAction = null;
+
+function openConfirmDialog({ title, message, confirmText, onConfirm }) {
+  pendingConfirmAction = onConfirm;
+
+  document.getElementById("confirmTitle").textContent = title;
+  document.getElementById("confirmMessage").innerHTML =
+    message.replace(/\n/g, "<br>");
+
+  document.getElementById("confirmActionBtn").textContent = confirmText;
+
+  document
+    .getElementById("confirmOverlay")
+    .classList.remove("hidden");
+}
+
+function closeConfirmDialog() {
+  pendingConfirmAction = null;
+
+  document
+    .getElementById("confirmOverlay")
+    .classList.add("hidden");
+}
 function deleteSlot(slotId) {
-  const confirmed = confirm(
-    `PROFIL ${String(slotId).padStart(2, "0")} wirklich löschen?\n\nDieser Spielstand kann nicht wiederhergestellt werden.`
-  );
+  openConfirmDialog({
+    title: "SPIELSTAND LÖSCHEN",
+    message:
+      `PROFIL ${String(slotId).padStart(2, "0")} wirklich löschen?\n\n` +
+      "Dieser Spielstand kann nicht wiederhergestellt werden.",
+    confirmText: "LÖSCHEN",
+    onConfirm: () => {
+      localStorage.removeItem(getSlotKey(slotId));
 
-  if (!confirmed) return;
+      if (activeSlot === slotId) {
+        activeSlot = null;
+      }
 
-  localStorage.removeItem(getSlotKey(slotId));
+      renderSaveSlots();
 
-  if (activeSlot === slotId) {
-    activeSlot = null;
-  }
-
-  renderSaveSlots();
-
-  showSystemToast(
-    `PROFIL ${String(slotId).padStart(2, "0")} gelöscht.`
-  );
+      showSystemToast(
+        `PROFIL ${String(slotId).padStart(2, "0")} gelöscht.`
+      );
+    }
+  });
 }
 function startChapterInSlot(slotId, chapterId) {
   const existingSave = getSaveSlotData(slotId);
@@ -1348,5 +1374,25 @@ document
     closeSystemMenu();
     showSaveHub();
   });
+document
+  .getElementById("cancelConfirmBtn")
+  .addEventListener("click", closeConfirmDialog);
 
+document
+  .getElementById("confirmActionBtn")
+  .addEventListener("click", () => {
+    if (pendingConfirmAction) {
+      pendingConfirmAction();
+    }
+
+    closeConfirmDialog();
+  });
+
+document
+  .getElementById("confirmOverlay")
+  .addEventListener("click", event => {
+    if (event.target.id === "confirmOverlay") {
+      closeConfirmDialog();
+    }
+  });
 showLanding();
