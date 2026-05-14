@@ -78,6 +78,9 @@ body {
   font-size: 1.1rem;
   line-height: 1.45;
   white-space: normal;
+
+  display: flex;
+  flex-direction: column;
 }
 #parserHint {
   margin-top: -8px;
