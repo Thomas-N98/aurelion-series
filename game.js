@@ -204,27 +204,78 @@ function heal() {
     gameState.health = "healthy";
   }
 }
-const SAVE_KEY = "aurelion_save_v1";
+const SAVE_PREFIX = "aurelion_slot_";
+const SLOT_COUNT = 3;
 
-function saveGame() {
-  localStorage.setItem(SAVE_KEY, JSON.stringify(gameState));
+let activeSlot = null;
+let selectedSlotForChapterSelect = null;
+
+function getSlotKey(slotId) {
+  return SAVE_PREFIX + slotId;
 }
 
-function loadGame() {
-  const savedData = localStorage.getItem(SAVE_KEY);
+function saveGame() {
+  if (!activeSlot) {
+    showSystemToast("Kein aktives Profil ausgewählt.");
+    return;
+  }
+
+  gameState.lastSavedAt = new Date().toISOString();
+
+  localStorage.setItem(
+    getSlotKey(activeSlot),
+    JSON.stringify(gameState)
+  );
+}
+
+function loadGameFromSlot(slotId) {
+  const savedData = localStorage.getItem(getSlotKey(slotId));
 
   if (!savedData) {
     return false;
   }
 
   gameState = JSON.parse(savedData);
+  activeSlot = slotId;
   return true;
 }
 
+function createNewGameInSlot(slotId, chapterId = "chapter01") {
+  gameState = createInitialGameState(chapterId);
+  activeSlot = slotId;
+
+  gameState.createdAt = new Date().toISOString();
+  gameState.lastSavedAt = new Date().toISOString();
+
+  localStorage.setItem(
+    getSlotKey(slotId),
+    JSON.stringify(gameState)
+  );
+}
+
+function getSaveSlotData(slotId) {
+  const savedData = localStorage.getItem(getSlotKey(slotId));
+
+  if (!savedData) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(savedData);
+  } catch (error) {
+    console.warn("Defekter Speicherstand:", slotId, error);
+    return null;
+  }
+}
+
 function resetGame() {
+  if (activeSlot) {
+    localStorage.removeItem(getSlotKey(activeSlot));
+  }
+
   gameState = createInitialGameState();
-  localStorage.removeItem(SAVE_KEY);
-  render();
+  renderSaveSlots();
+  showSaveHub();
 }
 function getFlag(flag) {
   return gameState.flags[flag];
@@ -989,6 +1040,68 @@ document.getElementById("commandForm").addEventListener("submit", function (even
   handleCommand(input.value);
   input.value = "";
 });
+function formatSaveDate(isoString) {
+  if (!isoString) return "Unbekannt";
+
+  const date = new Date(isoString);
+
+  return date.toLocaleDateString("de-DE", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  });
+}
+
+function getChapterTitle(chapterId) {
+  const titles = {
+    chapter01: "Kapitel 1 – Eintritt in Aurelion"
+  };
+
+  return titles[chapterId] || chapterId;
+}
+
+function hideAllStartScreens() {
+  document
+    .querySelectorAll("#startScreen .menu-screen")
+    .forEach(screen => {
+      screen.classList.add("hidden");
+    });
+}
+
+function showLanding() {
+  document.getElementById("game").classList.add("hidden");
+  document.getElementById("startScreen").classList.remove("hidden");
+
+  hideAllStartScreens();
+
+  document
+    .getElementById("landingScreen")
+    .classList.remove("hidden");
+}
+
+function showSaveHub() {
+  document.getElementById("game").classList.add("hidden");
+  document.getElementById("startScreen").classList.remove("hidden");
+
+  hideAllStartScreens();
+  renderSaveSlots();
+
+  document
+    .getElementById("saveHubScreen")
+    .classList.remove("hidden");
+}
+
+function showChapterSelect(slotId) {
+  selectedSlotForChapterSelect = slotId;
+
+  hideAllStartScreens();
+  renderChapterCards(slotId);
+
+  document
+    .getElementById("chapterSelectScreen")
+    .classList.remove("hidden");
+}
+
 function showGame() {
   document
     .getElementById("startScreen")
@@ -1001,32 +1114,176 @@ function showGame() {
   render();
 }
 
-function startNewGame() {
-  gameState = createInitialGameState();
+function renderSaveSlots() {
+  const container = document.getElementById("saveSlots");
+  container.innerHTML = "";
 
-  localStorage.removeItem(SAVE_KEY);
+  for (let slotId = 1; slotId <= SLOT_COUNT; slotId++) {
+    const saveData = getSaveSlotData(slotId);
 
-  showGame();
+    const card = document.createElement("div");
+    card.className = saveData ? "save-card" : "save-card empty";
+
+    if (saveData) {
+      card.innerHTML = `
+        <h2>PROFIL ${String(slotId).padStart(2, "0")}</h2>
+
+        <div class="save-meta">
+          ${getChapterTitle(saveData.chapterId)}<br>
+          Bereich: ${saveData.area || "Unbekannt"}<br>
+          Letzter Zugriff: ${formatSaveDate(saveData.lastSavedAt)}
+        </div>
+
+        <div class="save-actions">
+          <button data-action="continue" data-slot="${slotId}">
+            > FORTSETZEN
+          </button>
+
+          <button class="slot-secondary" data-action="chapters" data-slot="${slotId}">
+            > KAPITELAUSWAHL
+          </button>
+        </div>
+      `;
+    } else {
+      card.innerHTML = `
+        <h2>PROFIL ${String(slotId).padStart(2, "0")}</h2>
+
+        <div class="save-meta">
+          Kein lokaler Zugangspunkt registriert.
+        </div>
+
+        <div class="save-actions">
+          <button data-action="new" data-slot="${slotId}">
+            > NEUES SPIEL
+          </button>
+        </div>
+      `;
+    }
+
+    container.appendChild(card);
+  }
+
+  container
+    .querySelectorAll("button[data-action]")
+    .forEach(button => {
+      button.addEventListener("click", () => {
+        const action = button.dataset.action;
+        const slotId = Number(button.dataset.slot);
+
+        if (action === "continue") {
+          continueSlot(slotId);
+        }
+
+        if (action === "new") {
+          showChapterSelect(slotId);
+        }
+
+        if (action === "chapters") {
+          showChapterSelect(slotId);
+        }
+      });
+    });
 }
 
-function continueGame() {
-  const loaded = loadGame();
+function renderChapterCards(slotId) {
+  const label = document.getElementById("chapterProfileLabel");
+  const container = document.getElementById("chapterCards");
+  const saveData = getSaveSlotData(slotId);
+
+  label.textContent = `PROFIL ${String(slotId).padStart(2, "0")}`;
+  container.innerHTML = "";
+
+  const chapter1 = document.createElement("div");
+  chapter1.className = "chapter-card";
+
+  chapter1.innerHTML = `
+    <h2>KAPITEL 1</h2>
+
+    <div class="chapter-meta">
+      Eintritt in Aurelion<br>
+      Status: ${saveData ? "verfügbar" : "neuer Zugriffspunkt"}
+    </div>
+
+    <button id="startChapter01Btn">
+      > BETRETEN
+    </button>
+  `;
+
+  container.appendChild(chapter1);
+
+  document
+    .getElementById("startChapter01Btn")
+    .addEventListener("click", () => {
+      startChapterInSlot(slotId, "chapter01");
+    });
+
+  const chapter2 = document.createElement("div");
+  chapter2.className = "chapter-card locked";
+
+  chapter2.innerHTML = `
+    <h2>KAPITEL 2</h2>
+
+    <div class="chapter-meta">
+      Zugriff verweigert.<br>
+      Weitere Freigabe ausstehend.
+    </div>
+
+    <button disabled>
+      > GESPERRT
+    </button>
+  `;
+
+  container.appendChild(chapter2);
+}
+
+function continueSlot(slotId) {
+  const loaded = loadGameFromSlot(slotId);
 
   if (!loaded) {
-    showSystemToast("Kein Speicherstand gefunden.");
+    showSystemToast("Kein Speicherstand in diesem Profil gefunden.");
+    renderSaveSlots();
     return;
   }
 
   showGame();
 }
 
-document
-  .getElementById("newGameBtn")
-  .addEventListener("click", startNewGame);
+function startChapterInSlot(slotId, chapterId) {
+  const existingSave = getSaveSlotData(slotId);
+
+  if (!existingSave) {
+    createNewGameInSlot(slotId, chapterId);
+    showGame();
+    return;
+  }
+
+  gameState = {
+    ...createInitialGameState(chapterId),
+    createdAt: existingSave.createdAt || new Date().toISOString(),
+    lastSavedAt: new Date().toISOString()
+  };
+
+  activeSlot = slotId;
+
+  localStorage.setItem(
+    getSlotKey(slotId),
+    JSON.stringify(gameState)
+  );
+
+  showGame();
+}
 
 document
-  .getElementById("continueBtn")
-  .addEventListener("click", continueGame);
+  .getElementById("enterAurelionBtn")
+  .addEventListener("click", showSaveHub);
+
+document
+  .getElementById("backToLandingBtn")
+  .addEventListener("click", showLanding);
+
+document
+  .getElementById("backToSaveHubBtn")
+  .addEventListener("click", showSaveHub);
 
 document
   .getElementById("settingsBtn")
@@ -1051,32 +1308,13 @@ document
     showSystemToast(
       "AURELION BACKUP NODE:\nLokaler Zustand gesichert."
     );
-
-    document
-      .getElementById("continueBtn")
-      .disabled = false;
   });
 
 document
   .getElementById("returnToMenuBtn")
   .addEventListener("click", () => {
     closeSystemMenu();
-
-    document
-      .getElementById("game")
-      .classList.add("hidden");
-
-    document
-      .getElementById("startScreen")
-      .classList.remove("hidden");
+    showSaveHub();
   });
 
-if (localStorage.getItem(SAVE_KEY)) {
-  document
-    .getElementById("continueBtn")
-    .disabled = false;
-} else {
-  document
-    .getElementById("continueBtn")
-    .disabled = true;
-}
+showLanding();
