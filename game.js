@@ -1021,6 +1021,16 @@ function handleCommand(input) {
     updateEnvironment();
     return;
   }
+  if (command === "hint") {
+  showHint();
+  return;
+}
+
+if (command.startsWith("hint ")) {
+  const target = command.replace("hint ", "");
+  showHint(target);
+  return;
+}
 
   if (command.startsWith("gehe ")) {
     const target = command.replace("gehe ", "");
@@ -1060,6 +1070,73 @@ function handleCommand(input) {
 }
 
 showUnknownCommand();
+}
+function showHint(target = null) {
+  const hint = getMatchingHint(target);
+
+  if (!hint) {
+    showText("AURELION ASSIST\n\nKeine spezifischen Hinweise verfügbar.");
+
+    showParserHint(
+      "SYSTEM HINT: Prüfe deine Umgebung erneut oder öffne den TERMINAL unten links."
+    );
+
+    return;
+  }
+
+  showText(
+    "AURELION ASSIST\n\n" +
+    hint
+  );
+}
+
+function getMatchingHint(target = null) {
+  const area = currentArea();
+  const hints = area.hints;
+
+  if (!hints) return null;
+
+  if (target) {
+    return getTargetHint(hints, target);
+  }
+
+  return getGeneralHint(hints);
+}
+
+function getGeneralHint(hints) {
+  if (!hints.general || !Array.isArray(hints.general)) {
+    return null;
+  }
+
+  const matchingHint = hints.general.find(hintRule => {
+    if (!hintRule.when) return true;
+    return hintRule.when();
+  });
+
+  return matchingHint ? matchingHint.text : null;
+}
+
+function getTargetHint(hints, target) {
+  if (!hints.targets) return null;
+
+  const normalizedTarget = normalizeText(target);
+
+  const targetKey = Object.keys(hints.targets).find(key => {
+    return normalizeText(key) === normalizedTarget;
+  });
+
+  if (!targetKey) return null;
+
+  const targetHints = hints.targets[targetKey];
+
+  if (!Array.isArray(targetHints)) return null;
+
+  const matchingHint = targetHints.find(hintRule => {
+    if (!hintRule.when) return true;
+    return hintRule.when();
+  });
+
+  return matchingHint ? matchingHint.text : null;
 }
 function normalizeText(text) {
   return text
