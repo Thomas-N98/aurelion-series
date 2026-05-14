@@ -863,6 +863,7 @@ words = words.map(word => aliases[word] || word);
 
 function handleCommand(input) {
   const command = normalizeCommand(input);
+  clearParserHint();
 
   if (!command) return;
 
@@ -940,7 +941,16 @@ function goToArea(target) {
   if (area.exits[target]) {
     targetAreaId = area.exits[target].target;
   }
+  // gehe zu Detail Hinweis
+  if (!targetAreaId && area.details.includes(target)) {
+    showText(getRandomApproachText(target));
 
+    showParserHint(
+      `SYSTEM HINT: Für eine genauere Betrachtung nutze „untersuche ${target}“.`
+  );
+
+  return;
+}
   // 2. Label prüfen, z. B. "verwachsener waldweg"
   if (!targetAreaId) {
     const matchingExits = exits.filter(([direction, exitData]) => {
@@ -1104,7 +1114,34 @@ function showText(text) {
   document.getElementById("story").innerHTML =
     `<div class="story-text">${text.replace(/\n/g, "<br>")}</div>`;
 }
+function showParserHint(text) {
+  const hint = document.getElementById("parserHint");
 
+  if (!hint) return;
+
+  hint.textContent = text;
+  hint.classList.remove("hidden");
+}
+
+function clearParserHint() {
+  const hint = document.getElementById("parserHint");
+
+  if (!hint) return;
+
+  hint.textContent = "";
+  hint.classList.add("hidden");
+}
+function getRandomApproachText(target) {
+  const texts = [
+    `Du trittst näher heran.`,
+    `Du näherst dich vorsichtig.`,
+    `Du gehst ein paar Schritte darauf zu.`,
+    `Du bringst dich in eine bessere Position.`,
+    `Du rückst näher an ${target} heran.`
+  ];
+
+  return texts[Math.floor(Math.random() * texts.length)];
+}
 document.getElementById("commandForm").addEventListener("submit", function (event) {
   event.preventDefault();
 
