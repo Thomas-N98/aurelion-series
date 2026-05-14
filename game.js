@@ -216,6 +216,12 @@ function heal() {
 }
 const SAVE_PREFIX = "aurelion_slot_";
 const SLOT_COUNT = 3;
+const PROFILE_VERSION = 2;
+
+const CHAPTER_ORDER = [
+  "tutorial",
+  "chapter01"
+];
 
 let activeSlot = null;
 let selectedSlotForChapterSelect = null;
@@ -224,58 +230,143 @@ function getSlotKey(slotId) {
   return SAVE_PREFIX + slotId;
 }
 
+function createEmptyProfile(slotId) {
+  return {
+    version: PROFILE_VERSION,
+    slotId,
+    activeChapterId: null,
+    unlockedChapters: ["tutorial", "chapter01"],
+    completedChapters: [],
+    chapterSaves: {},
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+}
+
+function isProfileSave(data) {
+  return data && data.chapterSaves;
+}
+
+function getProfileFromSlot(slotId) {
+  const savedData = localStorage.getItem(getSlotKey(slotId));
+
+  if (!savedData) return null;
+
+  try {
+    const data = JSON.parse(savedData);
+
+    if (isProfileSave(data)) {
+      return data;
+    }
+
+    // Migration alter Einzel-Saves
+    if (data.chapterId) {
+      const profile = createEmptyProfile(slotId);
+      profile.activeChapterId = data.chapterId;
+      profile.chapterSaves[data.chapterId] = data;
+      profile.createdAt = data.createdAt || profile.createdAt;
+      profile.updatedAt = data.lastSavedAt || profile.updatedAt;
+      writeProfileToSlot(slotId, profile);
+      return profile;
+    }
+
+    return null;
+  } catch (error) {
+    console.warn("Defekter Speicherstand:", slotId, error);
+    return null;
+  }
+}
+
+function writeProfileToSlot(slotId, profile) {
+  profile.updatedAt = new Date().toISOString();
+
+  localStorage.setItem(
+    getSlotKey(slotId),
+    JSON.stringify(profile)
+  );
+}
+
+function getSaveSlotData(slotId) {
+  return getProfileFromSlot(slotId);
+}
+
 function saveGame() {
   if (!activeSlot) {
     showSystemToast("Kein aktives Profil ausgewählt.");
     return;
   }
 
+  const profile =
+    getProfileFromSlot(activeSlot) ||
+    createEmptyProfile(activeSlot);
+
   gameState.lastSavedAt = new Date().toISOString();
 
-  localStorage.setItem(
-    getSlotKey(activeSlot),
-    JSON.stringify(gameState)
-  );
+  profile.activeChapterId = gameState.chapterId;
+  profile.chapterSaves[gameState.chapterId] = gameState;
+
+  writeProfileToSlot(activeSlot, profile);
 }
 
 function loadGameFromSlot(slotId) {
-  const savedData = localStorage.getItem(getSlotKey(slotId));
+  const profile = getProfileFromSlot(slotId);
 
-  if (!savedData) {
+  if (!profile || !profile.activeChapterId) {
     return false;
   }
 
-  gameState = JSON.parse(savedData);
+  const chapterSave =
+    profile.chapterSaves[profile.activeChapterId];
+
+  if (!chapterSave) {
+    return false;
+  }
+
+  gameState = chapterSave;
   activeSlot = slotId;
   return true;
 }
 
-function createNewGameInSlot(slotId, chapterId = "chapter01") {
-  gameState = createInitialGameState(chapterId);
-  activeSlot = slotId;
+function getPreviousChapterId(chapterId) {
+  const index = CHAPTER_ORDER.indexOf(chapterId);
 
-  gameState.createdAt = new Date().toISOString();
-  gameState.lastSavedAt = new Date().toISOString();
+  if (index <= 0) return null;
 
-  localStorage.setItem(
-    getSlotKey(slotId),
-    JSON.stringify(gameState)
-  );
+  return CHAPTER_ORDER[index - 1];
 }
 
-function getSaveSlotData(slotId) {
-  const savedData = localStorage.getItem(getSlotKey(slotId));
+function getCarryOverForChapter(profile, chapterId) {
+  const previousChapterId = getPreviousChapterId(chapterId);
 
-  if (!savedData) {
-    return null;
+  if (!previousChapterId) {
+    return {};
   }
 
-  try {
-    return JSON.parse(savedData);
-  } catch (error) {
-    console.warn("Defekter Speicherstand:", slotId, error);
-    return null;
+  const previousSave =
+    profile.chapterSaves[previousChapterId];
+
+  if (!previousSave) {
+    return {};
   }
+
+  return {
+    inventory: [...(previousSave.inventory || [])],
+    discoveredVerbs: [...(previousSave.discoveredVerbs || [])],
+    health: previousSave.health || "healthy"
+  };
+}
+
+function createChapterGameState(chapterId, carryOver = {}) {
+  const state = createInitialGameState(chapterId);
+
+  state.inventory = [...(carryOver.inventory || [])];
+  state.discoveredVerbs = [...(carryOver.discoveredVerbs || [])];
+  state.health = carryOver.health || "healthy";
+
+  state.createdAt = new Date().toISOString();
+  state.lastSavedAt = new Date().toISOString();
+
+  return state;
 }
 
 function resetGame() {
@@ -284,6 +375,8 @@ function resetGame() {
   }
 
   gameState = createInitialGameState();
+  activeSlot = null;
+
   renderSaveSlots();
   showSaveHub();
 }
