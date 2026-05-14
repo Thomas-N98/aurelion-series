@@ -1126,9 +1126,20 @@ function renderSaveSlots() {
 
     if (saveData) {
       card.innerHTML = `
-        <h2>PROFIL ${String(slotId).padStart(2, "0")}</h2>
+  <div class="save-card-header">
+    <h2>PROFIL ${String(slotId).padStart(2, "0")}</h2>
 
-        <div class="save-meta">
+    <button
+      class="delete-slot-button"
+      data-action="delete"
+      data-slot="${slotId}"
+      title="Spielstand löschen"
+      aria-label="Spielstand löschen">
+      ×
+    </button>
+  </div>
+
+  <div class="save-meta">
           ${getChapterTitle(saveData.chapterId)}<br>
           Bereich: ${saveData.area || "Unbekannt"}<br>
           Letzter Zugriff: ${formatSaveDate(saveData.lastSavedAt)}
@@ -1180,6 +1191,9 @@ function renderSaveSlots() {
 
         if (action === "chapters") {
           showChapterSelect(slotId);
+        }
+        if (action === "delete") {
+          deleteSlot(slotId);
         }
       });
     });
@@ -1247,7 +1261,25 @@ function continueSlot(slotId) {
 
   showGame();
 }
+function deleteSlot(slotId) {
+  const confirmed = confirm(
+    `PROFIL ${String(slotId).padStart(2, "0")} wirklich löschen?\n\nDieser Spielstand kann nicht wiederhergestellt werden.`
+  );
 
+  if (!confirmed) return;
+
+  localStorage.removeItem(getSlotKey(slotId));
+
+  if (activeSlot === slotId) {
+    activeSlot = null;
+  }
+
+  renderSaveSlots();
+
+  showSystemToast(
+    `PROFIL ${String(slotId).padStart(2, "0")} gelöscht.`
+  );
+}
 function startChapterInSlot(slotId, chapterId) {
   const existingSave = getSaveSlotData(slotId);
 
