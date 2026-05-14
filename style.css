@@ -180,27 +180,57 @@ li {
 }
 /* NAVIGATION */
 
-.environment-heading {
+#hotspots,
+#inventory {
   list-style: none;
-  margin-left: -16px;
-  margin-top: 10px;
+  padding-left: 0;
+}
+
+#hotspots li,
+#inventory li {
+  margin-bottom: 8px;
+  padding: 8px 10px;
+
+  background: rgba(54, 255, 133, 0.025);
+  border: 1px solid rgba(54, 255, 133, 0.09);
+
+  line-height: 1.35;
+}
+
+.environment-heading {
+  margin: 12px 0 6px 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: none !important;
+
   color: var(--green);
-  opacity: 0.85;
+  opacity: 0.75;
+
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .area-exit {
-  margin-left: 12px;
   color: var(--text-green);
 }
 
 .visited-area {
-  color: #91b89b;
-  opacity: 0.75;
+  opacity: 0.65;
 }
 
 .area-detail {
-  margin-left: 12px;
-  color: #b9ffd0;
+  color: rgba(215, 255, 225, 0.78);
+}
+
+.inventory-item {
+  color: var(--text-green);
+}
+
+.inventory-empty {
+  color: rgba(215, 255, 225, 0.45);
+  font-style: italic;
 }
 
 /* COMMAND INPUT */
