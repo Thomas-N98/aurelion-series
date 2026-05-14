@@ -126,7 +126,58 @@ ul {
 li {
   margin-bottom: 4px;
 }
+#statusList {
+  list-style: none;
+  padding-left: 0;
+}
 
+.status-entry {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  background: rgba(54, 255, 133, 0.035);
+  border: 1px solid rgba(54, 255, 133, 0.10);
+}
+
+.status-label {
+  color: rgba(215, 255, 225, 0.55);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-value {
+  color: var(--text-green);
+  line-height: 1.35;
+}
+
+.health-healthy .status-value {
+  color: var(--text-green);
+}
+
+.health-light {
+  border-color: rgba(255, 204, 102, 0.18);
+  background: rgba(255, 204, 102, 0.035);
+}
+
+.health-light .status-value {
+  color: var(--text-amber);
+}
+
+.health-severe,
+.health-dead {
+  border-color: rgba(255, 90, 90, 0.28);
+  background: rgba(255, 90, 90, 0.045);
+}
+
+.health-severe .status-value,
+.health-dead .status-value {
+  color: #ff9c9c;
+}
 /* NAVIGATION */
 
 .environment-heading {
