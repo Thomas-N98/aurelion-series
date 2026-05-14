@@ -51,19 +51,19 @@ function getUnknownCommandHint() {
   return currentChapter().unknownCommandHint || null;
 }
 function showUnknownCommand() {
-  showText(
-    "Befehl nicht erkannt."
-  );
-
   const hint = getUnknownCommandHint();
 
   if (hint) {
-    showParserHint(hint);
+    showParserHint(
+      "SYSTEM HINT: Befehl nicht erkannt.\n" +
+      hint.replace(/^SYSTEM HINT:\s*/i, "")
+    );
     return;
   }
 
   showParserHint(
-    "SYSTEM HINT: Nutze „hilfe“ oder öffne den TERMINAL unten links, um bekannte Interaktionen einzusehen."
+    "SYSTEM HINT: Befehl nicht erkannt.\n" +
+    "Nutze „hilfe“ oder öffne den TERMINAL unten links, um bekannte Interaktionen einzusehen."
   );
 }
 const secretVerbs = [
