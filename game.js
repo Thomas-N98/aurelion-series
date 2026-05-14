@@ -559,6 +559,40 @@ function updateObservationsLog() {
     list.appendChild(li);
   });
 }
+function updateChapterScrollbar() {
+  const scroll = document.getElementById("chapterSelectScroll");
+  const thumb = document.getElementById("chapterScrollThumb");
+
+  if (!scroll || !thumb) return;
+
+  const scrollTop = scroll.scrollTop;
+  const scrollHeight = scroll.scrollHeight;
+  const clientHeight = scroll.clientHeight;
+
+  const maxScroll = scrollHeight - clientHeight;
+
+  if (maxScroll <= 0) {
+    thumb.style.display = "none";
+    return;
+  }
+
+  thumb.style.display = "block";
+
+  const thumbHeight =
+    (clientHeight / scrollHeight) * clientHeight;
+
+  const maxThumbMove =
+    clientHeight - thumbHeight;
+
+  const thumbTop =
+    (scrollTop / maxScroll) * maxThumbMove;
+
+  thumb.style.height =
+    `${Math.max(40, thumbHeight)}px`;
+
+  thumb.style.transform =
+    `translateY(${thumbTop}px)`;
+}
 function openHelp() {
   document.getElementById("helpOverlay").classList.remove("hidden");
 
@@ -1316,6 +1350,10 @@ function showChapterSelect(slotId) {
   document
     .getElementById("chapterSelectScreen")
     .classList.remove("hidden");
+
+  requestAnimationFrame(() => {
+    updateChapterScrollbar();
+  });
 }
 
 function showGame() {
@@ -1595,7 +1633,14 @@ function startChapterInSlot(slotId, chapterId) {
 
   showGame();
 }
+document
+  .getElementById("chapterSelectScroll")
+  .addEventListener("scroll", updateChapterScrollbar);
 
+window.addEventListener(
+  "resize",
+  updateChapterScrollbar
+);
 document
   .getElementById("enterAurelionBtn")
   .addEventListener("click", showSaveHub);
