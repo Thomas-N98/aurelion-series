@@ -1525,6 +1525,12 @@ function renderChapterCard({
   const card = document.createElement("div");
   card.className = locked ? "chapter-card locked" : "chapter-card";
 
+  const profile = getProfileFromSlot(slotId);
+  const hasSave =
+    profile &&
+    profile.chapterSaves &&
+    profile.chapterSaves[chapterId];
+
   card.innerHTML = `
     <h2>${title}</h2>
 
@@ -1533,19 +1539,42 @@ function renderChapterCard({
       Status: ${status}
     </div>
 
-    <button ${locked ? "disabled" : ""}>
-      > ${locked ? "GESPERRT" : "BETRETEN"}
-    </button>
+    <div class="chapter-actions">
+      <button
+        class="chapter-enter-btn"
+        ${locked ? "disabled" : ""}
+      >
+        > ${locked ? "GESPERRT" : "BETRETEN"}
+      </button>
+
+      ${
+        hasSave && !locked
+          ? `
+            <button class="chapter-reset-btn">
+              > KAPITEL ZURÜCKSETZEN
+            </button>
+          `
+          : ""
+      }
+    </div>
   `;
 
   container.appendChild(card);
 
+  const enterButton = card.querySelector(".chapter-enter-btn");
+
   if (!locked) {
-    card
-      .querySelector("button")
-      .addEventListener("click", () => {
-        startChapterInSlot(slotId, chapterId);
-      });
+    enterButton.addEventListener("click", () => {
+      startChapterInSlot(slotId, chapterId);
+    });
+  }
+
+  const resetButton = card.querySelector(".chapter-reset-btn");
+
+  if (resetButton) {
+    resetButton.addEventListener("click", () => {
+      confirmChapterReset(slotId, chapterId);
+    });
   }
 }
 function continueSlot(slotId) {
@@ -1603,6 +1632,39 @@ function deleteSlot(slotId) {
       );
     }
   });
+}
+function confirmChapterReset(slotId, chapterId) {
+  openConfirmDialog({
+    title: "KAPITEL ZURÜCKSETZEN",
+    message:
+      `${getChapterTitle(chapterId)} wirklich zurücksetzen?\n\n` +
+      "Der Spielstand dieses Kapitels wird gelöscht. Spätere Kapitel bleiben erhalten.",
+    confirmText: "ZURÜCKSETZEN",
+    onConfirm: () => {
+      resetChapterSave(slotId, chapterId);
+    }
+  });
+}
+
+function resetChapterSave(slotId, chapterId) {
+  const profile = getProfileFromSlot(slotId);
+
+  if (!profile || !profile.chapterSaves) return;
+
+  delete profile.chapterSaves[chapterId];
+
+  if (profile.activeChapterId === chapterId) {
+    profile.activeChapterId = null;
+  }
+
+  writeProfileToSlot(slotId, profile);
+
+  renderChapterCards(slotId);
+  updateChapterScrollbar();
+
+  showSystemToast(
+    `${getChapterTitle(chapterId)} zurückgesetzt.`
+  );
 }
 function startChapterInSlot(slotId, chapterId) {
   const profile =
