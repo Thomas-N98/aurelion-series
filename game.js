@@ -576,8 +576,8 @@ function showAreaDescription() {
     .map(paragraph => `<p>${paragraph}</p>`)
     .join("");
 
-  document.getElementById("story").innerHTML =
-    `<h3 class="story-location">${area.name}</h3><div class="story-text">${formattedText}</div>`;
+  document.getElementById("storyContent").innerHTML =
+  `<h3 class="story-location">${area.name}</h3><div class="story-text">${formattedText}</div>`;
 }
 function updateHelpScrollbar() {
   const scroll = document.getElementById("helpScroll");
@@ -1122,7 +1122,7 @@ function combineItems(commandRest) {
   showText("Diese Objekte lassen sich nicht sinnvoll kombinieren.");
 }
 function showText(text) {
-  document.getElementById("story").innerHTML =
+  document.getElementById("storyContent").innerHTML =
     `<div class="story-text">${text.replace(/\n/g, "<br>")}</div>`;
 }
 function showParserHint(text) {
