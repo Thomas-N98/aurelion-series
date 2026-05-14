@@ -325,6 +325,20 @@ button:hover {
   background: var(--green-soft);
 }
 
+/* TERMINAL TAB HOVER */
+
+.help-tab[data-tab="general"]:hover {
+  background: var(--green-soft);
+}
+
+.help-tab[data-tab="fieldnotes"]:hover {
+  background: var(--blue-soft);
+}
+
+.help-tab[data-tab="observations"]:hover {
+  background: var(--amber-soft);
+}
+
 /* SYSTEM TERMINAL */
 
 .hidden {
