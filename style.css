@@ -1010,3 +1010,35 @@ button:hover {
     min-height: auto;
   }
 }
+.save-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.delete-slot-button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border-color: rgba(255, 204, 102, 0.45);
+  color: var(--amber);
+
+  font-size: 1.1rem;
+  line-height: 1;
+
+  opacity: 0.65;
+}
+
+.delete-slot-button:hover {
+  opacity: 1;
+  background: var(--amber-soft);
+  box-shadow: 0 0 10px rgba(255, 204, 102, 0.25);
+  transform: none;
+}
