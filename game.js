@@ -1374,11 +1374,15 @@ function renderSaveSlots() {
 
   for (let slotId = 1; slotId <= SLOT_COUNT; slotId++) {
     const saveData = getSaveSlotData(slotId);
+const hasChapterSaves =
+  saveData &&
+  saveData.chapterSaves &&
+  Object.keys(saveData.chapterSaves).length > 0;
 
-    const card = document.createElement("div");
-    card.className = saveData ? "save-card" : "save-card empty";
+const card = document.createElement("div");
+card.className = hasChapterSaves ? "save-card" : "save-card empty";
 
-    if (saveData) {
+    if (hasChapterSaves) {
       card.innerHTML = `
   <div class="save-card-header">
     <h2>PROFIL ${String(slotId).padStart(2, "0")}</h2>
