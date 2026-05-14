@@ -81,7 +81,7 @@ const tutorial = {
       }
     ]
   }
-}
+},
           exits: {
             vorne: {
               target: "ausgang",
