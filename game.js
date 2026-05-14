@@ -63,7 +63,7 @@ function showUnknownCommand() {
   }
 
   showParserHint(
-    "SYSTEM HINT: Nutze „hilfe“ oder öffne den TERMINAL unten links."
+    "SYSTEM HINT: Nutze „hilfe“ oder öffne den TERMINAL unten links, um bekannte Interaktionen einzusehen."
   );
 }
 const secretVerbs = [
