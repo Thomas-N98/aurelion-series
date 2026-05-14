@@ -342,6 +342,17 @@ function shouldShowDetail(detailId) {
 
   return true;
 }
+function isVisibleDetail(target) {
+  const area = currentArea();
+
+  if (!area.details || !Array.isArray(area.details)) {
+    return false;
+  }
+
+  return area.details.some(detail => {
+    return normalizeText(detail) === normalizeText(target);
+  });
+}
 function getRoomInteraction(type, target) {
   const room = currentRoom();
 
@@ -941,12 +952,12 @@ function goToArea(target) {
   if (area.exits[target]) {
     targetAreaId = area.exits[target].target;
   }
-  // gehe zu Detail Hinweis
-  if (!targetAreaId && area.details.includes(target)) {
-    showText(getRandomApproachText(target));
+  // gehe zu Detail → freundlich umleiten
+if (!targetAreaId && isVisibleDetail(target)) {
+  showText(getRandomApproachText(target));
 
-    showParserHint(
-      `SYSTEM HINT: Für eine genauere Betrachtung nutze „untersuche ${target}“.`
+  showParserHint(
+    `SYSTEM HINT: Für eine genauere Betrachtung nutze „untersuche ${target}“.`
   );
 
   return;
