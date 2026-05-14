@@ -6,7 +6,7 @@ const tutorial = {
   startArea: "terminal",
 
   unknownCommandHint:
-    "Befehl nicht erkannt.\n\nTUTORIAL-HINWEIS:\nVersuche einfache Befehle wie „umsehen“, „untersuche terminal“ oder „gehe vorne“.",
+  "SYSTEM HINT: Versuche einfache Befehle wie „umsehen“, „untersuche terminal“ oder „gehe vorne“.",
 
   aliases: {
     terminal: "terminal",
