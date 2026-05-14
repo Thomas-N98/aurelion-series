@@ -48,19 +48,24 @@ function currentAliases() {
   return currentChapter().aliases || {};
 }
 function getUnknownCommandHint() {
-  const chapterHint = currentChapter().unknownCommandHint;
+  return currentChapter().unknownCommandHint || null;
+}
+function showUnknownCommand() {
+  showText(
+    "Befehl nicht erkannt."
+  );
 
-  if (chapterHint) {
-    return chapterHint;
+  const hint = getUnknownCommandHint();
+
+  if (hint) {
+    showParserHint(hint);
+    return;
   }
 
-  return (
-    "Befehl nicht erkannt.\n\n" +
-    "TERMINAL-HINWEIS:\n" +
-    "Schreibe „hilfe“ oder öffne den TERMINAL unten links, um bekannte Interaktionsmuster abzurufen."
+  showParserHint(
+    "SYSTEM HINT: Nutze „hilfe“ oder öffne den TERMINAL unten links."
   );
 }
-
 const secretVerbs = [
   {
     id: "oeffne",
@@ -918,15 +923,16 @@ function handleCommand(input) {
     return;
   }
   if (command.startsWith("kombiniere ")) {
-    if (!hasDiscoveredVerb("kombiniere")) {
-      showText(getUnknownCommandHint());
-      return;
-    }
-
-    combineItems(command.replace("kombiniere ", ""));
+  if (!hasDiscoveredVerb("kombiniere")) {
+    showUnknownCommand();
     return;
   }
-  showText(getUnknownCommandHint());
+
+  combineItems(command.replace("kombiniere ", ""));
+  return;
+}
+
+showUnknownCommand();
 }
 function normalizeText(text) {
   return text
