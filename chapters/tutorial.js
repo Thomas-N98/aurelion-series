@@ -13,7 +13,7 @@ const tutorial = {
     bildschirm: "terminal",
     anzeige: "terminal",
     vorne: "ausgang",
-    weiter: "ausgang"
+    weiter: "ausgang" 
   },
 
   rooms: {
