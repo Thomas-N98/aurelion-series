@@ -34,6 +34,7 @@ function createInitialGameState(
 }
 
 const chapters = {
+  tutorial,
   chapter01
 };
 
@@ -1054,8 +1055,9 @@ function formatSaveDate(isoString) {
 
 function getChapterTitle(chapterId) {
   const titles = {
-    chapter01: "Kapitel 1 – Eintritt in Aurelion"
-  };
+  tutorial: "Tutorial – Systemeinweisung",
+  chapter01: "Kapitel 1 – Eintritt in Aurelion"
+};
 
   return titles[chapterId] || chapterId;
 }
@@ -1207,49 +1209,71 @@ function renderChapterCards(slotId) {
   label.textContent = `PROFIL ${String(slotId).padStart(2, "0")}`;
   container.innerHTML = "";
 
-  const chapter1 = document.createElement("div");
-  chapter1.className = "chapter-card";
+  renderChapterCard({
+    container,
+    slotId,
+    chapterId: "tutorial",
+    title: "TUTORIAL",
+    subtitle: "Systemeinweisung",
+    status: "sofort zugänglich",
+    locked: false
+  });
 
-  chapter1.innerHTML = `
-    <h2>KAPITEL 1</h2>
+  renderChapterCard({
+    container,
+    slotId,
+    chapterId: "chapter01",
+    title: "KAPITEL 1",
+    subtitle: "Eintritt in Aurelion",
+    status: saveData ? "verfügbar" : "neuer Zugriffspunkt",
+    locked: false
+  });
 
-    <div class="chapter-meta">
-      Eintritt in Aurelion<br>
-      Status: ${saveData ? "verfügbar" : "neuer Zugriffspunkt"}
-    </div>
-
-    <button id="startChapter01Btn">
-      > BETRETEN
-    </button>
-  `;
-
-  container.appendChild(chapter1);
-
-  document
-    .getElementById("startChapter01Btn")
-    .addEventListener("click", () => {
-      startChapterInSlot(slotId, "chapter01");
-    });
-
-  const chapter2 = document.createElement("div");
-  chapter2.className = "chapter-card locked";
-
-  chapter2.innerHTML = `
-    <h2>KAPITEL 2</h2>
-
-    <div class="chapter-meta">
-      Zugriff verweigert.<br>
-      Weitere Freigabe ausstehend.
-    </div>
-
-    <button disabled>
-      > GESPERRT
-    </button>
-  `;
-
-  container.appendChild(chapter2);
+  renderChapterCard({
+    container,
+    slotId,
+    chapterId: "chapter02",
+    title: "KAPITEL 2",
+    subtitle: "Zugriff verweigert",
+    status: "Weitere Freigabe ausstehend.",
+    locked: true
+  });
 }
+function renderChapterCard({
+  container,
+  slotId,
+  chapterId,
+  title,
+  subtitle,
+  status,
+  locked
+}) {
+  const card = document.createElement("div");
+  card.className = locked ? "chapter-card locked" : "chapter-card";
 
+  card.innerHTML = `
+    <h2>${title}</h2>
+
+    <div class="chapter-meta">
+      ${subtitle}<br>
+      Status: ${status}
+    </div>
+
+    <button ${locked ? "disabled" : ""}>
+      > ${locked ? "GESPERRT" : "BETRETEN"}
+    </button>
+  `;
+
+  container.appendChild(card);
+
+  if (!locked) {
+    card
+      .querySelector("button")
+      .addEventListener("click", () => {
+        startChapterInSlot(slotId, chapterId);
+      });
+  }
+}
 function continueSlot(slotId) {
   const loaded = loadGameFromSlot(slotId);
 
