@@ -1232,10 +1232,9 @@ function examine(target) {
     const possibleExits = Object.values(area.exits).map(exit => exit.target);
 
     if (possibleExits.includes(target)) {
-      showText(
-        `${room.areas[target].name} liegt in der Nähe. Geh näher heran, um den Ort genauer zu untersuchen.`
-      );
-      return;
+      showText(`${room.areas[target].name} liegt in der Nähe.`);
+showParserHint(`SYSTEM HINT: Distanz zu Zielbereich zu hoch für detaillierte Analyse.`);
+return;
     }
 
     showText("Von hier aus kannst du diesen Ort nicht genauer erkennen.");
@@ -1283,8 +1282,8 @@ function useItem(commandRest) {
   const parts = commandRest.split(" ");
 
   if (parts.length < 2) {
-    showText("Woran möchtest du das benutzen?");
-    return;
+    showParserHint("SYSTEM HINT: Interaktion unvollständig. Zielobjekt nicht spezifiziert.");
+return;
   }
 
   const item = parts[0];
@@ -1300,8 +1299,8 @@ function combineItems(commandRest) {
   const parts = commandRest.split(" ");
 
   if (parts.length < 2) {
-    showText("Welche zwei Objekte möchtest du kombinieren?");
-    return;
+    showParserHint("SYSTEM HINT: Kombinationsprozess unvollständig. Zusätzliche Komponente erforderlich.");
+return;
   }
 
   const itemA = parts[0];
