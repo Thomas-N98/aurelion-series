@@ -1076,14 +1076,14 @@ function showHint(target = null) {
 
   if (!hint) {
     showParserHint(
-      "SYSTEM HINT: Keine spezifischen Hinweise verfügbar. Prüfe deine Umgebung erneut oder öffne den TERMINAL unten links."
+      "SYSTEM HINT: Keine spezifischen Hinweise verfügbar.\nPrüfe deine Umgebung erneut oder öffne den TERMINAL unten links."
     );
 
     return;
   }
 
   showParserHint(
-    "SYSTEM HINT: " + hint.replace(/\n+/g, " ")
+    "SYSTEM HINT: " + hint
   );
 }
 
@@ -1333,10 +1333,9 @@ function showParserHint(text) {
 
   if (!hint) return;
 
-  hint.textContent = text;
+  hint.innerHTML = text.replace(/\n/g, "<br>");
   hint.classList.remove("hidden");
 }
-
 function clearParserHint() {
   const hint = document.getElementById("parserHint");
 
