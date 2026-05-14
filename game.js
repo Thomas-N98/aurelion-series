@@ -775,12 +775,8 @@ function updateInventory() {
   element.innerHTML = "";
 
   if (gameState.inventory.length === 0) {
-    const li = document.createElement("li");
-    li.className = "inventory-empty";
-    li.textContent = "Inventory empty";
-    element.appendChild(li);
-    return;
-  }
+  return;
+}
 
   gameState.inventory.forEach(itemId => {
     const li = document.createElement("li");
