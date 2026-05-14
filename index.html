@@ -15,36 +15,79 @@
 <body>
 <div id="startScreen">
 
-  <div id="startTerminal">
+  <!-- LANDING -->
+  <section id="landingScreen" class="menu-screen">
 
-    <div class="start-header">
-      <h1>AURELION INDUSTRIES</h1>
-      <p>ACCESS TERMINAL v0.1</p>
-    </div>
+    <div class="start-terminal landing-terminal">
 
-    <div class="terminal-status">
-      STATUS: OFFLINE
-    </div>
+      <div class="start-header">
+        <h1>AURELION INDUSTRIES</h1>
+        <p>Employee Access Portal</p>
+      </div>
 
-    <div class="menu-buttons">
-      <button id="newGameBtn">
-        > Neues Spiel
+      <div class="terminal-status">
+        STATUS: EXTERNAL SIGNAL DETECTED
+      </div>
+
+      <button id="enterAurelionBtn" class="hero-button">
+        > BETRITT AURELION
       </button>
 
-      <button id="continueBtn">
-        > Fortsetzen
-      </button>
-
-      <button id="settingsBtn">
+      <button id="settingsBtn" class="secondary-menu-button">
         > Einstellungen
       </button>
+
+      <div class="start-footer">
+        Unauthorized access prohibited
+      </div>
+
     </div>
 
-    <div class="start-footer">
-      Unauthorized access prohibited
+  </section>
+
+  <!-- SAVE HUB -->
+  <section id="saveHubScreen" class="menu-screen hidden">
+
+    <div class="start-terminal save-terminal">
+
+      <div class="menu-topline">
+        <button id="backToLandingBtn" class="back-button">
+          ← Zurück
+        </button>
+      </div>
+
+      <div class="start-header">
+        <h1>ACCESS PROFILES</h1>
+        <p>Wähle einen lokalen Zugangspunkt.</p>
+      </div>
+
+      <div id="saveSlots" class="save-slots"></div>
+
     </div>
 
-  </div>
+  </section>
+
+  <!-- CHAPTER SELECT -->
+  <section id="chapterSelectScreen" class="menu-screen hidden">
+
+    <div class="start-terminal chapter-terminal">
+
+      <div class="menu-topline">
+        <button id="backToSaveHubBtn" class="back-button">
+          ← Profile
+        </button>
+      </div>
+
+      <div class="start-header">
+        <h1>KAPITELAUSWAHL</h1>
+        <p id="chapterProfileLabel">PROFIL 01</p>
+      </div>
+
+      <div id="chapterCards" class="chapter-cards"></div>
+
+    </div>
+
+  </section>
 
 </div>
   <main id="game" class="hidden">
