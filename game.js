@@ -771,9 +771,23 @@ function addEnvironmentLine(parent, text, className) {
 }
 
 function updateInventory() {
-  const itemNames = gameState.inventory.map(getItemName);
+  const element = document.getElementById("inventory");
+  element.innerHTML = "";
 
-  renderList("inventory", itemNames);
+  if (gameState.inventory.length === 0) {
+    const li = document.createElement("li");
+    li.className = "inventory-empty";
+    li.textContent = "Inventory empty";
+    element.appendChild(li);
+    return;
+  }
+
+  gameState.inventory.forEach(itemId => {
+    const li = document.createElement("li");
+    li.className = "inventory-item";
+    li.textContent = getItemName(itemId);
+    element.appendChild(li);
+  });
 }
 
 function normalizeCommand(command) {
