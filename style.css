@@ -833,7 +833,61 @@ button:hover {
 
   padding: 24px;
 }
+#confirmOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.82);
+  padding: 24px;
+}
+
+#confirmBox {
+  width: min(460px, 100%);
+  padding: 28px;
+
+  background: rgba(0, 0, 0, 0.96);
+  border: 1px solid var(--amber);
+  color: var(--text-amber);
+
+  box-shadow: 0 0 24px rgba(255, 204, 102, 0.18);
+}
+
+#confirmBox h2 {
+  margin: 0 0 16px;
+  color: var(--amber);
+  letter-spacing: 1px;
+}
+
+#confirmMessage {
+  margin: 0 0 24px;
+  line-height: 1.5;
+  color: rgba(255, 230, 180, 0.85);
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.confirm-actions button {
+  background: transparent;
+}
+
+.danger-button {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.danger-button:hover {
+  background: var(--amber-soft);
+  box-shadow: 0 0 10px rgba(255, 204, 102, 0.25);
+}
 .menu-screen {
   min-height: calc(100vh - 48px);
   display: flex;
