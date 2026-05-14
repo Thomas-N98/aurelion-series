@@ -716,51 +716,40 @@ function updateEnvironment() {
 
   element.innerHTML = "";
 
-  // Details
   addEnvironmentLine(
     element,
-    "Details here:",
+    "Accessible:",
     "environment-heading"
   );
 
-  const visibleDetails =
-  area.details.filter(shouldShowDetail);
+  const exits = Object.values(area.exits || {});
 
-  if (visibleDetails.length > 0) {
-  visibleDetails.forEach(detail => {
+  if (exits.length === 0) {
     addEnvironmentLine(
       element,
-      detail,
-      "area-detail"
+      "keine offensichtlichen Wege",
+      "area-exit"
+    );
+    return;
+  }
+
+  exits.forEach(exit => {
+    const wasVisited = gameState.visitedAreas.includes(exit.target);
+
+    const label = wasVisited
+      ? exit.discoveredLabel
+      : exit.hiddenLabel;
+
+    const className = wasVisited
+      ? "area-exit visited-area"
+      : "area-exit";
+
+    addEnvironmentLine(
+      element,
+      `${exit.display}: ${label}`,
+      className
     );
   });
-}
-
-  // Nearby Areas
-  addEnvironmentLine(
-    element,
-    "Nearby areas:",
-    "environment-heading"
-  );
-
-  // WICHTIG: neue exits-Struktur
-  Object.values(area.exits).forEach(exit => {
-  const wasVisited = gameState.visitedAreas.includes(exit.target);
-
-  const label = wasVisited
-    ? exit.discoveredLabel
-    : exit.hiddenLabel;
-
-  const className = wasVisited
-    ? "area-exit visited-area"
-    : "area-exit";
-
-  addEnvironmentLine(
-    element,
-    `${exit.display}: ${label}`,
-    className
-  );
-});
 }
 
 function addEnvironmentLine(parent, text, className) {
