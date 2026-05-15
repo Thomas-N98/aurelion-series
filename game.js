@@ -789,16 +789,16 @@ function getCarryOverForChapter(profile, chapterId) {
   }
 
   return {
-    inventory: [...(previousSave.inventory || [])],
-    discoveredVerbs: [...(previousSave.discoveredVerbs || [])],
-    health: previousSave.health || "healthy"
-  };
+  inventory: { ...(previousSave.inventory || {}) },
+  discoveredVerbs: [...(previousSave.discoveredVerbs || [])],
+  health: previousSave.health || "healthy"
+};
 }
 
 function createChapterGameState(chapterId, carryOver = {}) {
   const state = createInitialGameState(chapterId);
 
-  state.inventory = [...(carryOver.inventory || [])];
+  state.inventory = { ...(carryOver.inventory || {}) };
   state.discoveredVerbs = [...(carryOver.discoveredVerbs || [])];
   state.health = carryOver.health || "healthy";
 
