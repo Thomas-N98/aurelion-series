@@ -351,6 +351,7 @@ function updateHelpMenu() {
 const categoryOrder = [
   "NAVIGATION",
   "INTERACTION",
+  "AURELION",
   "SYSTEM"
 ];
 
