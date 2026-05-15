@@ -1782,12 +1782,42 @@ function useItem(commandRest) {
   const parts = commandRest.split(" ");
 
   if (parts.length < 2) {
-    showParserHint("SYSTEM HINT: Interaktion unvollständig. Zielobjekt nicht spezifiziert.");
-return;
+    showParserHint(
+      "SYSTEM HINT: Interaktion unvollständig. Zielobjekt nicht spezifiziert."
+    );
+    return;
   }
 
   const item = parts[0];
   const target = parts.slice(1).join(" ");
+
+  if (!hasItem(item)) {
+    showText(`Du hast ${item} nicht im Inventar.`);
+    return;
+  }
+
+  const area = currentArea();
+
+  const targetIsVisibleDetail =
+    area.details &&
+    area.details.includes(target) &&
+    shouldShowDetail(target);
+
+  const targetIsCurrentArea =
+    gameState.area === target;
+
+  const targetIsReachableArea =
+    area.exits &&
+    Object.values(area.exits).some(exit => exit.target === target);
+
+  if (
+    !targetIsVisibleDetail &&
+    !targetIsCurrentArea &&
+    !targetIsReachableArea
+  ) {
+    showText("Dieses Ziel ist hier nicht erreichbar.");
+    return;
+  }
 
   const wasHandled = runUseInteraction(item, target);
 
