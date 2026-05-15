@@ -309,7 +309,7 @@ categoryOrder.forEach(category => {
     "command-category-header";
 
   categoryHeader.textContent =
-    category;
+  `SECTOR: ${category}`;
 
   index.appendChild(categoryHeader);
 
@@ -346,14 +346,18 @@ categoryOrder.forEach(category => {
     }
 
     button.innerHTML = `
-      <span class="command-index-label">
-        ${
-          isDiscovered
-            ? command.label
-            : "???"
-        }
-      </span>
-    `;
+  <span class="command-index-prefix">
+    &gt;
+  </span>
+
+  <span class="command-index-label">
+    ${
+      isDiscovered
+        ? command.label
+        : "???"
+    }
+  </span>
+`;
 
     button.addEventListener(
       "click",
