@@ -1203,7 +1203,17 @@ function render() {
     "PRIMARY OBJECTIVE: " + room.objective;
 
   showAreaDescription();
+(currentArea().details || []).forEach(detailId => {
+  const detailData = getDetailData(detailId);
 
+  if (
+    detailData &&
+    detailData.visibleByDefault === true &&
+    shouldShowDetail(detailId)
+  ) {
+    knowObject(detailId);
+  }
+});
   updateStatusPanel();
   updateEnvironment();
   updateInventory();
@@ -1696,6 +1706,19 @@ if (!targetAreaId && isVisibleDetail(target)) {
   if (!gameState.visitedAreas.includes(targetAreaId)) {
     gameState.visitedAreas.push(targetAreaId);
   }
+  const newArea = currentArea();
+
+(newArea.details || []).forEach(detailId => {
+  const detailData = getDetailData(detailId);
+
+  if (
+    detailData &&
+    detailData.visibleByDefault === true &&
+    shouldShowDetail(detailId)
+  ) {
+    knowObject(detailId);
+  }
+});
 
   showAreaDescription();
   updateEnvironment();
