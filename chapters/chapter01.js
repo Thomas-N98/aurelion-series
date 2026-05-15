@@ -327,21 +327,7 @@ interactions: {
     }
   },
 
-  take: {
-    zugangskarte() {
-      if (hasItem("zugangskarte")) {
-        showText("Du hast die Zugangskarte bereits.");
-        return;
-      }
-
-      addItem("zugangskarte");
-
-      showText("Du hebst die schmutzige Zugangskarte auf.");
-
-      updateInventory();
-      updateEnvironment();
-    }
-  },
+  take: {},
   
   use: {
     zugangskarte: {
