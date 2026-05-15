@@ -292,8 +292,8 @@ baumstämme: {
   takeable: true,
   takeText: "Du hebst die schmutzige Zugangskarte auf.",
   hideWhenInInventory: "zugangskarte"
+}
 },
-
 interactions: {
   examine: {
     wegweiser() {
