@@ -1829,25 +1829,31 @@ function combineItems(commandRest) {
   const parts = commandRest.split(" ");
 
   if (parts.length < 2) {
-    showParserHint("SYSTEM HINT: Kombinationsprozess unvollständig. Zusätzliche Komponente erforderlich.");
-return;
+    showParserHint(
+      "SYSTEM HINT: Kombinationsprozess unvollständig. Zusätzliche Komponente erforderlich."
+    );
+    return;
   }
 
   const itemA = parts[0];
   const itemB = parts.slice(1).join(" ");
 
   if (!hasItem(itemA)) {
-    showText("Du hast " + itemA + " nicht im Inventar.");
+    showText(`Du hast ${itemA} nicht im Inventar.`);
     return;
   }
 
   if (!hasItem(itemB)) {
-    showText("Du hast " + itemB + " nicht im Inventar.");
+    showText(`Du hast ${itemB} nicht im Inventar.`);
     return;
   }
 
-  const wasHandled =
-    runCombineInteraction(itemA, itemB);
+  if (itemA === itemB && getItemQuantity(itemA) < 2) {
+    showText(`Du hast nicht genug ${getItemName(itemA)} dafür.`);
+    return;
+  }
+
+  const wasHandled = runCombineInteraction(itemA, itemB);
 
   if (wasHandled) return;
 
