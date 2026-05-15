@@ -1748,7 +1748,6 @@ function examine(target) {
     return;
   }
 
-  // 1. Inventar-Item prüfen
   if (hasItem(target)) {
     const itemData = getItemData(target);
 
@@ -1761,15 +1760,26 @@ function examine(target) {
     return;
   }
 
-  // 2. Welt-Detail prüfen
-  if (
-    !area.details.includes(target) ||
-    !shouldShowDetail(target)
-  ) {
+  const targetIsVisibleDetail =
+    area.details &&
+    area.details.includes(target) &&
+    shouldShowDetail(target);
+
+  const targetIsKnown =
+    knowsObject(target);
+
+  if (!targetIsVisibleDetail && !targetIsKnown) {
+    showParserHint("SYSTEM HINT: Zielobjekt unbekannt.");
+    return;
+  }
+
+  if (!targetIsVisibleDetail && targetIsKnown) {
     showText("Das kannst du von hier aus nicht untersuchen.");
     return;
   }
+
   knowObject(target);
+
   runRoomInteraction("examine", target);
 
   showText(getDetailText(target));
