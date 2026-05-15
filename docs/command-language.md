@@ -14,10 +14,18 @@ Commands werden in mehreren Stufen eingeführt.
 
 Nicht alle Interaktionsmöglichkeiten sollen früh sichtbar sein. Spieler sollen auch in späteren Kapiteln noch neue Mechaniken entdecken.
 
-### Tier 1 — Core Exploration
-*(Tutorial + frühe Kapitel)*
+### Tier 0 — System
+(Strukturelle Commands)
 
-Grundsprache der Welt.
+- `hint`
+- `terminal`
+- `options`
+- `karte [wenn freigeschaltet]`
+
+---
+
+### Tier 1 — Core Exploration
+(Welt lesen und navigieren)
 
 - `umsehen`
 - `gehe [richtung/ort]`
@@ -25,8 +33,6 @@ Grundsprache der Welt.
 - `nimm [objekt]`
 - `benutze [objekt] [ziel]`
 - `öffne [objekt]`
-- `hint`
-- `terminal`
 
 Ziel:
 Spieler versteht grundlegende Navigation und Interaktion.
@@ -34,16 +40,13 @@ Spieler versteht grundlegende Navigation und Interaktion.
 ---
 
 ### Tier 2 — Investigation
-*(frühe bis mittlere Kapitel)*
-
-Neue Formen der Informationsgewinnung.
-
-Mögliche Commands:
+(Neue Formen der Informationsgewinnung.)
 
 - `lies [objekt]`
 - `lausche [objekt/person]`
 - `rede [person]`
-- `warte`
+- `analysiere`
+- `vergleiche`
 
 Ziel:
 Welt wird informationsreicher und weniger rein objektbasiert.
@@ -51,11 +54,7 @@ Welt wird informationsreicher und weniger rein objektbasiert.
 ---
 
 ### Tier 3 — Manipulation & Facility Interaction
-*(mittlere Kapitel)*
-
-Neue Interaktionslogik mit Maschinen, Industrieumgebung und Infrastruktur.
-
-Mögliche Commands:
+(Neue Interaktionslogik mit Maschinen, Industrieumgebung und Infrastruktur.)
 
 - `kombiniere [objekt] [objekt]`
 - `verbinde [objekt] [objekt]`
@@ -74,8 +73,41 @@ Beispiel:
 
 ---
 
-### Tier 4 — Aurelion Systems
-*(spätere Kapitel)*
+### Tier 4 Threat/Survival
+
+- `verstecke`
+- `renne`
+- `blockiere`
+- `werfe`
+- `ablenke`
+- `fliehe`
+- `verteidige`
+
+---
+
+### Tier 5 Stealth/Infiltration
+
+- `warte`
+- `schleiche`
+- `verstecke`
+- `lausche`
+- `beobachte`
+
+---
+
+### Tier 6 Social/Trust
+
+- `rede`
+- `frage`
+- `überzeuge`
+- `drohe`
+- `beruhige`
+- `lüge`
+- `vertraue`
+- `anzweifle`
+
+### Tier 7 — Aurelion Systems
+
 
 Spezielle Interaktionen, die die Eigenlogik von Aurelion erweitern.
 
@@ -92,6 +124,107 @@ Ziel:
 Späte Kapitel sollen neue Denkweisen ermöglichen und sich mechanisch anders anfühlen.
 
 ---
+
+8. Physical Environment
+
+(Raum physisch manipulieren)
+
+Sehr sparsam einsetzen.
+
+Commands:
+
+drücke
+ziehe
+drehe
+schiebe
+klettere
+krieche
+springe
+hebe
+
+Gameplay:
+
+Räumliche Probleme lösen.
+
+Gefahr: Parser-Bloat.
+
+9. Resource / Crafting
+
+(Knappheit & Improvisation)
+
+Nur wenn du Survival-Aspekte willst.
+
+Commands:
+
+kombiniere
+baue
+zerlege
+lade
+fülle
+
+Gameplay:
+
+Improvisation.
+
+10. Time / Timing
+
+(Zeit als Mechanik)
+
+Sehr unterschätzt.
+
+Commands:
+
+warte
+beobachte
+folge
+timing
+
+Gameplay:
+
+Muster erkennen.
+
+Patrouillen.
+
+Maschinenzyklen.
+
+Sehr stark für Rätsel.
+
+11. Memory / Cognition
+
+(Psychologischer Weirdness-Shit)
+
+Falls Aurelion später Mindfuck wird.
+
+Commands:
+
+erinnere
+rekonstruiere
+vergleiche
+verbinde
+
+Gameplay:
+
+Was ist real?
+
+12. Morality / Ethics
+
+(Experimental)
+
+Wenn Entscheidungen wichtig werden.
+
+Commands:
+
+rette
+opfere
+vertraue
+verweigere
+kooperiere
+
+Gameplay:
+
+Wer bist du?
+
+
 
 ## Hidden Commands
 
