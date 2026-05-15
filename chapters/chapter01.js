@@ -287,9 +287,11 @@ baumstämme: {
     "Die Baumstämme liegen kreuz und quer über dem Weg. Einige sehen frisch gebrochen aus."
 },
   zugangskarte: {
-    text: "Die Zugangskarte liegt halb verdeckt im Schmutz. Vielleicht funktioniert sie noch.",
-    hideWhenInInventory: "zugangskarte"
-  }
+  text: "Die Zugangskarte liegt halb verdeckt im Schmutz. Vielleicht funktioniert sie noch.",
+  itemId: "zugangskarte",
+  takeable: true,
+  takeText: "Du hebst die schmutzige Zugangskarte auf.",
+  hideWhenInInventory: "zugangskarte"
 },
 
 interactions: {
