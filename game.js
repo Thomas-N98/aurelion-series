@@ -1837,15 +1837,18 @@ function useItem(commandRest) {
   const targetIsReachableArea =
     area.exits &&
     Object.values(area.exits).some(exit => exit.target === target);
+  const targetIsKnown =
+    knowsObject(target);
 
   if (
-    !targetIsVisibleDetail &&
-    !targetIsCurrentArea &&
-    !targetIsReachableArea
-  ) {
-    showText("Dieses Ziel ist hier nicht erreichbar.");
-    return;
-  }
+  !targetIsVisibleDetail &&
+  !targetIsCurrentArea &&
+  !targetIsReachableArea &&
+  !targetIsKnown
+) {
+  showText("Dieses Ziel ist hier nicht erreichbar.");
+  return;
+}
 
   const wasHandled = runUseInteraction(item, target);
 
