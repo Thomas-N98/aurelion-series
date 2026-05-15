@@ -372,6 +372,7 @@ categoryOrder.forEach(category => {
     index.appendChild(button);
   });
 });
+  renderCommandDetails(selectedCommandId);
 }
 
 function renderCommandDetails(commandId) {
