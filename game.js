@@ -72,7 +72,10 @@ const commandRegistry = {
     label: "umsehen",
     syntax: "umsehen",
     category: "NAVIGATION",
+    order: 10,
     visibleByDefault: true,
+    blockedWhen: () => hasFlag("sensoryInputBlocked"),
+    blockedText: "SYSTEM HINT: Umgebungsanalyse aktuell eingeschränkt.",
     description: "Beschreibt die aktuelle Umgebung erneut.",
     examples: []
   },
@@ -82,8 +85,9 @@ const commandRegistry = {
     label: "gehe",
     syntax: "gehe [richtung/ort]",
     category: "NAVIGATION",
+    order: 20,
     visibleByDefault: true,
-    blockedWhen: () => hasFlag("movementLocked"),
+    blockedWhen: () => hasFlag("movementLocked") || hasFlag("legInjured"),
     blockedText: "SYSTEM HINT: Bewegung aktuell eingeschränkt.",
     description: "Bewegt dich zwischen Orten.",
     examples: [
@@ -98,7 +102,10 @@ const commandRegistry = {
     label: "untersuche",
     syntax: "untersuche [objekt]",
     category: "INTERACTION",
+    order: 10,
     visibleByDefault: true,
+    blockedWhen: () => hasFlag("sensoryInputBlocked") || hasFlag("focusBlocked"),
+    blockedText: "SYSTEM HINT: Detaillierte Analyse aktuell nicht möglich.",
     description: "Inspiziert Gegenstände, Orte oder Hinweise genauer.",
     examples: [
       "untersuche wegweiser",
@@ -111,9 +118,10 @@ const commandRegistry = {
     label: "nimm",
     syntax: "nimm [objekt]",
     category: "INTERACTION",
+    order: 20,
     visibleByDefault: false,
     discoveredFlag: "command_nimm_discovered",
-    blockedWhen: () => hasFlag("interactionLocked") || hasFlag("handsBlocked"),
+    blockedWhen: () => hasFlag("interactionLocked") || hasFlag("handsBlocked") || hasFlag("armInjured"),
     blockedText: "SYSTEM HINT: Greifen aktuell nicht möglich.",
     description: "Hebt Gegenstände auf, wenn möglich.",
     examples: [
@@ -127,9 +135,10 @@ const commandRegistry = {
     label: "benutze",
     syntax: "benutze [objekt] [ziel]",
     category: "INTERACTION",
+    order: 30,
     visibleByDefault: false,
     discoveredFlag: "command_benutze_discovered",
-    blockedWhen: () => hasFlag("interactionLocked") || hasFlag("handsBlocked"),
+    blockedWhen: () => hasFlag("interactionLocked") || hasFlag("handsBlocked") || hasFlag("armInjured"),
     blockedText: "SYSTEM HINT: Objektinteraktion aktuell nicht möglich.",
     description: "Verwendet einen Gegenstand auf etwas.",
     examples: [
@@ -143,9 +152,10 @@ const commandRegistry = {
     label: "öffne",
     syntax: "öffne [objekt]",
     category: "INTERACTION",
+    order: 40,
     visibleByDefault: false,
     discoveredFlag: "command_oeffne_discovered",
-    blockedWhen: () => hasFlag("interactionLocked") || hasFlag("handsBlocked"),
+    blockedWhen: () => hasFlag("interactionLocked") || hasFlag("handsBlocked") || hasFlag("armInjured"),
     blockedText: "SYSTEM HINT: Öffnen aktuell nicht möglich.",
     description: "Öffnet Behälter, Türen oder Mechanismen.",
     examples: [
@@ -159,9 +169,10 @@ const commandRegistry = {
     label: "kombiniere",
     syntax: "kombiniere [objekt] [objekt]",
     category: "INTERACTION",
+    order: 50,
     visibleByDefault: false,
     discoveredFlag: "command_kombiniere_discovered",
-    blockedWhen: () => hasFlag("inventoryLocked") || hasFlag("handsBlocked"),
+    blockedWhen: () => hasFlag("inventoryLocked") || hasFlag("handsBlocked") || hasFlag("armInjured"),
     blockedText: "SYSTEM HINT: Inventarzugriff aktuell eingeschränkt.",
     description: "Kombiniert Objekte zu etwas Neuem.",
     examples: [
@@ -170,28 +181,33 @@ const commandRegistry = {
     ]
   },
 
-  terminal: {
-    id: "terminal",
-    label: "terminal",
-    syntax: "terminal",
-    category: "SYSTEM",
-    visibleByDefault: true,
-    description: "Öffnet das Aurelion System Terminal.",
-    examples: []
-  },
-
   hint: {
     id: "hint",
     label: "hint",
     syntax: "hint",
     category: "SYSTEM",
-    visibleByDefault: false,
-    discoveredFlag: "command_hint_discovered",
-    description: "Fordert eine subtile Systemanalyse zur aktuellen Situation an.",
+    order: 10,
+    visibleByDefault: true,
+    blockedWhen: () => hasFlag("supportProtocolLocked"),
+    blockedText: "SYSTEM HINT: Support-Protokoll aktuell nicht verfügbar.",
+    description: "Fordert eine begrenzte Systemanalyse der aktuellen Situation an.",
     examples: [
       "hint",
       "hint kartenleser"
     ]
+  },
+
+  terminal: {
+    id: "terminal",
+    label: "terminal",
+    syntax: "terminal",
+    category: "SYSTEM",
+    order: 20,
+    visibleByDefault: true,
+    blockedWhen: () => hasFlag("terminalLocked"),
+    blockedText: "SYSTEM HINT: Terminalzugriff aktuell gesperrt.",
+    description: "Öffnet das Aurelion System Terminal.",
+    examples: []
   }
 };
 
