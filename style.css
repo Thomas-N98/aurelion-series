@@ -1292,12 +1292,19 @@ button:hover {
 }
 
 #commandIndex,
-#commandDetails {
+#commandDetails,
+#observationsList {
   min-height: 0;
   overflow-y: auto;
 
-  scrollbar-width: thin;
-  scrollbar-color: rgba(54, 255, 133, 0.55) transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#commandIndex::-webkit-scrollbar,
+#commandDetails::-webkit-scrollbar,
+#observationsList::-webkit-scrollbar {
+  display: none;
 }
 
 #commandIndex::-webkit-scrollbar,
