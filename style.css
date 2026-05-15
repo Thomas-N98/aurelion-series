@@ -1278,3 +1278,173 @@ button:hover {
   box-shadow: 0 0 10px rgba(255, 204, 102, 0.25);
   transform: none;
 }
+/* =========================
+   COMMAND MANUAL
+========================= */
+
+#commandManual {
+  display: grid;
+  grid-template-columns: minmax(150px, 220px) 1fr;
+  gap: 16px;
+
+  height: min(440px, 52vh);
+  min-height: 320px;
+}
+
+#commandIndex,
+#commandDetails {
+  min-height: 0;
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(54, 255, 133, 0.55) transparent;
+}
+
+#commandIndex::-webkit-scrollbar,
+#commandDetails::-webkit-scrollbar {
+  width: 6px;
+}
+
+#commandIndex::-webkit-scrollbar-track,
+#commandDetails::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#commandIndex::-webkit-scrollbar-thumb,
+#commandDetails::-webkit-scrollbar-thumb {
+  background: rgba(54, 255, 133, 0.45);
+}
+
+#commandIndex {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 6px;
+}
+
+.command-index-entry {
+  width: 100%;
+  padding: 10px 12px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+
+  background: rgba(54, 255, 133, 0.025);
+  border: 1px solid rgba(54, 255, 133, 0.12);
+
+  text-align: left;
+}
+
+.command-index-entry:hover {
+  background: var(--green-soft);
+  transform: none;
+}
+
+.command-index-entry.active {
+  background: rgba(54, 255, 133, 0.12);
+  border-color: var(--green);
+}
+
+.command-index-entry.undiscovered {
+  opacity: 0.55;
+  border-style: dashed;
+}
+
+.command-index-entry.blocked {
+  border-color: rgba(255, 204, 102, 0.4);
+}
+
+.command-index-label {
+  color: var(--text-green);
+  font-weight: bold;
+}
+
+.command-index-category {
+  color: rgba(215, 255, 225, 0.45);
+  font-size: 0.68rem;
+  letter-spacing: 1px;
+}
+
+#commandDetails {
+  padding: 18px;
+  background: rgba(54, 255, 133, 0.025);
+  border: 1px solid rgba(54, 255, 133, 0.12);
+}
+
+.command-detail-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+
+.command-detail-header h4 {
+  margin: 0;
+  color: var(--green);
+  font-size: 1.05rem;
+}
+
+.command-detail-header span {
+  color: rgba(215, 255, 225, 0.45);
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+}
+
+.command-detail-code {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 5px 9px;
+
+  color: var(--text-green);
+  background: rgba(54, 255, 133, 0.06);
+  border: 1px solid rgba(54, 255, 133, 0.14);
+}
+
+.command-detail-description {
+  color: rgba(215, 255, 225, 0.86);
+  line-height: 1.5;
+}
+
+.command-detail-warning {
+  margin: 14px 0;
+  padding: 10px 12px;
+
+  color: var(--text-amber);
+  background: rgba(255, 204, 102, 0.035);
+  border: 1px solid rgba(255, 204, 102, 0.18);
+
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.command-detail-locked {
+  color: rgba(215, 255, 225, 0.5);
+}
+
+.command-detail-locked h4 {
+  margin-top: 0;
+  color: rgba(215, 255, 225, 0.45);
+}
+
+.command-details-empty {
+  color: rgba(215, 255, 225, 0.45);
+  font-style: italic;
+}
+
+@media (max-width: 700px) {
+  #commandManual {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  #commandIndex {
+    max-height: 180px;
+  }
+
+  #commandDetails {
+    max-height: 320px;
+  }
+}
