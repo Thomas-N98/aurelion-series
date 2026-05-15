@@ -1695,10 +1695,13 @@ return;
     return;
   }
 
-  if (!area.details.includes(target)) {
-    showText("Das kannst du von hier aus nicht untersuchen.");
-    return;
-  }
+  if (
+  !area.details.includes(target) ||
+  !shouldShowDetail(target)
+) {
+  showText("Das kannst du von hier aus nicht untersuchen.");
+  return;
+}
 runRoomInteraction("examine", target);
 
 showText(getDetailText(target));
@@ -1707,10 +1710,13 @@ showText(getDetailText(target));
 function takeItem(target) {
   const area = currentArea();
 
-  if (!area.details.includes(target)) {
-    showText("Das kannst du hier nicht nehmen.");
-    return;
-  }
+  if (
+  !area.details.includes(target) ||
+  !shouldShowDetail(target)
+) {
+  showText("Das kannst du hier nicht nehmen.");
+  return;
+}
 
   const wasHandled = runRoomInteraction("take", target);
 
