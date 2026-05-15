@@ -1881,7 +1881,21 @@ function useItem(commandRest) {
   !targetIsReachableArea &&
   !targetIsKnown
 ) {
-  showText("Dieses Ziel ist hier nicht erreichbar.");
+  showParserHint(
+    "SYSTEM HINT: Zielobjekt unbekannt."
+  );
+  return;
+}
+
+if (
+  !targetIsVisibleDetail &&
+  !targetIsCurrentArea &&
+  !targetIsReachableArea &&
+  targetIsKnown
+) {
+  showParserHint(
+    "SYSTEM HINT: Zielobjekt zu weit entfernt für Interaktion."
+  );
   return;
 }
 
