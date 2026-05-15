@@ -1694,7 +1694,17 @@ return;
     showText("Von hier aus kannst du diesen Ort nicht genauer erkennen.");
     return;
   }
+if (hasItem(target)) {
+  const itemData = getItemData(target);
 
+  showText(
+    itemData?.examineText ||
+    itemData?.description ||
+    "Du findest nichts Auffälliges."
+  );
+
+  return;
+}
   if (
   !area.details.includes(target) ||
   !shouldShowDetail(target)
