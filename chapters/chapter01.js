@@ -198,6 +198,11 @@ aliases: {
 
   haupttor: {
     name: "Haupttor",
+    aliases: [
+    "tor",
+    "eingang",
+    "gate"
+  ],
     description:
       "Du stehst direkt vor dem massiven Haupttor von Aurelion Industries.\n\nAus der Nähe erkennst du mehrere technische Vorrichtungen.",
     exits: {
@@ -219,6 +224,12 @@ aliases: {
 
     wartungsrohr: {
     name: "Wartungsrohr",
+      aliases: [
+    "rohr",
+    "wartung",
+    "gebaeudeseite",
+    "gebäudeseite"
+  ],
     description:
       "Du stehst bei einem alten Wartungsrohr am Rand des Gebäudes.\n\nZwischen Laub, Schmutz und Beton liegt etwas Halbverdecktes.",
     exits: {
