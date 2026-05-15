@@ -1716,6 +1716,29 @@ function takeItem(target) {
 
   if (wasHandled) return;
 
+  const detailData = getDetailData(target);
+
+  if (
+    detailData &&
+    detailData.takeable &&
+    detailData.itemId
+  ) {
+    if (hasItem(detailData.itemId)) {
+      showText("Du hast das bereits eingesteckt.");
+      return;
+    }
+
+    addItem(detailData.itemId);
+
+    showText(
+      detailData.takeText ||
+      `Du nimmst ${getItemName(detailData.itemId)}.`
+    );
+
+    updateEnvironment();
+    return;
+  }
+
   showText("Das lässt sich nicht sinnvoll mitnehmen.");
 }
 function openObject(target) {
