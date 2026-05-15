@@ -1687,34 +1687,41 @@ function examine(target) {
 
     if (possibleExits.includes(target)) {
       showText(`${room.areas[target].name} liegt in der Nähe.`);
-showParserHint(`SYSTEM HINT: Distanz zu Zielbereich zu hoch für detaillierte Analyse.`);
-return;
+      showParserHint(
+        "SYSTEM HINT: Distanz zu Zielbereich zu hoch für detaillierte Analyse."
+      );
+      return;
     }
 
     showText("Von hier aus kannst du diesen Ort nicht genauer erkennen.");
     return;
   }
-if (hasItem(target)) {
-  const itemData = getItemData(target);
 
-  showText(
-    itemData?.examineText ||
-    itemData?.description ||
-    "Du findest nichts Auffälliges."
-  );
+  // 1. Inventar-Item prüfen
+  if (hasItem(target)) {
+    const itemData = getItemData(target);
 
-  return;
-}
+    showText(
+      itemData?.examineText ||
+      itemData?.description ||
+      "Du findest nichts Auffälliges."
+    );
+
+    return;
+  }
+
+  // 2. Welt-Detail prüfen
   if (
-  !area.details.includes(target) ||
-  !shouldShowDetail(target)
-) {
-  showText("Das kannst du von hier aus nicht untersuchen.");
-  return;
-}
-runRoomInteraction("examine", target);
+    !area.details.includes(target) ||
+    !shouldShowDetail(target)
+  ) {
+    showText("Das kannst du von hier aus nicht untersuchen.");
+    return;
+  }
 
-showText(getDetailText(target));
+  runRoomInteraction("examine", target);
+
+  showText(getDetailText(target));
 }
 
 function takeItem(target) {
