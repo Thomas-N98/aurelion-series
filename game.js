@@ -243,65 +243,130 @@ function canUseCommand(commandId) {
   return true;
 }
 
+let selectedCommandId = "gehe";
+
 function updateHelpMenu() {
-  const container = document.getElementById("commandsList");
+  const index = document.getElementById("commandIndex");
+  const details = document.getElementById("commandDetails");
 
-  if (!container) return;
+  if (!index || !details) return;
 
-  container.innerHTML = "";
+  index.innerHTML = "";
 
-  const commands = Object.values(commandRegistry)
-    .filter(command => isCommandDiscovered(command.id));
+  const commands = Object.values(commandRegistry);
 
-  const categories = [...new Set(commands.map(command => command.category))];
+  if (!commandRegistry[selectedCommandId]) {
+    selectedCommandId = commands[0]?.id || null;
+  }
 
-  categories.forEach(category => {
-    const section = document.createElement("div");
-    section.className = "help-section";
+  commands.forEach(command => {
+    const isDiscovered = isCommandDiscovered(command.id);
+    const isSelected = command.id === selectedCommandId;
+    const blockReason = getCommandBlockReason(command.id);
 
-    section.innerHTML = `<h4>${category}</h4>`;
+    const button = document.createElement("button");
 
-    commands
-      .filter(command => command.category === category)
-      .forEach(command => {
-        const entry = document.createElement("div");
-        entry.className = "command-entry";
+    button.type = "button";
+    button.className = "command-index-entry";
 
-        const blockReason = getCommandBlockReason(command.id);
-        const blockedClass = blockReason ? " blocked-command-entry" : "";
+    if (isSelected) {
+      button.classList.add("active");
+    }
 
-        entry.className += blockedClass;
+    if (!isDiscovered) {
+      button.classList.add("undiscovered");
+    }
 
-        entry.innerHTML = `
-          <strong>${command.syntax}</strong>
+    if (blockReason && isDiscovered) {
+      button.classList.add("blocked");
+    }
 
-          <div class="command-description">
-            ${command.description}
-          </div>
+    button.innerHTML = `
+      <span class="command-index-label">
+        ${isDiscovered ? command.label : "???"}
+      </span>
 
-          ${
-            blockReason
-              ? `<div class="command-blocked-note">${blockReason.replace("SYSTEM HINT: ", "")}</div>`
-              : ""
-          }
+      <span class="command-index-category">
+        ${isDiscovered ? command.category : "UNKNOWN"}
+      </span>
+    `;
 
-          ${
-            command.examples && command.examples.length > 0
-              ? `
-                <div class="example-label">BEISPIELE</div>
-                <div class="example">
-                  ${command.examples.map(example => `&gt; ${example}`).join("<br>")}
-                </div>
-              `
-              : ""
-          }
-        `;
+    button.addEventListener("click", () => {
+      selectedCommandId = command.id;
+      updateHelpMenu();
+    });
 
-        section.appendChild(entry);
-      });
-
-    container.appendChild(section);
+    index.appendChild(button);
   });
+
+  renderCommandDetails(selectedCommandId);
+}
+
+function renderCommandDetails(commandId) {
+  const details = document.getElementById("commandDetails");
+  const command = commandRegistry[commandId];
+
+  if (!details || !command) return;
+
+  const isDiscovered = isCommandDiscovered(command.id);
+
+  if (!isDiscovered) {
+    details.innerHTML = `
+      <div class="command-detail-locked">
+        <h4>UNKNOWN PROTOCOL</h4>
+
+        <div class="command-detail-code">???</div>
+
+        <p>
+          Command documentation unavailable.<br>
+          Interaction pattern not yet indexed.
+        </p>
+      </div>
+    `;
+
+    return;
+  }
+
+  const blockReason = getCommandBlockReason(command.id);
+
+  details.innerHTML = `
+    <div class="command-detail-header">
+      <h4>${command.label}</h4>
+      <span>${command.category}</span>
+    </div>
+
+    <div class="command-detail-code">
+      ${command.syntax}
+    </div>
+
+    <p class="command-detail-description">
+      ${command.description}
+    </p>
+
+    ${
+      blockReason
+        ? `
+          <div class="command-detail-warning">
+            ${blockReason.replace("SYSTEM HINT: ", "")}
+          </div>
+        `
+        : ""
+    }
+
+    ${
+      command.examples && command.examples.length > 0
+        ? `
+          <div class="example-label">BEISPIELE</div>
+
+          <div class="example">
+            ${command.examples
+              .map(example => `&gt; ${example}`)
+              .join("<br>")}
+          </div>
+        `
+        : ""
+    }
+  `;
 }
 function hasItem(itemId) {
   return gameState.inventory.includes(itemId);
