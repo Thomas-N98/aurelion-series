@@ -827,15 +827,6 @@ document.querySelectorAll(".help-tab").forEach(button => {
         .classList.add("active-tab");
     }
 
-    if (tabName === "fieldnotes") {
-      helpBox.classList.add("field-mode");
-      helpBox.classList.remove("observation-mode");
-
-      document
-        .getElementById("fieldnotesTab")
-        .classList.add("active-tab");
-    }
-
     if (tabName === "observations") {
       helpBox.classList.remove("field-mode");
       helpBox.classList.add("observation-mode");
