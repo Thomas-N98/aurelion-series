@@ -87,6 +87,7 @@ const commandRegistry = {
     category: "NAVIGATION",
     order: 20,
     visibleByDefault: true,
+    requiredItems: [],
     blockedWhen: () => hasFlag("movementLocked") || hasFlag("legInjured"),
     blockedText: "SYSTEM HINT: Bewegung aktuell eingeschränkt.",
     description: "Bewegt dich zwischen Orten.",
@@ -104,6 +105,7 @@ const commandRegistry = {
     category: "INTERACTION",
     order: 10,
     visibleByDefault: true,
+    requiredItems: [],
     blockedWhen: () => hasFlag("sensoryInputBlocked") || hasFlag("focusBlocked"),
     blockedText: "SYSTEM HINT: Detaillierte Analyse aktuell nicht möglich.",
     description: "Inspiziert Gegenstände, Orte oder Hinweise genauer.",
@@ -121,6 +123,7 @@ const commandRegistry = {
     order: 20,
     visibleByDefault: false,
     discoveredFlag: "command_nimm_discovered",
+    requiredItems: [],
     blockedWhen: () => hasFlag("interactionLocked") || hasFlag("handsBlocked") || hasFlag("armInjured"),
     blockedText: "SYSTEM HINT: Greifen aktuell nicht möglich.",
     description: "Hebt Gegenstände auf, wenn möglich.",
@@ -138,6 +141,7 @@ const commandRegistry = {
     order: 30,
     visibleByDefault: false,
     discoveredFlag: "command_benutze_discovered",
+    requiredItems: [],
     blockedWhen: () => hasFlag("interactionLocked") || hasFlag("handsBlocked") || hasFlag("armInjured"),
     blockedText: "SYSTEM HINT: Objektinteraktion aktuell nicht möglich.",
     description: "Verwendet einen Gegenstand auf etwas.",
@@ -155,6 +159,7 @@ const commandRegistry = {
     order: 40,
     visibleByDefault: false,
     discoveredFlag: "command_oeffne_discovered",
+    requiredItems: [],
     blockedWhen: () => hasFlag("interactionLocked") || hasFlag("handsBlocked") || hasFlag("armInjured"),
     blockedText: "SYSTEM HINT: Öffnen aktuell nicht möglich.",
     description: "Öffnet Behälter, Türen oder Mechanismen.",
@@ -172,6 +177,7 @@ const commandRegistry = {
     order: 50,
     visibleByDefault: false,
     discoveredFlag: "command_kombiniere_discovered",
+    requiredItems: [],
     blockedWhen: () => hasFlag("inventoryLocked") || hasFlag("handsBlocked") || hasFlag("armInjured"),
     blockedText: "SYSTEM HINT: Inventarzugriff aktuell eingeschränkt.",
     description: "Kombiniert Objekte zu etwas Neuem.",
@@ -188,6 +194,7 @@ const commandRegistry = {
     category: "SYSTEM",
     order: 10,
     visibleByDefault: true,
+    requiredItems: [],
     blockedWhen: () => hasFlag("supportProtocolLocked"),
     blockedText: "SYSTEM HINT: Support-Protokoll aktuell nicht verfügbar.",
     description: "Fordert eine begrenzte Systemanalyse der aktuellen Situation an.",
@@ -204,11 +211,38 @@ const commandRegistry = {
     category: "SYSTEM",
     order: 20,
     visibleByDefault: true,
+    requiredItems: [],
     blockedWhen: () => hasFlag("terminalLocked"),
     blockedText: "SYSTEM HINT: Terminalzugriff aktuell gesperrt.",
     description: "Öffnet das Aurelion System Terminal.",
     examples: []
-  }
+  },
+  scan: {
+  id: "scan",
+  label: "scan",
+  syntax: "scan [objekt]",
+  category: "AURELION",
+  order: 10,
+
+  visibleByDefault: false,
+  discoveredFlag: "command_scan_discovered",
+
+  requiredItems: ["scanner"],
+
+  blockedWhen: () =>
+    hasFlag("scannerBroken"),
+
+  blockedText:
+    "SYSTEM HINT: Scanner aktuell nicht verfügbar.",
+
+  description:
+    "Analysiert Objekte auf versteckte Informationen.",
+
+  examples: [
+    "scan terminal",
+    "scan roboter"
+  ]
+}
 };
 
 function isCommandDiscovered(commandId) {
@@ -226,7 +260,9 @@ function isCommandDiscovered(commandId) {
 function discoverCommand(commandId) {
   const command = commandRegistry[commandId];
 
-  if (!command || command.visibleByDefault) return;
+  if (!command || command.visibleByDefault) {
+    return false;
+  }
 
   if (command.discoveredFlag) {
     setFlag(command.discoveredFlag);
@@ -234,12 +270,55 @@ function discoverCommand(commandId) {
 
   // Übergangslösung für alte Saves / alte Kapitel-Logik
   discoverVerb(commandId);
-}
 
+  updateHelpMenu();
+
+  return true;
+}
+function discoverCommandFromItem(commandId, itemId) {
+  const command = commandRegistry[commandId];
+
+  if (!command) return false;
+
+  if (
+    command.requiredItems &&
+    command.requiredItems.includes(itemId)
+  ) {
+    return discoverCommand(commandId);
+  }
+
+  return false;
+}
 function getCommandBlockReason(commandId) {
   const command = commandRegistry[commandId];
 
-  if (!command || !command.blockedWhen) return null;
+  if (!command) return null;
+
+// Item-Anforderungen prüfen
+if (
+  command.requiredItems &&
+  command.requiredItems.length > 0
+) {
+  const hasRequiredItems =
+    command.requiredItems.every(
+      itemId => hasItem(itemId)
+    );
+
+  if (!hasRequiredItems) {
+    return "SYSTEM HINT: Erforderliche Ausrüstung fehlt.";
+  }
+}
+
+// Statusblock prüfen
+if (
+  command.blockedWhen &&
+  command.blockedWhen()
+) {
+  return (
+    command.blockedText ||
+    "SYSTEM HINT: Command aktuell gesperrt."
+  );
+}
 
   if (command.blockedWhen()) {
     return command.blockedText || "SYSTEM HINT: Command aktuell gesperrt.";
