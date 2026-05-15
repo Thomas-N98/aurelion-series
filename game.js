@@ -860,7 +860,26 @@ function getDetailData(detailId) {
 
   return room.details[detailId] || null;
 }
+function getAreaIdByAlias(alias) {
+  const room = currentRoom();
+  const normalizedAlias = normalizeText(alias);
 
+  return Object.keys(room.areas || {}).find(areaId => {
+    const areaData = room.areas[areaId];
+
+    if (normalizeText(areaId) === normalizedAlias) {
+      return true;
+    }
+
+    if (normalizeText(areaData.name || "") === normalizedAlias) {
+      return true;
+    }
+
+    return (areaData.aliases || []).some(areaAlias =>
+      normalizeText(areaAlias) === normalizedAlias
+    );
+  }) || null;
+}
 function getDetailText(detailId) {
   const detailData = getDetailData(detailId);
 
@@ -1466,6 +1485,11 @@ const detailAlias = getDetailIdByAlias(word);
 
 if (detailAlias) {
   return detailAlias;
+}
+const areaAlias = getAreaIdByAlias(word);
+
+if (areaAlias) {
+  return areaAlias;
 }
 
 return word;
