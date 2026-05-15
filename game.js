@@ -1431,7 +1431,19 @@ command = words.join(" ");
   words = words.filter(word => !fillerWords.includes(word));
   const aliases = currentAliases();
 
-words = words.map(word => aliases[word] || word);
+words = words.map(word => {
+  if (aliases[word]) {
+    return aliases[word];
+  }
+
+  const itemAlias = getItemIdByAlias(word);
+
+  if (itemAlias) {
+    return itemAlias;
+  }
+
+  return word;
+});
 
   return normalizeText(words.join(" "));
 }
@@ -1824,6 +1836,25 @@ function useItem(commandRest) {
   if (wasHandled) return;
 
   showText("Das scheint hier nichts zu bewirken.");
+}
+function getItemIdByAlias(alias) {
+  const normalizedAlias = normalizeText(alias);
+
+  return Object.keys(itemRegistry).find(itemId => {
+    const itemData = itemRegistry[itemId];
+
+    if (normalizeText(itemId) === normalizedAlias) {
+      return true;
+    }
+
+    if (normalizeText(itemData.name || "") === normalizedAlias) {
+      return true;
+    }
+
+    return (itemData.aliases || []).some(itemAlias =>
+      normalizeText(itemAlias) === normalizedAlias
+    );
+  }) || null;
 }
 function combineItems(commandRest) {
   const parts = commandRest.split(" ");
