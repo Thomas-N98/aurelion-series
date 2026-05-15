@@ -6,9 +6,6 @@ const chapter01 = {
 aliases: {
   tor: "haupttor",
   rohr: "wartungsrohr",
-  karte: "zugangskarte",
-  auto: "auto",
-  wegweiser: "wegweiser"
 },
 
   rooms: {
