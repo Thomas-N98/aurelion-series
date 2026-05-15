@@ -1282,13 +1282,17 @@ button:hover {
    COMMAND MANUAL
 ========================= */
 
+#generalTab {
+  height: 100%;
+}
+
 #commandManual {
   display: grid;
-  grid-template-columns: minmax(150px, 220px) 1fr;
-  gap: 16px;
+  grid-template-columns: minmax(180px, 230px) 1fr;
+  gap: 20px;
 
-  height: min(440px, 52vh);
-  min-height: 320px;
+  height: 100%;
+  min-height: 0;
 }
 
 #commandIndex,
