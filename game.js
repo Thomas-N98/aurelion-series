@@ -13,7 +13,7 @@ function createInitialGameState(
     area: chapter.startArea,
     visitedAreas: [chapter.startArea],
 
-    inventory: [],
+    inventory: {},
     discoveredVerbs: [],
     observations: [],
 
@@ -529,10 +529,74 @@ function renderCommandDetails(commandId) {
     }
   `;
 }
-function hasItem(itemId) {
-  return gameState.inventory.includes(itemId);
+function hasItem(itemId, quantity = 1) {
+  return (
+    gameState.inventory[itemId] &&
+    gameState.inventory[itemId].quantity >= quantity
+  );
+}
+function addItem(itemId, quantity = 1, customData = {}) {
+  const itemData = getItemData(itemId);
+
+  if (!itemData) {
+    console.warn("Unknown item:", itemId);
+    return false;
+  }
+
+  if (!gameState.inventory[itemId]) {
+    gameState.inventory[itemId] = {
+      quantity: 0,
+      customData: {}
+    };
+  }
+
+  const maxStack = itemData.maxStack || Infinity;
+  const currentQuantity =
+    gameState.inventory[itemId].quantity;
+
+  gameState.inventory[itemId].quantity =
+    Math.min(currentQuantity + quantity, maxStack);
+
+  gameState.inventory[itemId].customData = {
+    ...gameState.inventory[itemId].customData,
+    ...customData
+  };
+
+  if (itemData.unlocksCommands) {
+    itemData.unlocksCommands.forEach(commandId => {
+      discoverCommandFromItem(commandId, itemId);
+    });
+  }
+
+  updateInventory();
+  updateHelpMenu();
+
+  return true;
 }
 
+function removeItem(itemId, quantity = 1) {
+  if (!hasItem(itemId, quantity)) {
+    return false;
+  }
+
+  gameState.inventory[itemId].quantity -= quantity;
+
+  if (gameState.inventory[itemId].quantity <= 0) {
+    delete gameState.inventory[itemId];
+  }
+
+  updateInventory();
+
+  return true;
+}
+
+function getInventoryItem(itemId) {
+  return gameState.inventory[itemId] || null;
+}
+
+function getItemQuantity(itemId) {
+  return gameState.inventory[itemId]?.quantity || 0;
+}
 function discoverVerb(verb) {
   if (!gameState.discoveredVerbs.includes(verb)) {
     gameState.discoveredVerbs.push(verb);
@@ -769,11 +833,7 @@ function currentArea() {
   return currentRoom().areas[gameState.area];
 }
 function getItemData(itemId) {
-  const room = currentRoom();
-
-  if (!room.items) return null;
-
-  return room.items[itemId] || null;
+  return itemRegistry[itemId] || null;
 }
 
 function getItemName(itemId) {
@@ -1270,14 +1330,26 @@ function updateInventory() {
   const element = document.getElementById("inventory");
   element.innerHTML = "";
 
-  if (gameState.inventory.length === 0) {
-  return;
-}
+  const itemIds = Object.keys(gameState.inventory);
 
-  gameState.inventory.forEach(itemId => {
+  if (itemIds.length === 0) {
+    return;
+  }
+
+  itemIds.forEach(itemId => {
     const li = document.createElement("li");
     li.className = "inventory-item";
-    li.textContent = getItemName(itemId);
+
+    const quantity = getItemQuantity(itemId);
+    const itemData = getItemData(itemId);
+
+    const name = itemData?.name || itemId;
+
+    li.textContent =
+      quantity > 1
+        ? `${name} x${quantity}`
+        : name;
+
     element.appendChild(li);
   });
 }
