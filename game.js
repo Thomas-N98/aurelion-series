@@ -384,17 +384,25 @@ function renderCommandDetails(commandId) {
 
   if (!isDiscovered) {
     details.innerHTML = `
-      <div class="command-detail-locked">
-        <h4>UNKNOWN PROTOCOL</h4>
+  <div class="command-detail-locked">
 
-        <div class="command-detail-code">???</div>
+    <div class="command-detail-header">
+      <h4>UNKNOWN ENTRY</h4>
 
-        <p>
-          Command documentation unavailable.<br>
-          Interaction pattern not yet indexed.
-        </p>
-      </div>
-    `;
+      <span>UNINDEXED</span>
+    </div>
+
+    <div class="command-detail-divider"></div>
+
+    <div class="command-detail-description">
+      Documentation unavailable.<br><br>
+
+      Interaction pattern has not yet
+      been indexed.
+    </div>
+
+  </div>
+`;
 
     return;
   }
