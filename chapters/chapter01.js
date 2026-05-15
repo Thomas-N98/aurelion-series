@@ -3,10 +3,7 @@ const chapter01 = {
   startRoom: "outside",
   startArea: "parkplatz",
   
-aliases: {
-  tor: "haupttor",
-  rohr: "wartungsrohr",
-},
+aliases: {},
 
   rooms: {
   outside: {
