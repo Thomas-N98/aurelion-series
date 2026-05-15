@@ -1868,24 +1868,23 @@ function getDetailIdByAlias(alias) {
 
   if (!room.details) return null;
 
-  return Object.keys(room.details).find(detailId => {
+  const matches = Object.keys(room.details).filter(detailId => {
     const detailData = room.details[detailId];
 
     if (normalizeText(detailId) === normalizedAlias) {
       return true;
     }
 
-    if (
-      detailData.aliases &&
-      detailData.aliases.some(detailAlias =>
-        normalizeText(detailAlias) === normalizedAlias
-      )
-    ) {
-      return true;
-    }
+    return (detailData.aliases || []).some(detailAlias =>
+      normalizeText(detailAlias) === normalizedAlias
+    );
+  });
 
-    return false;
-  }) || null;
+  if (matches.length === 1) {
+    return matches[0];
+  }
+
+  return null;
 }
 
 function combineItems(commandRest) {
