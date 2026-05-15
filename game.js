@@ -66,92 +66,241 @@ function showUnknownCommand() {
     "Nutze „hilfe“ oder öffne den TERMINAL unten links, um bekannte Interaktionen einzusehen."
   );
 }
-const secretVerbs = [
-  {
+const commandRegistry = {
+  umsehen: {
+    id: "umsehen",
+    label: "umsehen",
+    syntax: "umsehen",
+    category: "NAVIGATION",
+    visibleByDefault: true,
+    description: "Beschreibt die aktuelle Umgebung erneut.",
+    examples: []
+  },
+
+  gehe: {
+    id: "gehe",
+    label: "gehe",
+    syntax: "gehe [richtung/ort]",
+    category: "NAVIGATION",
+    visibleByDefault: true,
+    blockedWhen: () => hasFlag("movementLocked"),
+    blockedText: "SYSTEM HINT: Bewegung aktuell eingeschränkt.",
+    description: "Bewegt dich zwischen Orten.",
+    examples: [
+      "gehe vorne",
+      "gehe links",
+      "gehe haupttor"
+    ]
+  },
+
+  untersuche: {
+    id: "untersuche",
+    label: "untersuche",
+    syntax: "untersuche [objekt]",
+    category: "INTERACTION",
+    visibleByDefault: true,
+    description: "Inspiziert Gegenstände, Orte oder Hinweise genauer.",
+    examples: [
+      "untersuche wegweiser",
+      "untersuche kartenleser"
+    ]
+  },
+
+  nimm: {
+    id: "nimm",
+    label: "nimm",
+    syntax: "nimm [objekt]",
+    category: "INTERACTION",
+    visibleByDefault: false,
+    discoveredFlag: "command_nimm_discovered",
+    blockedWhen: () => hasFlag("interactionLocked") || hasFlag("handsBlocked"),
+    blockedText: "SYSTEM HINT: Greifen aktuell nicht möglich.",
+    description: "Hebt Gegenstände auf, wenn möglich.",
+    examples: [
+      "nimm zugangskarte",
+      "nimm taschenlampe"
+    ]
+  },
+
+  benutze: {
+    id: "benutze",
+    label: "benutze",
+    syntax: "benutze [objekt] [ziel]",
+    category: "INTERACTION",
+    visibleByDefault: false,
+    discoveredFlag: "command_benutze_discovered",
+    blockedWhen: () => hasFlag("interactionLocked") || hasFlag("handsBlocked"),
+    blockedText: "SYSTEM HINT: Objektinteraktion aktuell nicht möglich.",
+    description: "Verwendet einen Gegenstand auf etwas.",
+    examples: [
+      "benutze zugangskarte kartenleser",
+      "benutze taschenlampe rohr"
+    ]
+  },
+
+  oeffne: {
     id: "oeffne",
     label: "öffne",
-    description:
-      "Open containers, doors or mechanisms.",
+    syntax: "öffne [objekt]",
+    category: "INTERACTION",
+    visibleByDefault: false,
+    discoveredFlag: "command_oeffne_discovered",
+    blockedWhen: () => hasFlag("interactionLocked") || hasFlag("handsBlocked"),
+    blockedText: "SYSTEM HINT: Öffnen aktuell nicht möglich.",
+    description: "Öffnet Behälter, Türen oder Mechanismen.",
     examples: [
       "öffne auto",
       "öffne schloss"
     ]
   },
-  {
-    id: "lies",
-    label: "lies",
-    description:
-      "Read signs, notes or labels.",
+
+  kombiniere: {
+    id: "kombiniere",
+    label: "kombiniere",
+    syntax: "kombiniere [objekt] [objekt]",
+    category: "INTERACTION",
+    visibleByDefault: false,
+    discoveredFlag: "command_kombiniere_discovered",
+    blockedWhen: () => hasFlag("inventoryLocked") || hasFlag("handsBlocked"),
+    blockedText: "SYSTEM HINT: Inventarzugriff aktuell eingeschränkt.",
+    description: "Kombiniert Objekte zu etwas Neuem.",
     examples: [
-      "lies warnschild",
-      "lies notiz"
+      "kombiniere kabel batterie",
+      "kombiniere karte leser"
     ]
   },
-  {
-    id: "ziehe",
-    label: "ziehe",
-    description:
-      "Pull handles, levers or loose objects.",
-    examples: [
-      "ziehe hebel",
-      "ziehe kabel"
-    ]
+
+  terminal: {
+    id: "terminal",
+    label: "terminal",
+    syntax: "terminal",
+    category: "SYSTEM",
+    visibleByDefault: true,
+    description: "Öffnet das Aurelion System Terminal.",
+    examples: []
   },
-  {
-  id: "kombiniere",
-  label: "kombiniere",
-  description:
-    "Combine objects to create something new.",
-  examples: [
-    "kombiniere kabel batterie",
-    "kombiniere karte leser"
-  ]
+
+  hint: {
+    id: "hint",
+    label: "hint",
+    syntax: "hint",
+    category: "SYSTEM",
+    visibleByDefault: false,
+    discoveredFlag: "command_hint_discovered",
+    description: "Fordert eine subtile Systemanalyse zur aktuellen Situation an.",
+    examples: [
+      "hint",
+      "hint kartenleser"
+    ]
+  }
+};
+
+function isCommandDiscovered(commandId) {
+  const command = commandRegistry[commandId];
+
+  if (!command) return false;
+
+  return (
+    command.visibleByDefault ||
+    hasFlag(command.discoveredFlag) ||
+    hasDiscoveredVerb(commandId)
+  );
 }
-];
+
+function discoverCommand(commandId) {
+  const command = commandRegistry[commandId];
+
+  if (!command || command.visibleByDefault) return;
+
+  if (command.discoveredFlag) {
+    setFlag(command.discoveredFlag);
+  }
+
+  // Übergangslösung für alte Saves / alte Kapitel-Logik
+  discoverVerb(commandId);
+}
+
+function getCommandBlockReason(commandId) {
+  const command = commandRegistry[commandId];
+
+  if (!command || !command.blockedWhen) return null;
+
+  if (command.blockedWhen()) {
+    return command.blockedText || "SYSTEM HINT: Command aktuell gesperrt.";
+  }
+
+  return null;
+}
+
+function canUseCommand(commandId) {
+  const blockReason = getCommandBlockReason(commandId);
+
+  if (blockReason) {
+    showParserHint(blockReason);
+    return false;
+  }
+
+  return true;
+}
 
 function updateHelpMenu() {
-  const list = document.getElementById("discoveredVerbs");
+  const container = document.getElementById("commandsList");
 
-  if (!list) return;
+  if (!container) return;
 
-  list.innerHTML = "";
+  container.innerHTML = "";
 
-  secretVerbs.forEach(verb => {
-    const li = document.createElement("li");
-    li.className = "field-card";
+  const commands = Object.values(commandRegistry)
+    .filter(command => isCommandDiscovered(command.id));
 
-    if (hasDiscoveredVerb(verb.id)) {
-      li.innerHTML = `
-  <strong>${verb.label}</strong>
+  const categories = [...new Set(commands.map(command => command.category))];
 
-  <div class="field-description-card">
-    ${verb.description}
-  </div>
+  categories.forEach(category => {
+    const section = document.createElement("div");
+    section.className = "help-section";
 
-  <div class="example-label">
-    BEISPIELE
-  </div>
+    section.innerHTML = `<h4>${category}</h4>`;
 
-  <div class="example">
-    ${verb.examples
-      .map(example => `&gt; ${example}`)
-      .join("<br>")}
-  </div>
-`;
-    } else {
-      li.innerHTML = `
-        <strong class="locked-command">
-          ???
-        </strong>
+    commands
+      .filter(command => command.category === category)
+      .forEach(command => {
+        const entry = document.createElement("div");
+        entry.className = "command-entry";
 
-        <div class="field-description-card locked-text">
-          Unknown interaction pattern.<br>
-          No documentation available.
-        </div>
-      `;
-    }
+        const blockReason = getCommandBlockReason(command.id);
+        const blockedClass = blockReason ? " blocked-command-entry" : "";
 
-    list.appendChild(li);
+        entry.className += blockedClass;
+
+        entry.innerHTML = `
+          <strong>${command.syntax}</strong>
+
+          <div class="command-description">
+            ${command.description}
+          </div>
+
+          ${
+            blockReason
+              ? `<div class="command-blocked-note">${blockReason.replace("SYSTEM HINT: ", "")}</div>`
+              : ""
+          }
+
+          ${
+            command.examples && command.examples.length > 0
+              ? `
+                <div class="example-label">BEISPIELE</div>
+                <div class="example">
+                  ${command.examples.map(example => `&gt; ${example}`).join("<br>")}
+                </div>
+              `
+              : ""
+          }
+        `;
+
+        section.appendChild(entry);
+      });
+
+    container.appendChild(section);
   });
 }
 function hasItem(itemId) {
@@ -1017,53 +1166,71 @@ function handleCommand(input) {
 }
 
   if (command === "umsehen") {
-    showAreaDescription();
-    updateEnvironment();
-    return;
-  }
+  if (!canUseCommand("umsehen")) return;
+
+  showAreaDescription();
+  updateEnvironment();
+  return;
+}
   if (command === "hint") {
+  if (!canUseCommand("hint")) return;
+
   showHint();
   return;
 }
 
 if (command.startsWith("hint ")) {
+  if (!canUseCommand("hint")) return;
+
   const target = command.replace("hint ", "");
   showHint(target);
   return;
 }
 
   if (command.startsWith("gehe ")) {
-    const target = command.replace("gehe ", "");
-    goToArea(target);
-    return;
-  }
+  if (!canUseCommand("gehe")) return;
+
+  const target = command.replace("gehe ", "");
+  goToArea(target);
+  return;
+}
 
   if (command.startsWith("untersuche ")) {
-    const target = command.replace("untersuche ", "");
-    examine(target);
-    return;
-  }
+  if (!canUseCommand("untersuche")) return;
+
+  const target = command.replace("untersuche ", "");
+  examine(target);
+  return;
+}
 
   if (command.startsWith("nimm ")) {
-    const target = command.replace("nimm ", "");
-    takeItem(target);
-    return;
-  }
+  if (!canUseCommand("nimm")) return;
+
+  const target = command.replace("nimm ", "");
+  takeItem(target);
+  return;
+}
   if (command.startsWith("oeffne ")) {
+  if (!canUseCommand("oeffne")) return;
+
   const target = command.replace("oeffne ", "");
   openObject(target);
   return;
-  }
+}
 
   if (command.startsWith("benutze ")) {
-    useItem(command.replace("benutze ", ""));
-    return;
-  }
+  if (!canUseCommand("benutze")) return;
+
+  useItem(command.replace("benutze ", ""));
+  return;
+}
   if (command.startsWith("kombiniere ")) {
-  if (!hasDiscoveredVerb("kombiniere")) {
+  if (!isCommandDiscovered("kombiniere")) {
     showUnknownCommand();
     return;
   }
+
+  if (!canUseCommand("kombiniere")) return;
 
   combineItems(command.replace("kombiniere ", ""));
   return;
