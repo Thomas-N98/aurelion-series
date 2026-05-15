@@ -230,14 +230,6 @@
           Commands
 
         </button>
-
-        <button
-          class="help-tab secret-tab"
-          data-tab="fieldnotes">
-
-          Field Notes
-
-        </button>
         
         <button
           class="help-tab observation-tab"
@@ -255,142 +247,20 @@
         </div>
 
         <!-- COMMANDS TAB -->
-        <div
-          id="generalTab"
-          class="help-content active-tab">
+<div
+  id="generalTab"
+  class="help-content active-tab">
 
-          <h3>COMMANDS</h3>
+  <h3>COMMANDS</h3>
 
-          <div class="help-section">
+  <p class="terminal-hint">
+    Documented interaction protocols are listed below.
+  </p>
 
-            <h4>NAVIGATION</h4>
+  <div id="commandsList"></div>
 
-            <div class="command-entry">
-              <strong>umsehen</strong>
-
-              <div class="command-description">
-                Beschreibt die aktuelle Umgebung erneut.
-              </div>
-            </div>
-
-            <div class="command-entry">
-              <strong>gehe [richtung/ort]</strong>
-
-              <div class="command-description">
-                Bewegt dich zwischen Orten.
-              </div>
-
-              <div class="example-label">
-                BEISPIELE
-              </div>
-
-              <div class="example">
-                &gt; gehe vorne<br>
-                &gt; gehe links<br>
-                &gt; gehe haupttor
-              </div>
-            </div>
-
-          </div>
-
-          <div class="help-section">
-
-            <h4>INTERACTION</h4>
-
-            <div class="command-entry">
-              <strong>untersuche [objekt]</strong>
-
-              <div class="command-description">
-                Inspiziert Gegenstände, Orte oder Hinweise genauer.
-              </div>
-
-              <div class="example-label">
-                BEISPIELE
-              </div>
-
-              <div class="example">
-                &gt; untersuche wegweiser<br>
-                &gt; untersuche kartenleser
-              </div>
-            </div>
-
-            <div class="command-entry">
-              <strong>nimm [objekt]</strong>
-
-              <div class="command-description">
-                Hebt Gegenstände auf, wenn möglich.
-              </div>
-
-              <div class="example-label">
-                BEISPIELE
-              </div>
-
-              <div class="example">
-                &gt; nimm zugangskarte<br>
-                &gt; nimm taschenlampe
-              </div>
-            </div>
-
-            <div class="command-entry">
-              <strong>benutze [objekt] [ziel]</strong>
-
-              <div class="command-description">
-                Verwendet einen Gegenstand auf etwas.
-              </div>
-
-              <div class="example-label">
-                BEISPIELE
-              </div>
-
-              <div class="example">
-                &gt; benutze zugangskarte kartenleser<br>
-                &gt; benutze taschenlampe rohr
-              </div>
-            </div>
-
-          </div>
-
-          <div class="help-section">
-
-            <h4>SYSTEM</h4>
-
-            <div class="command-entry">
-              <strong>terminal</strong>
-
-              <div class="command-description">
-                Öffnet das Aurelion System Terminal.
-              </div>
-            </div>
-
-            <p class="terminal-hint">
-              Some interactions are not documented.
-            </p>
-
-          </div>
-
-        </div>
-
-        <!-- FIELD NOTES TAB -->
-        <div
-          id="fieldnotesTab"
-          class="help-content">
-
-          <h3 class="field-title">
-            FIELD NOTES
-          </h3>
-
-          <p class="field-description">
-            Not every useful interaction is obvious.<br><br>
-
-            If something seems important,
-            unstable or unusual —
-            try experimenting.
-          </p>
-
-          <ul id="discoveredVerbs">
-          </ul>
-
-        </div>
+</div>
+       
 <!-- OBSERVATIONS TAB -->
 <div
   id="observationsTab"
