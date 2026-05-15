@@ -1438,11 +1438,17 @@ words = words.map(word => {
 
   const itemAlias = getItemIdByAlias(word);
 
-  if (itemAlias) {
-    return itemAlias;
-  }
+if (itemAlias) {
+  return itemAlias;
+}
 
-  return word;
+const detailAlias = getDetailIdByAlias(word);
+
+if (detailAlias) {
+  return detailAlias;
+}
+
+return word;
 });
 
   return normalizeText(words.join(" "));
@@ -1856,6 +1862,32 @@ function getItemIdByAlias(alias) {
     );
   }) || null;
 }
+function getDetailIdByAlias(alias) {
+  const room = currentRoom();
+  const normalizedAlias = normalizeText(alias);
+
+  if (!room.details) return null;
+
+  return Object.keys(room.details).find(detailId => {
+    const detailData = room.details[detailId];
+
+    if (normalizeText(detailId) === normalizedAlias) {
+      return true;
+    }
+
+    if (
+      detailData.aliases &&
+      detailData.aliases.some(detailAlias =>
+        normalizeText(detailAlias) === normalizedAlias
+      )
+    ) {
+      return true;
+    }
+
+    return false;
+  }) || null;
+}
+
 function combineItems(commandRest) {
   const parts = commandRest.split(" ");
 
