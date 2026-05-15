@@ -269,21 +269,66 @@ function updateHelpMenu() {
 
   index.innerHTML = "";
 
-  const commands = Object.values(commandRegistry);
+const categoryOrder = [
+  "NAVIGATION",
+  "INTERACTION",
+  "SYSTEM"
+];
 
-  if (!commandRegistry[selectedCommandId]) {
-    selectedCommandId = commands[0]?.id || null;
+categoryOrder.forEach(category => {
+  const categoryCommands =
+    Object.values(commandRegistry)
+      .filter(command =>
+        command.category === category
+      )
+      .sort((a, b) => {
+        const aKnown =
+          isCommandDiscovered(a.id);
+
+        const bKnown =
+          isCommandDiscovered(b.id);
+
+        // bekannte Commands zuerst
+        if (aKnown !== bKnown) {
+          return bKnown - aKnown;
+        }
+
+        // dann feste Reihenfolge
+        return (a.order || 999) -
+               (b.order || 999);
+      });
+
+  if (categoryCommands.length === 0) {
+    return;
   }
 
-  commands.forEach(command => {
-    const isDiscovered = isCommandDiscovered(command.id);
-    const isSelected = command.id === selectedCommandId;
-    const blockReason = getCommandBlockReason(command.id);
+  const categoryHeader =
+    document.createElement("div");
 
-    const button = document.createElement("button");
+  categoryHeader.className =
+    "command-category-header";
+
+  categoryHeader.textContent =
+    category;
+
+  index.appendChild(categoryHeader);
+
+  categoryCommands.forEach(command => {
+    const isDiscovered =
+      isCommandDiscovered(command.id);
+
+    const isSelected =
+      command.id === selectedCommandId;
+
+    const blockReason =
+      getCommandBlockReason(command.id);
+
+    const button =
+      document.createElement("button");
 
     button.type = "button";
-    button.className = "command-index-entry";
+    button.className =
+      "command-index-entry";
 
     if (isSelected) {
       button.classList.add("active");
@@ -293,29 +338,36 @@ function updateHelpMenu() {
       button.classList.add("undiscovered");
     }
 
-    if (blockReason && isDiscovered) {
+    if (
+      blockReason &&
+      isDiscovered
+    ) {
       button.classList.add("blocked");
     }
 
     button.innerHTML = `
       <span class="command-index-label">
-        ${isDiscovered ? command.label : "???"}
-      </span>
-
-      <span class="command-index-category">
-        ${isDiscovered ? command.category : "UNKNOWN"}
+        ${
+          isDiscovered
+            ? command.label
+            : "???"
+        }
       </span>
     `;
 
-    button.addEventListener("click", () => {
-      selectedCommandId = command.id;
-      updateHelpMenu();
-    });
+    button.addEventListener(
+      "click",
+      () => {
+        selectedCommandId =
+          command.id;
+
+        updateHelpMenu();
+      }
+    );
 
     index.appendChild(button);
   });
-
-  renderCommandDetails(selectedCommandId);
+});
 }
 
 function renderCommandDetails(commandId) {
