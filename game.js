@@ -1864,12 +1864,19 @@ function getItemIdByAlias(alias) {
 }
 function getDetailIdByAlias(alias) {
   const room = currentRoom();
+  const area = currentArea();
   const normalizedAlias = normalizeText(alias);
 
-  if (!room.details) return null;
+  if (!room.details || !area.details) return null;
 
-  const matches = Object.keys(room.details).filter(detailId => {
+  const visibleDetailIds = area.details.filter(detailId =>
+    shouldShowDetail(detailId)
+  );
+
+  const matches = visibleDetailIds.filter(detailId => {
     const detailData = room.details[detailId];
+
+    if (!detailData) return false;
 
     if (normalizeText(detailId) === normalizedAlias) {
       return true;
