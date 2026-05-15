@@ -929,9 +929,7 @@ function updateHelpScrollbar() {
   const maxScroll = scrollHeight - clientHeight;
 
   if (maxScroll <= 0) {
-  thumb.style.display = "block";
-  thumb.style.height = "100%";
-  thumb.style.transform = "translateY(0)";
+  thumb.style.display = "none";
   return;
 }
 
