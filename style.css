@@ -1334,46 +1334,71 @@ button:hover {
   padding: 10px 12px;
 
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
+  align-items: center;
+  gap: 8px;
 
-  background: rgba(54, 255, 133, 0.025);
-  border: 1px solid rgba(54, 255, 133, 0.12);
+  background: rgba(54,255,133,0.02);
+  border: 1px solid rgba(54,255,133,0.08);
 
   text-align: left;
 }
 
 .command-index-entry:hover {
-  background: var(--green-soft);
+  background: rgba(54,255,133,0.06);
   transform: none;
 }
 
 .command-index-entry.active {
-  background: rgba(54, 255, 133, 0.12);
+  background: rgba(54,255,133,0.12);
   border-color: var(--green);
 }
 
 .command-index-entry.undiscovered {
-  opacity: 0.55;
+  opacity: 0.48;
   border-style: dashed;
 }
 
-.command-index-entry.blocked {
-  border-color: rgba(255, 204, 102, 0.4);
+.command-index-prefix {
+  color: var(--green);
+  opacity: 0.7;
+  flex-shrink: 0;
 }
 
 .command-index-label {
-  color: var(--text-green);
   font-weight: bold;
+  color: var(--text-green);
 }
-
+.command-index-entry.blocked {
+  border-color: rgba(255, 204, 102, 0.4);
+  background: rgba(255, 204, 102, 0.025);
+}
+.command-index-entry.blocked .command-index-prefix,
+.command-index-entry.blocked .command-index-label {
+  color: var(--text-amber);
+}
 .command-index-category {
   color: rgba(215, 255, 225, 0.45);
   font-size: 0.68rem;
   letter-spacing: 1px;
 }
+.command-detail-divider {
+  height: 1px;
+  margin: 14px 0 22px;
 
+  background:
+    rgba(54,255,133,0.14);
+}
+
+.command-empty-title {
+  color: var(--green);
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+}
+
+.command-empty-text {
+  color: rgba(215,255,225,0.55);
+  line-height: 1.6;
+}
 #commandDetails {
   padding: 18px;
   background: rgba(54, 255, 133, 0.025);
@@ -1455,20 +1480,17 @@ button:hover {
     max-height: 320px;
   }
   .command-category-header {
-  margin:
-    18px 0 8px;
+  margin: 18px 0 10px;
+  padding-bottom: 6px;
 
-  color:
-    rgba(215,255,225,0.45);
+  color: rgba(215,255,225,0.62);
 
-  font-size:
-    0.68rem;
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 
-  letter-spacing:
-    1.5px;
-
-  text-transform:
-    uppercase;
+  border-bottom:
+    1px solid rgba(54,255,133,0.14);
 }
 
 .command-category-header:first-child {
