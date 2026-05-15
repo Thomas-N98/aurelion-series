@@ -1774,9 +1774,11 @@ function examine(target) {
   }
 
   if (!targetIsVisibleDetail && targetIsKnown) {
-    showText("Das kannst du von hier aus nicht untersuchen.");
-    return;
-  }
+  showParserHint(
+    "SYSTEM HINT: Zielobjekt zu weit entfernt für detaillierte Analyse."
+  );
+  return;
+}
 
   knowObject(target);
 
