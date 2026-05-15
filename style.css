@@ -518,7 +518,24 @@ button:hover {
   background: var(--green-soft);
   box-shadow: 0 0 10px rgba(54, 255, 133, 0.35);
 }
+#commandsList {
+  list-style: none;
+  padding-left: 0;
+}
 
+.blocked-command-entry {
+  opacity: 0.55;
+  border-color: rgba(255, 204, 102, 0.22);
+  background: rgba(255, 204, 102, 0.025);
+}
+
+.command-blocked-note {
+  margin: 10px 0 12px;
+  color: var(--text-amber);
+  opacity: 0.8;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
 .help-tabs {
   display: flex;
   gap: 8px;
