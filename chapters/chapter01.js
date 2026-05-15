@@ -237,62 +237,132 @@ aliases: {
 },
 
 details: {
-auto: {
-  text:
-    "Dein Auto steht verlassen auf dem Parkplatz. Es wirkt plötzlich deutlich weniger beruhigend als noch vor ein paar Minuten."
-},
+  auto: {
+    text:
+      "Dein Auto steht verlassen auf dem Parkplatz. Es wirkt plötzlich deutlich weniger beruhigend als noch vor ein paar Minuten.",
+    aliases: [
+      "wagen",
+      "pkw",
+      "fahrzeug"
+    ]
+  },
 
-wegweiser: {
-  text:
-    "Der Wegweiser ist alt und teilweise überwachsen. Die Richtungsschilder sind kaum noch lesbar.\n\nEin Pfeil zeigt nach vorne. Darunter steht verblasst: INDUSTRIEGELÄNDE."
-},
+  wegweiser: {
+    text:
+      "Der Wegweiser ist alt und teilweise überwachsen. Die Richtungsschilder sind kaum noch lesbar.\n\nEin Pfeil zeigt nach vorne. Darunter steht verblasst: INDUSTRIEGELÄNDE.",
+    aliases: [
+      "schild",
+      "wegschild",
+      "hinweisschild",
+      "schildchen"
+    ]
+  },
 
-kamera: {
-  text:
-    "Die Kamera folgt deinen Bewegungen. Ein kleines rotes Licht blinkt im Takt."
-},
+  kamera: {
+    text:
+      "Die Kamera folgt deinen Bewegungen. Ein kleines rotes Licht blinkt im Takt.",
+    aliases: [
+      "kameraueberwachung",
+      "ueberwachung",
+      "cam",
+      "linse"
+    ]
+  },
 
-kartenleser: {
-  text:
-    "Der Kartenleser ist alt, aber noch aktiv. Ein schwaches grünes Licht pulsiert unter der zerkratzten Oberfläche."
-},
+  kartenleser: {
+    text:
+      "Der Kartenleser ist alt, aber noch aktiv. Ein schwaches grünes Licht pulsiert unter der zerkratzten Oberfläche.",
+    aliases: [
+      "leser",
+      "scanner",
+      "karten scanner",
+      "kartenlesegeraet",
+      "lesegeraet"
+    ]
+  },
 
-schloss: {
-  text:
-    "Das Schloss wirkt mechanisch, aber es scheint zusätzlich elektronisch blockiert zu sein."
-},
+  schloss: {
+    text:
+      "Das Schloss wirkt mechanisch, aber es scheint zusätzlich elektronisch blockiert zu sein.",
+    aliases: [
+      "tor",
+      "verriegelung",
+      "mechanismus",
+      "verschluss"
+    ]
+  },
 
-zaun: {
-  text:
-    "Der Zaun ist beschädigt, aber nicht völlig offen. Jemand hat ihn notdürftig zurückgebogen."
-},
+  zaun: {
+    text:
+      "Der Zaun ist beschädigt, aber nicht völlig offen. Jemand hat ihn notdürftig zurückgebogen.",
+    aliases: [
+      "gitter",
+      "metallzaun",
+      "zaunfeld"
+    ]
+  },
 
-warnschild: {
-  text:
-    "Auf dem Warnschild steht:\n\nBETRETEN VERBOTEN\nSICHERHEITSSYSTEM AKTIV"
-},
+  warnschild: {
+    text:
+      "Auf dem Warnschild steht:\n\nBETRETEN VERBOTEN\nSICHERHEITSSYSTEM AKTIV",
+    aliases: [
+      "schild",
+      "warnung",
+      "warnhinweis",
+      "hinweisschild"
+    ]
+  },
 
-bank: {
-  text:
-    "Die Bank ist feucht, morsch und mit Moos überwachsen. Jemand hat etwas in das Holz geritzt: KEIN SIGNAL."
-},
+  bank: {
+    text:
+      "Die Bank ist feucht, morsch und mit Moos überwachsen. Jemand hat etwas in das Holz geritzt: KEIN SIGNAL.",
+    aliases: [
+      "holzbank",
+      "sitzbank",
+      "sitz"
+    ]
+  },
 
-firmengelände: {
-  text:
-    "Zwischen den Baumwipfeln erkennst du das verfallene Firmengelände. Selbst aus der Entfernung wirkt es zu groß für etwas, das angeblich aufgegeben wurde."
-},
+  firmengelände: {
+    text:
+      "Zwischen den Baumwipfeln erkennst du das verfallene Firmengelände. Selbst aus der Entfernung wirkt es zu groß für etwas, das angeblich aufgegeben wurde.",
+    aliases: [
+      "firma",
+      "gebaeude",
+      "anlage",
+      "gelaende",
+      "fabrik",
+      "aurelion"
+    ]
+  },
 
-baumstämme: {
-  text:
-    "Die Baumstämme liegen kreuz und quer über dem Weg. Einige sehen frisch gebrochen aus."
-},
+  baumstämme: {
+    text:
+      "Die Baumstämme liegen kreuz und quer über dem Weg. Einige sehen frisch gebrochen aus.",
+    aliases: [
+      "baeume",
+      "baum",
+      "stamm",
+      "staemme",
+      "holz"
+    ]
+  },
+
   zugangskarte: {
-  text: "Die Zugangskarte liegt halb verdeckt im Schmutz. Vielleicht funktioniert sie noch.",
-  itemId: "zugangskarte",
-  takeable: true,
-  takeText: "Du hebst die schmutzige Zugangskarte auf.",
-  hideWhenInInventory: "zugangskarte"
-}
+    text:
+      "Die Zugangskarte liegt halb verdeckt im Schmutz. Vielleicht funktioniert sie noch.",
+    itemId: "zugangskarte",
+    takeable: true,
+    takeText:
+      "Du hebst die schmutzige Zugangskarte auf.",
+    hideWhenInInventory: "zugangskarte",
+    aliases: [
+      "karte",
+      "ausweis",
+      "keycard",
+      "schluesselkarte"
+    ]
+  }
 },
 interactions: {
   examine: {
