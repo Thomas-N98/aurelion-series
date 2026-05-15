@@ -16,6 +16,7 @@ function createInitialGameState(
     inventory: {},
     discoveredVerbs: [],
     observations: [],
+    knownObjects: [],
 
     // flags als Objekt statt Array: leichter abzufragen und zu speichern
     flags: {},
@@ -609,6 +610,15 @@ function setFlag(flag, value = true) {
 
 function hasFlag(flag) {
   return gameState.flags[flag] === true;
+}
+function knowObject(objectId) {
+  if (!gameState.knownObjects.includes(objectId)) {
+    gameState.knownObjects.push(objectId);
+  }
+}
+
+function knowsObject(objectId) {
+  return gameState.knownObjects.includes(objectId);
 }
 function setHealth(state) {
   const validStates = ["healthy", "light", "severe", "dead"];
@@ -1736,7 +1746,7 @@ function examine(target) {
     showText("Das kannst du von hier aus nicht untersuchen.");
     return;
   }
-
+  knowObject(target);
   runRoomInteraction("examine", target);
 
   showText(getDetailText(target));
