@@ -1898,20 +1898,12 @@ function takeItem(target) {
   );
 }
 function openObject(target) {
- const targetAccess =
-  getTargetAccess(target);
-
-if (targetAccess === "unknown") {
-  showParserHint(
-    "SYSTEM HINT: Zielobjekt unbekannt."
-  );
-  return;
-}
-
-if (targetAccess === "known_far") {
-  showParserHint(
+ if (
+  blockIfTargetUnavailable(
+    target,
     "SYSTEM HINT: Zielobjekt zu weit entfernt für Interaktion."
-  );
+  )
+) {
   return;
 }
 
