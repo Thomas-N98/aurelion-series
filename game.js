@@ -1865,10 +1865,38 @@ function takeItem(target) {
 function openObject(target) {
   const area = currentArea();
 
-  if (!area.details.includes(target)) {
-    showText("Das kannst du hier nicht öffnen.");
+  function openObject(target) {
+  const area = currentArea();
+
+  const targetIsVisibleDetail =
+    area.details &&
+    area.details.includes(target) &&
+    shouldShowDetail(target);
+
+  const targetIsKnown =
+    knowsObject(target);
+
+  if (!targetIsVisibleDetail && !targetIsKnown) {
+    showParserHint(
+      "SYSTEM HINT: Zielobjekt unbekannt."
+    );
     return;
   }
+
+  if (!targetIsVisibleDetail && targetIsKnown) {
+    showParserHint(
+      "SYSTEM HINT: Zielobjekt zu weit entfernt für Interaktion."
+    );
+    return;
+  }
+
+  const wasHandled =
+    runRoomInteraction("open", target);
+
+  if (wasHandled) return;
+
+  showText("Das lässt sich nicht öffnen.");
+}
 
   const wasHandled = runRoomInteraction("open", target);
 
