@@ -1805,10 +1805,12 @@ function examine(target) {
 function takeItem(target) {
   const area = currentArea();
 
-  if (
-  !area.details.includes(target) ||
-  !shouldShowDetail(target)
-) {
+  const targetIsVisibleDetail =
+  area.details &&
+  area.details.includes(target) &&
+  shouldShowDetail(target);
+
+if (!targetIsVisibleDetail) {
   showText("Das kannst du hier nicht nehmen.");
   return;
 }
