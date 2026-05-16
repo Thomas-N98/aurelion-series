@@ -1818,9 +1818,7 @@ function takeItem(target) {
   const area = currentArea();
 
   const targetIsVisibleDetail =
-    area.details &&
-    area.details.includes(target) &&
-    shouldShowDetail(target);
+  isDetailCurrentlyVisible(target);
 
   const targetIsKnown =
     knowsObject(target);
@@ -1935,9 +1933,7 @@ function useItem(commandRest) {
   const area = currentArea();
 
   const targetIsVisibleDetail =
-    area.details &&
-    area.details.includes(target) &&
-    shouldShowDetail(target);
+  isDetailCurrentlyVisible(target);
 
   const targetIsCurrentArea =
     gameState.area === target;
