@@ -321,9 +321,6 @@ if (
   );
 }
 
-  if (command.blockedWhen()) {
-    return command.blockedText || "SYSTEM HINT: Command aktuell gesperrt.";
-  }
 
   return null;
 }
