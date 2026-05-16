@@ -1829,51 +1829,47 @@ function examine(target) {
 }
 
 function takeItem(target) {
-  const area = currentArea();
-const detailData =
-  getDetailData(target);
+  const detailData =
+    getDetailData(target);
 
-if (
-  detailData &&
-  detailData.itemId &&
-  hasItem(detailData.itemId)
-) {
-  showParserHint(
-    "SYSTEM HINT: Dieses Objekt befindet sich bereits in deinem Inventar."
-  );
-  return;
-}
+  if (
+    detailData &&
+    detailData.itemId &&
+    hasItem(detailData.itemId)
+  ) {
+    showParserHint(
+      "SYSTEM HINT: Dieses Objekt befindet sich bereits in deinem Inventar."
+    );
+    return;
+  }
+
   const targetAccess =
-  getTargetAccess(target);
+    getTargetAccess(target);
 
-if (targetAccess === "unknown") {
-  showParserHint(
-    "SYSTEM HINT: Zielobjekt unbekannt."
-  );
-  return;
-}
+  if (targetAccess === "unknown") {
+    showParserHint(
+      "SYSTEM HINT: Zielobjekt unbekannt."
+    );
+    return;
+  }
 
-if (targetAccess === "known_far") {
-  showParserHint(
-    "SYSTEM HINT: Zielobjekt zu weit entfernt für Interaktion."
-  );
-  return;
-}
+  if (targetAccess === "known_far") {
+    showParserHint(
+      "SYSTEM HINT: Zielobjekt zu weit entfernt für Interaktion."
+    );
+    return;
+  }
 
   const wasHandled =
     runRoomInteraction("take", target);
 
   if (wasHandled) return;
 
-  const detailData =
-    getDetailData(target);
-
   if (
     detailData &&
     detailData.takeable &&
     detailData.itemId
   ) {
-    
     addItem(detailData.itemId);
 
     showText(
