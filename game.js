@@ -1806,20 +1806,34 @@ function takeItem(target) {
   const area = currentArea();
 
   const targetIsVisibleDetail =
-  area.details &&
-  area.details.includes(target) &&
-  shouldShowDetail(target);
+    area.details &&
+    area.details.includes(target) &&
+    shouldShowDetail(target);
 
-if (!targetIsVisibleDetail) {
-  showText("Das kannst du hier nicht nehmen.");
-  return;
-}
+  const targetIsKnown =
+    knowsObject(target);
 
-  const wasHandled = runRoomInteraction("take", target);
+  if (!targetIsVisibleDetail && !targetIsKnown) {
+    showParserHint(
+      "SYSTEM HINT: Zielobjekt unbekannt."
+    );
+    return;
+  }
+
+  if (!targetIsVisibleDetail && targetIsKnown) {
+    showParserHint(
+      "SYSTEM HINT: Zielobjekt zu weit entfernt für Interaktion."
+    );
+    return;
+  }
+
+  const wasHandled =
+    runRoomInteraction("take", target);
 
   if (wasHandled) return;
 
-  const detailData = getDetailData(target);
+  const detailData =
+    getDetailData(target);
 
   if (
     detailData &&
@@ -1827,7 +1841,9 @@ if (!targetIsVisibleDetail) {
     detailData.itemId
   ) {
     if (hasItem(detailData.itemId)) {
-      showText("Du hast das bereits eingesteckt.");
+      showText(
+        "Du hast das bereits eingesteckt."
+      );
       return;
     }
 
@@ -1842,7 +1858,9 @@ if (!targetIsVisibleDetail) {
     return;
   }
 
-  showText("Das lässt sich nicht sinnvoll mitnehmen.");
+  showText(
+    "Das lässt sich nicht sinnvoll mitnehmen."
+  );
 }
 function openObject(target) {
   const area = currentArea();
