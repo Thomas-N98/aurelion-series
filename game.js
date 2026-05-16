@@ -1830,7 +1830,19 @@ function examine(target) {
 
 function takeItem(target) {
   const area = currentArea();
+const detailData =
+  getDetailData(target);
 
+if (
+  detailData &&
+  detailData.itemId &&
+  hasItem(detailData.itemId)
+) {
+  showParserHint(
+    "SYSTEM HINT: Dieses Objekt befindet sich bereits in deinem Inventar."
+  );
+  return;
+}
   const targetAccess =
   getTargetAccess(target);
 
@@ -1861,13 +1873,7 @@ if (targetAccess === "known_far") {
     detailData.takeable &&
     detailData.itemId
   ) {
-    if (hasItem(detailData.itemId)) {
-      showText(
-        "Du hast das bereits eingesteckt."
-      );
-      return;
-    }
-
+    
     addItem(detailData.itemId);
 
     showText(
