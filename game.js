@@ -532,13 +532,10 @@ function renderCommandDetails(commandId) {
 }
 function isDetailCurrentlyVisible(detailId) {
   const area = currentArea();
-  const detailData = getDetailData(detailId);
 
   return (
     area.details &&
     area.details.includes(detailId) &&
-    detailData &&
-    detailData.visibleByDefault === true &&
     shouldShowDetail(detailId)
   );
 }
