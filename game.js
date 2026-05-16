@@ -1922,11 +1922,6 @@ function useItem(commandRest) {
   const item = parts[0];
   const target = parts.slice(1).join(" ");
 
-  if (!hasItem(item)) {
-    showText(`Du hast ${item} nicht im Inventar.`);
-    return;
-  }
-
   const area = currentArea();
 
   const targetAccess =
@@ -1960,7 +1955,10 @@ if (
   );
   return;
 }
-
+if (!hasItem(item)) {
+    showText(`Du hast ${item} nicht im Inventar.`);
+    return;
+  }
   const wasHandled = runUseInteraction(item, target);
 
   if (wasHandled) return;
