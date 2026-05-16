@@ -530,6 +530,18 @@ function renderCommandDetails(commandId) {
     }
   `;
 }
+function isDetailCurrentlyVisible(detailId) {
+  const area = currentArea();
+  const detailData = getDetailData(detailId);
+
+  return (
+    area.details &&
+    area.details.includes(detailId) &&
+    detailData &&
+    detailData.visibleByDefault === true &&
+    shouldShowDetail(detailId)
+  );
+}
 function hasItem(itemId, quantity = 1) {
   return (
     gameState.inventory[itemId] &&
@@ -1869,9 +1881,7 @@ function openObject(target) {
   const area = currentArea();
 
   const targetIsVisibleDetail =
-    area.details &&
-    area.details.includes(target) &&
-    shouldShowDetail(target);
+  isDetailCurrentlyVisible(target);
 
   const targetIsKnown =
     knowsObject(target);
