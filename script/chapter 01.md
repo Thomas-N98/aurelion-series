@@ -29,7 +29,28 @@ Du verlangsamst und wirfst einen Blick auf das Navi. Laut deinen Notizen müsste
 Du bist da.
 
 
-# AREA: Parkplatz
+# 1. Choice: Welchen Parkplatz nimmst du?
+
+## 1.1 Choice: Wanderparkplatz
+
+Du biegst von der Landstraße ab auf einen Wanderparkplatz. Erregt weniger Aufsehen. Du hältst an. Bis auf das Rauschen der Bäume ist es um dich herum still. Keine Vögel, keine anderen Autos, weder auf dem Parkplatz noch auf der Landstraße, keine Spaziergänger mit Hunden. Du kramst deinen Rucksack von der Rückbank hervor. Darin deine Kamera, ein Notizblock, etwas Verpflegung und ein Ausdruck vom Satellitenbild der Firma. Du siehst dir das Bild an, kannst aber nicht genau erkennen wo dein Standort ist. "Na dann los murmelst du vor dich hin und steigst aus." {Knopf mit aussteigen} --> wenn klick, dann Loading Screen: CHAPTER 01 - NEUGIER.
+
+## 1.2 Area: Wanderparkplatz
+
+Du stehst auf einem abgelegenen Wanderparkplatz. Dein Auto steht neben dir. dahinter die lange, schlängelnde Straße, die dich tief in den Wald geführt hat. Du siehst dich um: mehrere Wege führen zwischen den Bäumen hindurch. "Mindestens einer muss doch zur alten Firma führen" denkst du dir. Noch kannst du allerdings siehst du nichts außer Wald, Schotter und verblasste Markierungen.
+
+### 1.2.1 command "umsehen":
+
+Du siehst dich um: Drei Waldwege laufen vom Parkplatz in verschiedene Richtungen weg. Eine kleine Infotafel steht an einem Ende des Parkplatzes, daneben eine Bank und ein Mülleimer. Durch den eher matschigen Boden erkennst du, dass erst kürzlich jemand hier war. Du sorgst dich ein bisschen hier stecken zu bleiben, sollte sich das Wetter verschlechtern und regnen.
+
+### 1.2.2 detail Infotafel:
+
+Du siehst einen rot markierten Rund-Wanderweg mit der Bezeichnung "Pine Ridge Trail". Darunter eine Beschreibung: "genießen sie sensationelle Weitblicke über 12 Kilometer naturnahem Waldwanderweg." Anhand der Tafel würdest du sagen, dass es sich um den hinteren der drei Wege handelt. Zu den anderen beiden Wegen steht hier nichts. Hinter der Infotafel liegt ein halb vermoderter Wegweiser im Gestrüpp.
+
+### 1.2.2.1 detail Wegweiser (erst sichtbar ab untersuche Infotafel)
+
+Du hebst den alten Wegweiser aus dem Gestrüpp. Ein Pfeil ist beschrieben mit "Pine ridge Trail". Es scheint als wäre mal ein zweiter Pfeil dort gewesen. Der ist aber abgebrochen. Du kannst das fehlende Stück nirgends finden.
+
 
 ## Atmosphäre / Text
 (Was sieht der Spieler beim Betreten?)
