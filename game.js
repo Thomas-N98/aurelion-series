@@ -1831,25 +1831,22 @@ function examine(target) {
 function takeItem(target) {
   const area = currentArea();
 
-  const targetIsVisibleDetail =
-  isDetailCurrentlyVisible(target);
+  const targetAccess =
+  getTargetAccess(target);
 
-  const targetIsKnown =
-    knowsObject(target);
+if (targetAccess === "unknown") {
+  showParserHint(
+    "SYSTEM HINT: Zielobjekt unbekannt."
+  );
+  return;
+}
 
-  if (!targetIsVisibleDetail && !targetIsKnown) {
-    showParserHint(
-      "SYSTEM HINT: Zielobjekt unbekannt."
-    );
-    return;
-  }
-
-  if (!targetIsVisibleDetail && targetIsKnown) {
-    showParserHint(
-      "SYSTEM HINT: Zielobjekt zu weit entfernt für Interaktion."
-    );
-    return;
-  }
+if (targetAccess === "known_far") {
+  showParserHint(
+    "SYSTEM HINT: Zielobjekt zu weit entfernt für Interaktion."
+  );
+  return;
+}
 
   const wasHandled =
     runRoomInteraction("take", target);
