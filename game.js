@@ -1870,13 +1870,8 @@ function takeItem(target) {
   );
 }
 function openObject(target) {
-  const area = currentArea();
-
-  function openObject(target) {
-  const area = currentArea();
-
   const targetIsVisibleDetail =
-  isDetailCurrentlyVisible(target);
+    isDetailCurrentlyVisible(target);
 
   const targetIsKnown =
     knowsObject(target);
@@ -1900,14 +1895,9 @@ function openObject(target) {
 
   if (wasHandled) return;
 
-  showText("Das lässt sich nicht öffnen.");
-}
-
-  const wasHandled = runRoomInteraction("open", target);
-
-  if (wasHandled) return;
-
-  showText("Das lässt sich nicht öffnen.");
+  showParserHint(
+    "SYSTEM HINT: Das lässt sich nicht öffnen."
+  );
 }
 function useItem(commandRest) {
   const parts = commandRest.split(" ");
