@@ -904,6 +904,19 @@ function shouldShowDetail(detailId) {
 
   return true;
 }
+function rememberVisibleDetails(area = currentArea()) {
+  (area.details || []).forEach(detailId => {
+    const detailData = getDetailData(detailId);
+
+    if (
+      detailData &&
+      detailData.visibleByDefault === true &&
+      shouldShowDetail(detailId)
+    ) {
+      knowObject(detailId);
+    }
+  });
+}
 function isVisibleDetail(target) {
   const area = currentArea();
 
@@ -1222,17 +1235,7 @@ function render() {
     "PRIMARY OBJECTIVE: " + room.objective;
 
   showAreaDescription();
-(currentArea().details || []).forEach(detailId => {
-  const detailData = getDetailData(detailId);
-
-  if (
-    detailData &&
-    detailData.visibleByDefault === true &&
-    shouldShowDetail(detailId)
-  ) {
-    knowObject(detailId);
-  }
-});
+  rememberVisibleDetails();
   updateStatusPanel();
   updateEnvironment();
   updateInventory();
@@ -1730,19 +1733,7 @@ if (!targetAreaId && isVisibleDetail(target)) {
   if (!gameState.visitedAreas.includes(targetAreaId)) {
     gameState.visitedAreas.push(targetAreaId);
   }
-  const newArea = currentArea();
-
-(newArea.details || []).forEach(detailId => {
-  const detailData = getDetailData(detailId);
-
-  if (
-    detailData &&
-    detailData.visibleByDefault === true &&
-    shouldShowDetail(detailId)
-  ) {
-    knowObject(detailId);
-  }
-});
+  rememberVisibleDetails();
 
   showAreaDescription();
   updateEnvironment();
