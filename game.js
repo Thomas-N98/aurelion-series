@@ -1801,20 +1801,17 @@ function examine(target) {
     return;
   }
 
-  const targetIsVisibleDetail =
-    area.details &&
-    area.details.includes(target) &&
-    shouldShowDetail(target);
+  const targetAccess =
+  getTargetAccess(target);
 
-  const targetIsKnown =
-    knowsObject(target);
+if (targetAccess === "unknown") {
+  showParserHint(
+    "SYSTEM HINT: Zielobjekt unbekannt."
+  );
+  return;
+}
 
-  if (!targetIsVisibleDetail && !targetIsKnown) {
-    showParserHint("SYSTEM HINT: Zielobjekt unbekannt.");
-    return;
-  }
-
-  if (!targetIsVisibleDetail && targetIsKnown) {
+if (targetAccess === "known_far") {
   showParserHint(
     "SYSTEM HINT: Zielobjekt zu weit entfernt für detaillierte Analyse."
   );
