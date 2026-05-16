@@ -1855,22 +1855,14 @@ function takeItem(target) {
     return;
   }
 
-  const targetAccess =
-    getTargetAccess(target);
-
-  if (targetAccess === "unknown") {
-    showParserHint(
-      "SYSTEM HINT: Zielobjekt unbekannt."
-    );
-    return;
-  }
-
-  if (targetAccess === "known_far") {
-    showParserHint(
-      "SYSTEM HINT: Zielobjekt zu weit entfernt für Interaktion."
-    );
-    return;
-  }
+  if (
+  blockIfTargetUnavailable(
+    target,
+    "SYSTEM HINT: Zielobjekt zu weit entfernt für Interaktion."
+  )
+) {
+  return;
+}
 
   const wasHandled =
     runRoomInteraction("take", target);
