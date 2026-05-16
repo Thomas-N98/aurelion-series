@@ -1929,23 +1929,20 @@ function useItem(commandRest) {
 
   const area = currentArea();
 
-  const targetIsVisibleDetail =
-  isDetailCurrentlyVisible(target);
+  const targetAccess =
+  getTargetAccess(target);
 
-  const targetIsCurrentArea =
-    gameState.area === target;
+const targetIsCurrentArea =
+  gameState.area === target;
 
-  const targetIsReachableArea =
-    area.exits &&
-    Object.values(area.exits).some(exit => exit.target === target);
-  const targetIsKnown =
-    knowsObject(target);
+const targetIsReachableArea =
+  area.exits &&
+  Object.values(area.exits).some(exit => exit.target === target);
 
-  if (
-  !targetIsVisibleDetail &&
+if (
+  targetAccess === "unknown" &&
   !targetIsCurrentArea &&
-  !targetIsReachableArea &&
-  !targetIsKnown
+  !targetIsReachableArea
 ) {
   showParserHint(
     "SYSTEM HINT: Zielobjekt unbekannt."
@@ -1954,10 +1951,9 @@ function useItem(commandRest) {
 }
 
 if (
-  !targetIsVisibleDetail &&
+  targetAccess === "known_far" &&
   !targetIsCurrentArea &&
-  !targetIsReachableArea &&
-  targetIsKnown
+  !targetIsReachableArea
 ) {
   showParserHint(
     "SYSTEM HINT: Zielobjekt zu weit entfernt für Interaktion."
