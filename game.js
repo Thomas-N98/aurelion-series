@@ -1816,20 +1816,12 @@ function examine(target) {
     return;
   }
 
-  const targetAccess =
-  getTargetAccess(target);
-
-if (targetAccess === "unknown") {
-  showParserHint(
-    "SYSTEM HINT: Zielobjekt unbekannt."
-  );
-  return;
-}
-
-if (targetAccess === "known_far") {
-  showParserHint(
+  if (
+  blockIfTargetUnavailable(
+    target,
     "SYSTEM HINT: Zielobjekt zu weit entfernt für detaillierte Analyse."
-  );
+  )
+) {
   return;
 }
 
