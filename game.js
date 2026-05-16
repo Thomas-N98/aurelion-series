@@ -553,6 +553,24 @@ function getTargetAccess(target) {
 
   return "unknown";
 }
+function blockIfTargetUnavailable(target, farText) {
+  const targetAccess =
+    getTargetAccess(target);
+
+  if (targetAccess === "unknown") {
+    showParserHint(
+      "SYSTEM HINT: Zielobjekt unbekannt."
+    );
+    return true;
+  }
+
+  if (targetAccess === "known_far") {
+    showParserHint(farText);
+    return true;
+  }
+
+  return false;
+}
 function hasItem(itemId, quantity = 1) {
   return (
     gameState.inventory[itemId] &&
