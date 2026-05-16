@@ -398,7 +398,9 @@ interactions: {
       discoverVerb("oeffne");
 
       if (hasFlag("autoOpened")) {
-        showText("Du hast das Auto bereits durchsucht.");
+        showParserHint(
+  "SYSTEM HINT: Das Auto wurde bereits durchsucht."
+);
         return;
       }
 
