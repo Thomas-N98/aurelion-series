@@ -539,6 +539,23 @@ function isDetailCurrentlyVisible(detailId) {
     shouldShowDetail(detailId)
   );
 }
+function getTargetAccess(target) {
+  const targetIsVisibleDetail =
+    isDetailCurrentlyVisible(target);
+
+  const targetIsKnown =
+    knowsObject(target);
+
+  if (targetIsVisibleDetail) {
+    return "visible";
+  }
+
+  if (targetIsKnown) {
+    return "known_far";
+  }
+
+  return "unknown";
+}
 function hasItem(itemId, quantity = 1) {
   return (
     gameState.inventory[itemId] &&
@@ -1870,25 +1887,22 @@ function takeItem(target) {
   );
 }
 function openObject(target) {
-  const targetIsVisibleDetail =
-    isDetailCurrentlyVisible(target);
+ const targetAccess =
+  getTargetAccess(target);
 
-  const targetIsKnown =
-    knowsObject(target);
+if (targetAccess === "unknown") {
+  showParserHint(
+    "SYSTEM HINT: Zielobjekt unbekannt."
+  );
+  return;
+}
 
-  if (!targetIsVisibleDetail && !targetIsKnown) {
-    showParserHint(
-      "SYSTEM HINT: Zielobjekt unbekannt."
-    );
-    return;
-  }
-
-  if (!targetIsVisibleDetail && targetIsKnown) {
-    showParserHint(
-      "SYSTEM HINT: Zielobjekt zu weit entfernt für Interaktion."
-    );
-    return;
-  }
+if (targetAccess === "known_far") {
+  showParserHint(
+    "SYSTEM HINT: Zielobjekt zu weit entfernt für Interaktion."
+  );
+  return;
+}
 
   const wasHandled =
     runRoomInteraction("open", target);
