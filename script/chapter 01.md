@@ -52,6 +52,7 @@ Du siehst einen rot markierten Rund-Wanderweg mit der Bezeichnung "Pine Ridge Tr
 Du hebst den alten Wegweiser aus dem Gestrüpp. Ein Pfeil ist beschrieben mit "Pine ridge Trail". Es scheint als wäre mal ein zweiter Pfeil dort gewesen. Der ist aber abgebrochen. Du kannst das fehlende Stück nirgends finden.
 
 
+
 ## Atmosphäre / Text
 (Was sieht der Spieler beim Betreten?)
 
