@@ -37,22 +37,48 @@ Du biegst von der Landstraße ab auf einen Wanderparkplatz. Erregt weniger Aufse
 
 ## 1.2 Area: Wanderparkplatz
 
-Du stehst auf einem abgelegenen Wanderparkplatz. Dein Auto steht neben dir. dahinter die lange, schlängelnde Straße, die dich tief in den Wald geführt hat. Du siehst dich um: mehrere Wege führen zwischen den Bäumen hindurch. "Mindestens einer muss doch zur alten Firma führen" denkst du dir. Noch kannst du allerdings siehst du nichts außer Wald, Schotter und verblasste Markierungen.
+Du stehst auf einem kleinen, abgelegenen Wanderparkplatz mitten im Wald. Dein Auto steht hinter dir, noch feucht von der langen Fahrt über die Landstraßen der Region Ashford. Dahinter verschwindet die schmale Straße zwischen dichten Bäumen und Kurven. Vor dir verlaufen mehrere Wege in unterschiedliche Richtungen. Zwischen den Bäumen erkennst du nur Wald, matschigen Untergrund und verblasste Wegmarkierungen. Von der alten Anlage ist nichts zu sehen. Nicht einmal ein Geräusch. Für einen Moment fragst du dich, ob du vielleicht doch an der falschen Stelle bist.
 
 ### 1.2.1 command "umsehen":
 
-Du siehst dich um: Drei Waldwege laufen vom Parkplatz in verschiedene Richtungen weg. Eine kleine Infotafel steht an einem Ende des Parkplatzes, daneben eine Bank und ein Mülleimer. Durch den eher matschigen Boden erkennst du, dass erst kürzlich jemand hier war. Du sorgst dich ein bisschen hier stecken zu bleiben, sollte sich das Wetter verschlechtern und regnen.
+Du lässt den Blick über den Parkplatz schweifen. Drei Wege führen vom Platz in unterschiedliche Richtungen in den Wald hinein. Einer wirkt wie ein gepflegter Wanderweg. Die anderen beiden sehen deutlich weniger genutzt aus. Am Rand des Parkplatzs steht eine verwitterte Informationstafel. Daneben eine Holzbank und ein überquellender Mülleimer. Im matschigen Boden sind Reifenspuren zu erkennen. Wahrscheinlich Wanderer. Oder Forstfahrzeuge. Der Boden wirkt weich. Sollte das Wetter kippen, möchtest du hier vermutlich nicht stundenlang feststecken.
 
 ### 1.2.2 detail Infotafel:
 
-Du siehst einen rot markierten Rund-Wanderweg mit der Bezeichnung "Pine Ridge Trail". Darunter eine Beschreibung: "genießen sie sensationelle Weitblicke über 12 Kilometer naturnahem Waldwanderweg." Anhand der Tafel würdest du sagen, dass es sich um den hinteren der drei Wege handelt. Zu den anderen beiden Wegen steht hier nichts. Hinter der Infotafel liegt ein halb vermoderter Wegweiser im Gestrüpp.
+Die Tafel zeigt eine Karte der umliegenden Wanderwege. Ein rot markierter Rundweg trägt die Bezeichnung: PINE RIDGE TRAIL Darunter: „Enjoy panoramic forest views across 12 kilometres of natural woodland trails.“ Der eingezeichnete Weg scheint mit dem hinteren der drei Pfade übereinzustimmen. Zu den anderen Wegen findest du auf der Karte keine Informationen. Die alte Anlage ist ebenfalls nirgends verzeichnet. Wahrscheinlich liegt sie außerhalb des dargestellten Bereichs. Hinter der Tafel ragt etwas Verwittertes aus dem feuchten Laub hervor.
 
 ### 1.2.2.1 detail Wegweiser (erst sichtbar ab untersuche Infotafel)
 
-Du hebst den alten Wegweiser aus dem Gestrüpp. Ein Pfeil ist beschrieben mit "Pine ridge Trail". Es scheint als wäre mal ein zweiter Pfeil dort gewesen. Der ist aber abgebrochen. Du kannst das fehlende Stück nirgends finden.
+Du ziehst den halb vermoderten Wegweiser aus dem Gestrüpp. Das Holz ist feucht und schwer. Ein Pfeil trägt noch die Aufschrift:
 
+PINE RIDGE TRAIL
 
+Daneben befinden sich leere Schraublöcher. Offenbar war hier einmal ein zweiter Wegweiser befestigt. Von ihm fehlt allerdings jede Spur. Weder im Gebüsch noch zwischen den Blättern kannst du das fehlende Stück entdecken.
 
+### 1.2.3 detail Mülleimer
+
+Der Mülleimer ist übervoll. Zwischen Verpackungen, Essensresten und leeren Bierdosen haben sich bereits erste Dinge daneben im Gras verteilt. An schönen Tagen scheint hier deutlich mehr Betrieb zu sein. Nur um die Leerung scheint sich schon länger niemand mehr zu kümmern.
+
+### 1.2.4 detail Auto
+
+Dein Auto steht verlassen auf dem Parkplatz. Eine feine Schicht aus Staub und feuchtem Straßenschmutz zeugt von der langen Fahrt über die schmalen Landstraßen rund um Ashford. Im Vergleich zur stillen Umgebung wirkt es fast beruhigend. Direkt dahinter verschwindet die schmale Straße wieder zwischen den Bäumen. Falls das hier doch eine schlechte Idee gewesen sein sollte, wärst du zumindest schnell wieder weg.
+
+### 1.2.4.1 öffne Kofferraum
+
+Du öffnest den Kofferraum. Zwischen einer alten Decke, leeren Wasserflaschen und verstreutem Kleinkram liegen noch ein paar Dinge von früheren Touren. Fast hättest du sie vergessen. Ein paar Ersatzbatterien können vermutlich nicht schaden. Ebenso wenig wie die Arbeitshandschuhe. Man weiß ja nie, worauf man bei solchen Orten stößt.
+
+### 1.2.5 detail Holzbank
+
+### 1.2.6 detai Weg(e)
+
+### 1.2.7 detail Reifenspuren/Boden
+
+### 1.2.8 detail Straße
+
+### 1.2.9 detail Rucksack
+**Inventar hinzugefügt:**
+- Ersatzbatterien
+- Arbeitshandschuhe
 ## Atmosphäre / Text
 (Was sieht der Spieler beim Betreten?)
 
