@@ -69,7 +69,7 @@ Du öffnest den Kofferraum. Zwischen einer alten Decke, leeren Wasserflaschen un
 
 ### 1.2.5 detail Holzbank
 
-### 1.2.6 detai Weg(e)
+### 1.2.6 detail Weg(e)
 
 ### 1.2.7 detail Reifenspuren/Boden
 
