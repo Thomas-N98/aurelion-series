@@ -149,6 +149,10 @@ Du überlegst kurz zu antworten. Später. Erstmal willst du herausfinden, ob sic
 
 Ein paar neue Nachrichten. Nichts Dringendes. Oben in der Liste blinkt Emmas Sprachnachricht.
 
+### 1.5 Area
+
+Du entscheidest dich für den schmaleren Pfad links vom Parkplatz. Schon nach wenigen Metern wirkt der Weg deutlich weniger genutzt als der Pine Ridge Trail. Zwischen feuchtem Laub und dichtem Gestrüpp ist stellenweise kaum noch zu erkennen, wo der Pfad eigentlich verläuft. Trotzdem scheint hier irgendwann einmal regelmäßig jemand unterwegs gewesen zu sein. Der Weg zieht sich leicht bergab durch den Wald. Immer wieder musst du Ästen ausweichen oder vorsichtig über freiliegende Wurzeln steigen.
+
 ## Atmosphäre / Text
 (Was sieht der Spieler beim Betreten?)
 
