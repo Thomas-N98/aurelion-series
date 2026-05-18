@@ -151,8 +151,13 @@ Ein paar neue Nachrichten. Nichts Dringendes. Oben in der Liste blinkt Emmas Spr
 
 ### 1.5 Area
 
-Du entscheidest dich für den schmaleren Pfad links vom Parkplatz. Schon nach wenigen Metern wirkt der Weg deutlich weniger genutzt als der Pine Ridge Trail. Zwischen feuchtem Laub und dichtem Gestrüpp ist stellenweise kaum noch zu erkennen, wo der Pfad eigentlich verläuft. Trotzdem scheint hier irgendwann einmal regelmäßig jemand unterwegs gewesen zu sein. Der Weg zieht sich leicht bergab durch den Wald. Immer wieder musst du Ästen ausweichen oder vorsichtig über freiliegende Wurzeln steigen.
+Du entscheidest dich für den schmaleren Pfad links vom Parkplatz. Schon nach wenigen Metern wirkt der Weg deutlich abgelegener. An einigen Stellen ist kaum noch zu erkennen, wo der Pfad eigentlich verläuft. Du musst dich unter den niedrigen Ästen wegducken und der moosbewachsene Boden macht das ganze nicht einfacher. Irgendwann scheint dieser Weg einmal häufiger genutzt worden zu sein, mittlerweile offenbar nicht mehr. Langsam führt er tiefer zwischen die Bäume.
 
+### 1.5.1 command: umsehen
+
+Du befindest dich auf einem schmalen Waldpfad. Hinter dir liegt der Wanderparkplatz. Vor dir setzt sich der Weg zwischen dicht stehenden Bäumen fort. Stellenweise wirkt der Pfad kaum noch erkennbar. Rechts und links zieht sich dichter Wald.
+
+### 1.5.2 
 ## Atmosphäre / Text
 (Was sieht der Spieler beim Betreten?)
 
