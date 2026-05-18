@@ -103,14 +103,47 @@ Du folgst dem Pine Ridge Trail einige Minuten bergauf. Schon nach kurzer Zeit wi
 
 Du befindest dich auf einem steilen Abschnitt des Pine Ridge Trail. Vor dir setzt sich der Wanderweg bergauf fort. Hinter dir führt der Pfad zurück zum Parkplatz. Ringsum siehst du vor allem Wald. Dicht stehende Bäume, feuchtes Unterholz und der leicht steinige, wurzelüberwachsene Pfad bestimmen das Bild. Von hier aus wirkt alles ziemlich unspektakulär.
 
-### 1.3.2 command "untersuche Bäume"
+### 1.3.2 command "untersuche Bäume":
 
 Hohe Nadel- und Mischbäume stehen dicht entlang des Wegs. Zwischen den Baumkronen rauscht der Wind. Die Äste bewegen sich hin und her. Abgesehen davon wirkt der Wald ruhig.
 
-### 1.3.3 command "untersuche Boden"
+### 1.3.3 command "untersuche Boden":
 
 Der Boden ist feucht und stellenweise rutschig. Zwischen Wurzeln und kleinen Steinen haben sich hier und da flache Pfützen gebildet. Bei stärkerem Regen dürfte der Weg deutlich unangenehmer werden. Du achtest lieber etwas genauer darauf, wohin du trittst.
 
+### 1.4 Area: Aussichtspunkt:
+
+Nach einigen weiteren Minuten bergauf lichtet sich der Wald plötzlich. Keuchend erreichst du eine kleine Anhöhe, auf der sich ein Aussichtspunkt befindet. Eine verwitterte Holzbank steht am Rand des Hangs, daneben ein halb überwucherter Aussichtshinweis. Zwischen den Baumkronen reicht der Blick überraschend weit. Dichter Wald. Ein paar verstreute Straßen. Und weit entfernt, beinahe verborgen zwischen den Bäumen: Ein größeres Gelände. Zu weit weg, um Einzelheiten zu erkennen. Aber groß genug, dass es kaum etwas anderes sein kann als die Anlage, nach der du suchst.
+
+### 1.4.1 command "umsehen":
+
+Du stehst auf einer kleinen Anhöhe am Ende des Pine Ridge Trail. Hinter dir führt der Wanderweg zurück durch den Wald Zu deiner Linken setzt sich der Rundweg weiter fort, auch wenn du kaum erwartest, dort etwas Interessantes zu finden. Vor dir öffnet sich die Aussicht über mehrere Kilometer Waldlandschaft. Am Rand stehen eine alte Holzbank und ein verwitterter Aussichtshinweis. Zwischen den Bäumen in der Ferne ist ein größeres Gelände zu erkennen. 
+
+### 1.4.2 command "untersuche Gelände":
+
+Zwischen den Bäumen zeichnet sich in der Ferne ein größeres Gelände ab. Mehrere Hallendächer ragen zwischen den Baumwipfeln hervor, daneben ein hoher Schornstein. Mehr lässt sich auf diese Entfernung kaum sagen. Mit bloßem Auge verschwimmen die meisten Details zwischen Bäumen und grauem Himmel. Immerhin: Du bist vermutlich nicht völlig falsch.
+
+### 1.4.3 command "benutze kamera gelände":
+
+Du zoomst mit der Kamera so weit wie möglich heran. Das Bild bleibt unscharf, doch einige Details lassen sich besser erkennen. Zwischen älteren Gebäuden scheinen einzelne Bereiche deutlich neuer zu wirken. Selbst aus der Entfernung sieht das Gelände ungewöhnlich groß aus. Fast eher wie ein abgeschlossener Campus als eine gewöhnliche Fabrik. Wofür der Ort einmal genutzt wurde, lässt sich von hier aus kaum einschätzen.
+
+### 1.4.4 command "untersuche Aussichtshinweis":
+
+Die Karte zeigt verschiedene Aussichtspunkte und Wanderwege der Region. Das Firmengelände scheint darauf nicht verzeichnet zu sein. Oder es liegt außerhalb des dargestellten Bereichs.
+
+### 1.4.5 command "setze dich auf bank":
+
+Du setzt dich kurz auf die feuchte Holzbank und erholst dich ein paar Minuten. Der Aufstieg war anstrengender als erwartet. Von hier oben wirkt Ashford plötzlich erstaunlich weit weg. Du blickst kurz auf dein Handy und stellst fest, dass du auf der Anhöhe Empfang hast. Du siehst eine neue Sprachnachricht von Emma {Möglichkeit diese abzuspielen}. + neuer command sitzen
+
+### 1.4.6 command untersuche bank:
+
+Die Holzbank wirkt alt, aber stabil. Das Holz ist an mehreren Stellen dunkel verfärbt und leicht vermoost. Auf einer der Lehnen wurden vor Jahren Initialen eingeritzt. Ansonsten scheint die Bank vor allem eines zu tun: Hier oben stehen und Wind aushalten.
+
+### 1.4.7 command spiele ab Sprachnachricht Emma
+
+„Heyhey. Nur damit das klar ist: Wenn du für irgendeine *Weekly Lost Place*-Folge mitten in den Wald fährst und am Ende wieder nur ein kaputtes Verwaltungsgebäude mit Graffiti fotografierst, schuldet du mir Kaffee. Und diesmal bitte mehr als drei brauchbare Bilder. Die letzten waren zur Hälfte nur rostige Türen. Meld dich später mal. Bin gespannt, ob dieser ominöse Geheimtipp überhaupt existiert.“
+
+Du überlegst kurz zu antworten. Später. Erstmal willst du herausfinden, ob sich die Fahrt überhaupt gelohnt hat.
 ## Atmosphäre / Text
 (Was sieht der Spieler beim Betreten?)
 
