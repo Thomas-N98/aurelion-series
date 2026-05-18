@@ -67,19 +67,37 @@ Dein Auto steht verlassen auf dem Parkplatz. Eine feine Schicht aus Staub und fe
 
 Du öffnest den Kofferraum. Zwischen einer alten Decke, leeren Wasserflaschen und verstreutem Kleinkram liegen noch ein paar Dinge von früheren Touren. Fast hättest du sie vergessen. Ein paar Ersatzbatterien können vermutlich nicht schaden. Ebenso wenig wie die Arbeitshandschuhe. Man weiß ja nie, worauf man bei solchen Orten stößt.
 
-### 1.2.5 detail Holzbank
-
-
-### 1.2.6 detail Weg(e)
-
-### 1.2.7 detail Reifenspuren/Boden
-
-### 1.2.8 detail Straße
-
-### 1.2.9 detail Rucksack
 **Inventar hinzugefügt:**
 - Ersatzbatterien
 - Arbeitshandschuhe
+
+### 1.2.5 detail Pine Ridge Trail
+
+Der hintere Weg wirkt wie ein gewöhnlicher Wanderpfad. Ein verblasster rot markierter Pfeil an einem Baum stimmt mit der Karte auf der Infotafel überein. Der Pfad ist breit genug, dass hier vermutlich auch ungeübte Wanderer unterwegs sind. Zwischen den Bäumen steigt das Gelände allerdings schon nach wenigen Metern merklich an.
+
+### 1.2.6 detail linker Pfad
+
+Der schmalere Pfad links wirkt deutlich weniger genutzt. Zwischen feuchtem Laub und Wurzeln ist kaum zu erkennen, ob hier überhaupt regelmäßig jemand entlanggeht. Trotzdem scheint sich vor längerer Zeit einmal ein Weg gebildet zu haben. Schon nach wenigen Metern verlieren sich die Konturen zwischen den Bäumen.
+
+### 1.2.7 detail Forstweg
+
+Der rechte Weg ist breiter als die anderen. Eher ein Schotterweg als ein Wanderpfad. Im matschigen Boden zeichnen sich tiefe Reifenabdrücke ab, die deutlich frischer wirken als erwartet. Ein kleines Schild am Rand weist auf Forstarbeiten hin. Von hier aus scheint der Weg vergleichsweise leicht befahrbar zu sein.
+
+### 1.2.8 detail Reifenspuren/Boden
+
+Der Boden des Parkplatzs ist weich und stellenweise tief aufgeweicht. Zwischen Schuhabdrücken und ungleichmäßigen Spuren zeichnen sich mehrere Reifenabdrücke im Matsch ab. Die meisten sehen nach gewöhnlichen Autos aus. Einige verlaufen allerdings deutlich tiefer. Vielleicht größere Fahrzeuge. Oder einfach jemand, der hier bei schlechterem Wetter unterwegs war.
+
+### 1.2.9 detail Straße
+
+Die schmale Landstraße verschwindet in beide Richtungen zwischen dichten Bäumen. Schon nach wenigen Metern schluckt der Wald jede Sicht. Außer dem Wind ist nichts zu hören. Kein Motorengeräusch. Keine vorbeifahrenden Autos. Im Zweifel wäre das vermutlich der schnellste Weg zurück nach Ashford.
+
+### 1.2.10 detail Rucksack
+
+Du öffnest kurz deinen Rucksack. Kamera, Notizblock, etwas Verpflegung. Der Ausdruck des Satellitenbildes ist inzwischen bereits leicht zerknittert. Daneben liegen Ersatzbatterien und die Arbeitshandschuhe aus dem Kofferraum. Nichts Ungewöhnliches. Nur die übliche Ausrüstung für einen Nachmittag auf der Suche nach einer guten Geschichte.
+
+### 1.3. Area Pine Ridge Trail (gehe nach ...)
+
+
 ## Atmosphäre / Text
 (Was sieht der Spieler beim Betreten?)
 
