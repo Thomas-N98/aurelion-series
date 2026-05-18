@@ -95,8 +95,21 @@ Die schmale Landstraße verschwindet in beide Richtungen zwischen dichten Bäume
 
 Du öffnest kurz deinen Rucksack. Kamera, Notizblock, etwas Verpflegung. Der Ausdruck des Satellitenbildes ist inzwischen bereits leicht zerknittert. Daneben liegen Ersatzbatterien und die Arbeitshandschuhe aus dem Kofferraum. Nichts Ungewöhnliches. Nur die übliche Ausrüstung für einen Nachmittag auf der Suche nach einer guten Geschichte.
 
-### 1.3. Area Pine Ridge Trail (gehe nach ...)
+### 1.3. Area Pine Ridge Trail 1 (gehe nach ...)
 
+Du folgst dem Pine Ridge Trail einige Minuten bergauf. Schon nach kurzer Zeit wird der Weg spürbar steiler. Der Pfad führt zwischen hohen Bäumen hindurch, vorbei an feuchtem Laub, freiliegenden Wurzeln und dichtem Gestrüpp. Einmal gerätst du auf dem nassen Untergrund kurz ins Rutschen. Abgesehen vom Wald scheint sich hier oben allerdings nicht viel zu befinden. Zwischen den Bäumen ist nichts zu erkennen, das auf eine alte Industrieanlage hindeuten würde. Stattdessen sieht alles eher nach einem gewöhnlichen Wanderweg aus. Wahrscheinlich hast du hier eher Aussicht als Antworten zu erwarten. Wann diese allerdings kommt, ist schwer zu sagen.Wahrscheinlich hast du hier eher eine Aussicht als Antworten zu erwarten. Wann diese allerdings kommt, ist schwer zu sagen.
+
+### 1.3.1 command "umsehen":
+
+Du befindest dich auf einem steilen Abschnitt des Pine Ridge Trail. Vor dir setzt sich der Wanderweg bergauf fort. Hinter dir führt der Pfad zurück zum Parkplatz. Ringsum siehst du vor allem Wald. Dicht stehende Bäume, feuchtes Unterholz und der leicht steinige, wurzelüberwachsene Pfad bestimmen das Bild. Von hier aus wirkt alles ziemlich unspektakulär.
+
+### 1.3.2 command "untersuche Bäume"
+
+Hohe Nadel- und Mischbäume stehen dicht entlang des Wegs. Zwischen den Baumkronen rauscht der Wind. Die Äste bewegen sich hin und her. Abgesehen davon wirkt der Wald ruhig.
+
+### 1.3.3 command "untersuche Boden"
+
+Der Boden ist feucht und stellenweise rutschig. Zwischen Wurzeln und kleinen Steinen haben sich hier und da flache Pfützen gebildet. Bei stärkerem Regen dürfte der Weg deutlich unangenehmer werden. Du achtest lieber etwas genauer darauf, wohin du trittst.
 
 ## Atmosphäre / Text
 (Was sieht der Spieler beim Betreten?)
