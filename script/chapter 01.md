@@ -167,12 +167,28 @@ Der Pfad führt noch einige Minuten weiter durch den Wald, bevor sich das Gelän
 
 ### 1.6.1 command umsehen
 
-Du stehst an einem schmalen Graben mitten im Wald. Der Graben wirkt künstlich, die Ufer sind im 45 Grad Winkel nach unten ausgegraben. Im Graben fließt noch etwas Wasser. Langsam. Kaum mehr als ein schmales Rinnsal zwischen feuchter Erde und abgestorbenem Laub. Eine alte Brücke aus einem Metallgerüst führt auf die andere Seite. Hinter dir verschwindet der Trampelpfad zwischen den Bäumen. Der Pfad geht auf der anderen Seite der Brücke weiter.
+Du stehst an einem schmalen Graben mitten im Wald. Die Ufer verlaufen ungewöhnlich sauber und gleichmäßig nach unten. Wahrscheinlich kein natürlicher Ursprung. Im Graben fließt noch etwas Wasser. Langsam. Kaum mehr als ein schmales Rinnsal zwischen feuchter Erde und abgestorbenem Laub. Eine alte Brücke aus Metall führt auf die andere Seite. Hinter dir verschwindet der Trampelpfad zwischen den Bäumen. Auf der anderen Seite setzt sich der Weg fort.
 
 ### 1.6.2 untersuche Brücke
 
-### 1.6.3 gehe zu graben
-neuer "secret Weg" dem "Flusslauf folgen"
+Die Brücke wirkt alt, aber stabil Das Metallgeländer ist stellenweise rostig, die Betonfundamente aber gut erhalten. An einigen Stellen blättert Farbe ab. Für einen gewöhnlichen Waldweg wirkt die Konstruktion beinahe überdimensioniert.
+
+### 1.6.3 gehe zu / untersuche graben
+
+du gehst seitlich an der Brücke vorbei ans Ufer. Es ist steil und rutschig, aber du kannst dich an der Brückenkonstruktion festhalten. Der Graben wirkt ungewöhnlich gleichmäßig angelegt. Die Böschungen verlaufen sauber und selbst der Verlauf durch den Wald wirkt fast zu gerade. Der Boden entlang des Grabens wirkt überraschend fest.
+"secret Weg" dem "Flusslauf folgen"
+
+### 1.6.4 untersuche Wasser
+
+Das Wasser wirkt trüb, aber sauber genug. Mehr Rinnsal als Bach. Zwischen Blättern und kleinen Ästen bewegt es sich nur langsam vorwärts.
+
+### 1.6.5 untersuche Geländer
+
+Zwischen Rost und abgeplatzter Farbe erkennst du stellenweise verblasste Markierungen. Vielleicht einmal Nummerierungen. Heute kaum noch lesbar.
+
+### 1.7 Weg Graben
+
+
 
 ## Atmosphäre / Text
 (Was sieht der Spieler beim Betreten?)
