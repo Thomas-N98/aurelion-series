@@ -117,7 +117,7 @@ Nach einigen weiteren Minuten bergauf lichtet sich der Wald plötzlich. Keuchend
 
 ### 1.4.1 command "umsehen":
 
-Du stehst auf einer kleinen Anhöhe am Ende des Pine Ridge Trail. Hinter dir führt der Wanderweg zurück durch den Wald Zu deiner Linken setzt sich der Rundweg weiter fort, auch wenn du kaum erwartest, dort etwas Interessantes zu finden. Vor dir öffnet sich die Aussicht über mehrere Kilometer Waldlandschaft. Am Rand stehen eine alte Holzbank und ein verwitterter Aussichtshinweis. Zwischen den Bäumen in der Ferne ist ein größeres Gelände zu erkennen. 
+Du stehst auf einer kleinen Anhöhe am Ende des Pine Ridge Trail. Hinter dir führt der Wanderweg zurück durch den Wald. Zu deiner Linken setzt sich der Rundweg weiter fort, auch wenn du kaum erwartest, dort etwas Interessantes zu finden. Vor dir öffnet sich die Aussicht über mehrere Kilometer Waldlandschaft. Am Rand stehen eine alte Holzbank und ein verwitterter Aussichtshinweis. Zwischen den Bäumen in der Ferne ist ein größeres Gelände zu erkennen. 
 
 ### 1.4.2 command "untersuche Gelände":
 
@@ -141,9 +141,14 @@ Die Holzbank wirkt alt, aber stabil. Das Holz ist an mehreren Stellen dunkel ver
 
 ### 1.4.7 command spiele ab Sprachnachricht Emma
 
-„Heyhey. Nur damit das klar ist: Wenn du für irgendeine *Weekly Lost Place*-Folge mitten in den Wald fährst und am Ende wieder nur ein kaputtes Verwaltungsgebäude mit Graffiti fotografierst, schuldet du mir Kaffee. Und diesmal bitte mehr als drei brauchbare Bilder. Die letzten waren zur Hälfte nur rostige Türen. Meld dich später mal. Bin gespannt, ob dieser ominöse Geheimtipp überhaupt existiert.“
+„Hey. Nur damit das klar ist: Wenn du für irgendeine Weekly-Lost-Place-Folge mitten in den Wald fährst und am Ende wieder nur ein kaputtes Verwaltungsgebäude mit Graffiti fotografierst, schuldet du mir Kaffee. Und diesmal bitte mehr als drei brauchbare Bilder. Die letzten waren zur Hälfte nur rostige Türen. Meld dich später mal. Bin gespannt, ob dieser ominöse Geheimtipp überhaupt existiert.“
 
 Du überlegst kurz zu antworten. Später. Erstmal willst du herausfinden, ob sich die Fahrt überhaupt gelohnt hat.
+
+### 1.4.8 untersuche Handy
+
+Ein paar neue Nachrichten. Nichts Dringendes. Oben in der Liste blinkt Emmas Sprachnachricht.
+
 ## Atmosphäre / Text
 (Was sieht der Spieler beim Betreten?)
 
