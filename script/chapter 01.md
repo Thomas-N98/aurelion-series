@@ -157,7 +157,23 @@ Du entscheidest dich für den schmaleren Pfad links vom Parkplatz. Schon nach we
 
 Du befindest dich auf einem schmalen Waldpfad. Hinter dir liegt der Wanderparkplatz. Vor dir setzt sich der Weg zwischen dicht stehenden Bäumen fort. Stellenweise wirkt der Pfad kaum noch erkennbar. Rechts und links zieht sich dichter Wald.
 
-### 1.5.2 
+### 1.5.2 untersuche pfad
+
+Der Pfad wirkt alt. An manchen Stellen ist er kaum noch zu erkennen, an anderen scheint sich eine deutlichere Spur durch das Unterholz zu ziehen. Der Boden ist weich und stellenweise uneben. Ansonsten nichts, das besonders auffällt. Ganz aufgegeben wirkt der Weg jedenfalls nicht.
+
+### 1.6 Area Entwässerungsgraben / Brücke
+
+Der Pfad führt noch einige Minuten weiter durch den Wald, bevor sich das Gelände leicht öffnet. Zwischen dichtem Gestrüpp zieht sich plötzlich ein schmaler Graben durch den Wald. Darüber spannt sich eine schmale Brücke aus Beton und Metall. Zu funktional für einen gewöhnlichen Wanderweg. Für einen kaum genutzten Pfad wirkt sie überraschend aufwendig gebaut.
+
+### 1.6.1 command umsehen
+
+Du stehst an einem schmalen Graben mitten im Wald. Der Graben wirkt künstlich, die Ufer sind im 45 Grad Winkel nach unten ausgegraben. Im Graben fließt noch etwas Wasser. Langsam. Kaum mehr als ein schmales Rinnsal zwischen feuchter Erde und abgestorbenem Laub. Eine alte Brücke aus einem Metallgerüst führt auf die andere Seite. Hinter dir verschwindet der Trampelpfad zwischen den Bäumen. Der Pfad geht auf der anderen Seite der Brücke weiter.
+
+### 1.6.2 untersuche Brücke
+
+### 1.6.3 gehe zu graben
+neuer "secret Weg" dem "Flusslauf folgen"
+
 ## Atmosphäre / Text
 (Was sieht der Spieler beim Betreten?)
 
