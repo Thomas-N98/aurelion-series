@@ -188,6 +188,15 @@ Zwischen Rost und abgeplatzter Farbe erkennst du stellenweise verblasste Markier
 
 ### 1.7 Weg Graben
 
+Du folgst dem Verlauf des Grabens eine ganze Weile durch den Wald. Der Weg ist schmal und unbequem, aber überraschend gut passierbar. Immer wieder scheint sich zwischen Gestrüpp und feuchter Erde eine schmale Spur gebildet zu haben. Je weiter du gehst, desto deutlicher fällt auf, wie gerade der Graben verläuft. Zu gerade für etwas, das einfach zufällig durch den Wald entstanden ist. Nach einigen Minuten entdeckst du zwischen den Bäumen etwas Metallisches.
+
+### 1.7.1 command umsehen
+
+Du befindest dich an einem schmalen Abschnitt entlang des Grabens. Hinter dir führt der Weg zurück zur Brücke. Vor dir setzt sich der Graben durch den Wald fort. Zwischen den Bäumen scheint etwas Metallisches aus dem Boden zu ragen.
+
+### 1.7.2 untersuche metall
+
+Zwischen Erde, Moos und dichtem Bewuchs steckt ein alter Metallpfosten.Zu verrostet, um noch etwas darauf lesen zu können. Er wirkt allerdings deutlich zu massiv, um einfach hier vergessen worden zu sein. Du vermutest, dass du dem Gelände schon sehr nahe bist.
 
 
 ## Atmosphäre / Text
