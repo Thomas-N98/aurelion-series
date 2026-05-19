@@ -20,36 +20,319 @@
 15 — Nullpunkt      15 — Nachhall
 
 
-# Chapter 00: Protokoll
+# Chapter 00 — PROTOKOLL
+### Tutorial / verborgene Einordnung
 
-(Tutorial) Aurelion Industries Testprogramm / Bewerberauswahl. Hidden lore die im späteren Verlauf klar wird
+Der Spieler absolviert scheinbar ein stilisiertes Tutorial.
+Sterile Sprache. Tests. Navigation. Interaktionen.
 
-# Chapter 01: Neugier
+- Wirkt wie stylisches Intro.
+- Später wird klar es war nie ein Tutorial.
+- Sondern eine Form von Kompetenztest / Auswahl / Bewertung.
 
-Du erkundest den Lostplace. Du musst einen Eintritt ins Gebäude finden
+Mögliche subtile Elemente:
 
-# Chapter 02: 
+merkwürdige Begrifflichkeiten
+sterile UI
+unnötig präzise Rückmeldungen
+seltsame Formulierungen
+# Chapter 01 — PARAMETER
+### Neugier / erster Eintritt
 
-Erste Interaktionen im Gebäude. Erste Sachen die slightly off wirken
+Lost-Place-Setup. Wanderparkplatz / Besucherparkplatz.
 
-# Chapter 03:
+Spieler erkundet das Gelände.
 
-Schock und Flucht aus dem Gebäude nicht "da geh ich nie wieder hin", sondern eher" shit was war das. 
-Vielleicht doch mehr als ein einfacher Lostplace"
+Ziel:
 
-# Chapter 04:
+Zugang ins Gebäude finden.
 
-Recherche in Ashford/ Bibliothek? --> Perspektivwechsel: 
-Erstes Chapter in der Vergangenheit (entweder im Chapter 04 oder auch schon 05)
+Vibe:
 
-# Chapter 05:
+„cooler abandoned factory vibe“
 
-Gear up und erneuter Eintritt (evtl anderer Eingang)
+Ende:
 
-# Chapter 06:
+erfolgreicher Eintritt.
 
-Tiefergehende Erkundung und erneuter Schockmoment (diesmal Flucht nicht möglich) ohne alles zu offenbaren
+# Chapter 02 — ABWEICHUNG
+Das Gebäude wirkt falsch
 
-# Chapter 07:
+Erste Erkundung innen.
 
-immer mehr seltsame Sachen. immer mehr zeigt sich wahre gestalt der Firma
+Noch rational erklärbar.
+
+Slightly off:
+
+manche Bereiche überraschend intakt
+Strom? (nicht offensichtlich)
+seltsame Architektur
+Orientierung schwierig
+Dinge wirken „zu ordentlich“
+
+Vielleicht:
+
+Dinge fehlen, die in verlassenen Gebäuden normal wären.
+
+Ende:
+
+Erstes:
+
+„Moment…“
+# Chapter 03 — INTERFERENZ
+Der erste Bruch
+
+Erster echter Schock.
+
+Nicht Monster.
+
+Nicht Full Horror.
+
+Eher:
+
+etwas Unmögliches.
+
+Beispiele:
+
+Person?
+Stimme?
+Sicherheitsmechanik aktiv?
+Raum ergibt keinen Sinn?
+etwas bewegt sich, das nicht sollte
+
+Wichtig:
+
+Flucht gelingt.
+
+Spieler verlässt Anlage freiwillig.
+
+Emotion:
+
+„Was zur Hölle war das?“
+# Chapter 04 — REFERENZ
+Recherche in Ashford
+
+Pacing Reset.
+
+Realwelt.
+
+Mögliche Orte:
+
+Bibliothek
+Stadtarchiv
+alte Zeitungsausgaben
+Kneipe / ältere Einwohner
+Emma
+ehemaliger Mitarbeiter?
+
+Perspektivwechsel denkbar:
+
+Vergangenheit
+alter Arbeiter
+Journalist
+Bewohner
+
+Erste echte Hinweise:
+
+Firma existierte offiziell anders als gedacht.
+
+Chapter 05 — REKURSION
+Bewusste Rückkehr
+
+Jetzt kein LP mehr.
+
+Spieler geht vorbereitet zurück.
+
+Gear-Up:
+
+bessere Taschenlampe
+Karten
+Kamera
+Werkzeuge
+
+Anderer Eingang.
+
+Zielgerichteter.
+
+Vibe:
+
+„Ich will wissen was da los ist.“
+Chapter 06 — ISOLATION
+Kein einfacher Rückzug mehr
+
+Tiefer drin.
+
+Etwas passiert:
+
+Ausgang blockiert.
+
+Nicht billig.
+
+Glaubwürdig:
+
+Stromausfall
+Verriegelung
+Orientierung verloren
+Weg verändert?
+
+Flucht nicht mehr einfach möglich.
+
+Wichtiger Wendepunkt.
+
+Chapter 07 — KONVERGENZ
+Muster zeigen sich
+
+Spieler erkennt:
+
+Dinge hängen zusammen.
+
+Mehr Hinweise auf wahre Funktion.
+
+Nicht Exposition.
+
+Mehr:
+
+Puzzleteile
+
+Mögliche Systeme:
+
+Archive
+Terminals
+Sicherheitsprotokolle
+alte Logs
+Chapter 08 — ANOMALIE
+Realität beginnt zu kippen
+
+Jetzt darf es weirder werden.
+
+Aber kontrolliert.
+
+Nicht Horror-Jumpscare.
+
+Mehr:
+
+„das ergibt keinen Sinn.“
+
+Beispiele:
+
+unmögliche Architektur
+Zeit stimmt nicht
+Räume wirken falsch
+Erinnerungen?
+Wahrnehmungsfehler?
+Chapter 09 — DRIFT
+Tiefer hinein
+
+Spieler entfernt sich:
+
+physisch + psychologisch
+
+von der Außenwelt.
+
+Ashford wirkt weit weg.
+
+Kommunikation bricht ab.
+
+Eventuell Perspektivwechsel:
+
+Emma sucht nach Spieler?
+
+Sehr stark für Spannung.
+
+Chapter 10 — FRAGMENT
+Die Wahrheit in Teilen
+
+Große Lore-Fragmente.
+
+Nicht alles.
+
+Wichtig:
+
+Spieler muss kombinieren.
+
+Keine Wiki-Wand.
+
+Chapter 11 — SCHWELLE
+Point of no return
+
+Spieler überschreitet Grenze.
+
+Wichtige Entscheidung.
+
+Kein Zurück.
+
+Großer Reveal-Setup.
+
+Chapter 12 — URSPRUNG
+Was ist Aurelion?
+
+Erste echte Antworten.
+
+Nicht alles.
+
+Aber genug:
+
+„OHHH.“
+
+Hier kannst du große Lore liefern.
+
+Chapter 13 — EXPOSITION
+Wahrheit + Manipulation
+
+Nicht nur:
+
+was Aurelion ist
+
+sondern:
+
+warum.
+
+Vielleicht:
+
+Spieler war nie zufällig hier.
+
+Chapter 00 payoff.
+
+Chapter 14 — RESIDUUM
+Konsequenzen
+
+Nachwirkungen.
+
+Nicht nur Finale.
+
+Was bleibt übrig?
+
+Ashford?
+
+Emma?
+
+Spieler?
+
+Wahrheit veröffentlichen?
+
+Verschweigen?
+
+Chapter 15 — NULLPUNKT
+Finale
+
+Sehr offen haltbar.
+
+Kann sein:
+
+Zerstörung
+
+oder:
+
+Integration
+
+oder:
+
+Zyklus beginnt neu
+
+oder:
+
+Spieler wird Teil des Systems
+
+Und:
+
+extrem gut erweiterbar.
